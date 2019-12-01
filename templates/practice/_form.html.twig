@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<button class="btn btn-success">
+	<span class="d-sm-none">
+		<i class="fas fa-save"></i>
+	</span>
+	<span class="d-none d-sm-block">{{button_label|default('Enregistrer')}}</span>
+</button>
+{{ form_end(form) }}

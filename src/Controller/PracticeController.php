@@ -57,6 +57,7 @@ class PracticeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $practice->setUpdatedAt(new \DateTime()) ;
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('practice.index');

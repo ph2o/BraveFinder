@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BraveFinder : Modification d'un exercice
+{% endblock %}
+{% block head_js %}{% endblock %}
+
+
+{% block body %}
+	<div class="jumbotron text-center">
+		<h1>Candidat</h1>
+	</div>
+	<div class="container body-container">
+		{{ include('candidate/_form.html.twig') }}
+	</div>
+{% endblock %}

@@ -57,12 +57,11 @@ class PracticeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $practice->setUpdatedAt(new \DateTime()) ;
+            $practice->setUpdatedAt(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('practice.index');
         }
-
         return $this->render('practice/edit.html.twig', [
             'practice' => $practice,
             'form' => $form->createView(),

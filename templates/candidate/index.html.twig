@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
-{% block title %}BraveFinder : Liste des exercices
+
+{% block title %}BraveFinder : Liste des candidats
 {% endblock %}
 
 {% block body %}
 	<div class="jumbotron text-center">
-		<h1>Exercice</h1>
+		<h1>Candidats</h1>
 	</div>
 	<div class="container body-container">
 		<div class="row">
@@ -13,17 +14,17 @@
 					<thead>
 						<tr>
 							<th>Name</th>
-							<th>Description</th>
+							<th>Firstname</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
-						{% for practice in practices %}
+						{% for candidate in candidates %}
 							<tr>
-								<td>{{ practice.name }}</td>
-								<td>{{ practice.description }}</td>
+								<td>{{ candidate.name }}</td>
+								<td>{{ candidate.firstname }}</td>
 								<td>
-									<a href="{{ path('practice.edit', {'id': practice.id}) }}">
+									<a href="{{ path('candidate.edit', {'id': candidate.id}) }}">
 										<button class="btn btn-info">
 											<span class="d-sm-none">
 												<i class="fas fa-edit"></i>
@@ -31,9 +32,10 @@
 											<span class="d-none d-sm-block">Edition</span>
 										</button>
 									</a>
-									<form method="post" action="{{ path('practice.delete',{id: practice.id}) }}" style="display: inline-block" onsubmit="return confirm('Voulez-vous supprimer cet élément ?');">
+									<form method="post" action="{{ path('candidate.delete',{id: candidate.id}) }}" style="display: inline-block" onsubmit="return confirm('Voulez-vous supprimer cet élément ?');">
 										<input name="_method" type="hidden" value="DELETE"/>
-										<input type="hidden" name="_token" value="{{ csrf_token('practice.delete' ~ practice.id) }}"/>
+										<input type="hidden" name="_token" value="{{ csrf_token('candidate.delete' ~ candidate.id) }}"/>
+
 										<button class="btn btn-danger">
 											<span class="d-sm-none">
 												<i class="fas fa-trash-alt"></i>
@@ -51,7 +53,7 @@
 					</tbody>
 				</table>
 				<div class="text-right">
-					<a href="{{ path('practice.new') }}">
+					<a href="{{ path('candidate.new') }}">
 						<button class="btn btn-success">
 							<span class="d-sm-none">
 								<i class="fas fa-plus-square"></i>

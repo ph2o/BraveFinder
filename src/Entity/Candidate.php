@@ -32,12 +32,12 @@ class Candidate
     private $birthdate;
 
     /**
-     * @ORM\Column(type="string", length=12, nullable=true)
+     * @ORM\Column(type="string", length=13, nullable=true)
      */
     private $phone;
 
     /**
-     * @ORM\Column(type="string", length=12, nullable=true)
+     * @ORM\Column(type="string", length=13, nullable=true)
      */
     private $mobile;
 

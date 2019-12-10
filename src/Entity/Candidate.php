@@ -88,8 +88,8 @@ class Candidate
 
     public function __construct()
     {
-        $this->created_at = new \DateTime();
-        $this->updated_at = new \DateTime();
+        $this->created_at = new \DateTimeImmutable();
+        $this->updated_at = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -263,5 +263,15 @@ class Candidate
         $this->picture = $picture;
 
         return $this;
+    }
+
+    /**
+     * Set la date de mise à jour.
+     *
+     * @ORM\PreUpdate
+     */
+    public function SetUpdateDateTime()
+    {
+        $this->updated_at = new \DateTime();
     }
 }

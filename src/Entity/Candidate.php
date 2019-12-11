@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CandidateRepository")
+ * @Vich\Uploadable
  */
 class Candidate
 {
@@ -85,6 +88,12 @@ class Candidate
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;
+
+    /**
+     * Objet contenant l'image stockée par le bundle VichUpload
+     * @Vich\UploadableField(mapping="candidate_image", fileNameProperty="picture")
+     */
+    private $pictureFile;
 
     public function __construct()
     {
@@ -263,6 +272,33 @@ class Candidate
         $this->picture = $picture;
 
         return $this;
+    }
+
+    /**
+     * Get objet contenant l'image stockée par le bundle VichUpload
+     *
+     * @return  mixed
+     */
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    /**
+     * Set objet contenant l'image stockée par le bundle VichUpload
+     *
+     * @return  self
+     */
+    public function setPictureFile(?File $pictureFile = null)
+    {
+        $this->pictureFile = $pictureFile;
+
+        if (null !== $pictureFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+            return $this;
+        }
     }
 
     /**

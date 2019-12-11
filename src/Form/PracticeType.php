@@ -13,14 +13,14 @@ class PracticeType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
-        ;
+            ->add('description');
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Practice::class,
+            'translation_domain' => 'forms',
         ]);
     }
 }

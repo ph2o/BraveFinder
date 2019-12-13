@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,10 +38,16 @@ class Practice
      */
     private $updated_at;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Evaluation", mappedBy="practice", orphanRemoval=true)
+     */
+    private $evaluations;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->updated_at = new \DateTimeImmutable();
+        $this->evaluations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -103,5 +111,36 @@ class Practice
     public function SetUpdateDateTime()
     {
         $this->updated_at = new \DateTime();
+    }
+
+    /**
+     * @return Collection|Evaluation[]
+     */
+    public function getEvaluations(): Collection
+    {
+        return $this->evaluations;
+    }
+
+    public function addEvaluation(Evaluation $evaluation): self
+    {
+        if (!$this->evaluations->contains($evaluation)) {
+            $this->evaluations[] = $evaluation;
+            $evaluation->setPractice($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvaluation(Evaluation $evaluation): self
+    {
+        if ($this->evaluations->contains($evaluation)) {
+            $this->evaluations->removeElement($evaluation);
+            // set the owning side to null (unless already changed)
+            if ($evaluation->getPractice() === $this) {
+                $evaluation->setPractice(null);
+            }
+        }
+
+        return $this;
     }
 }

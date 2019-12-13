@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -95,10 +97,16 @@ class Candidate
      */
     private $pictureFile;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Evaluation", mappedBy="candidate", orphanRemoval=true)
+     */
+    private $evaluations;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->updated_at = new \DateTimeImmutable();
+        $this->evaluations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -309,5 +317,36 @@ class Candidate
     public function SetUpdateDateTime()
     {
         $this->updated_at = new \DateTime();
+    }
+
+    /**
+     * @return Collection|Evaluation[]
+     */
+    public function getEvaluations(): Collection
+    {
+        return $this->evaluations;
+    }
+
+    public function addEvaluation(Evaluation $evaluation): self
+    {
+        if (!$this->evaluations->contains($evaluation)) {
+            $this->evaluations[] = $evaluation;
+            $evaluation->setCandidate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvaluation(Evaluation $evaluation): self
+    {
+        if ($this->evaluations->contains($evaluation)) {
+            $this->evaluations->removeElement($evaluation);
+            // set the owning side to null (unless already changed)
+            if ($evaluation->getCandidate() === $this) {
+                $evaluation->setCandidate(null);
+            }
+        }
+
+        return $this;
     }
 }

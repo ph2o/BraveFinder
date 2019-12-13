@@ -18,8 +18,8 @@ class CandidateType extends AbstractType
             ->add('name')
             ->add('firstname')
             ->add('birthdate', DateType::class, [
+                'required'   => false,
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
             ])
             ->add('phone')
             ->add('mobile')
@@ -34,12 +34,15 @@ class CandidateType extends AbstractType
                 'required'   => false
             ])
             ->add('pictureFile', VichImageType::class, [
-                'required' => false,
+                'required'   => false,
+                'attr' => ['capture' => 'camera'],
+                /*
                 'allow_delete' => true,
                 'download_label' => '...',
                 'download_uri' => true,
                 'image_uri' => true,
                 'asset_helper' => true,
+                */
             ]);
     }
 

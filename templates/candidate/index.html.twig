@@ -11,19 +11,19 @@
 		<div class="row">
 			<div class="col-sm-9" id="main">
 				<table class="table">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Firstname</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
 					<tbody>
 						{% for candidate in candidates %}
 							<tr>
-								<td>{{ candidate.name }}</td>
-								<td>{{ candidate.firstname }}</td>
-								<td>
+								<td class="col-sm-1"><img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/></td>
+
+								<td class="col-sm-3">
+									<a href="{{ path('candidate.edit', {'id': candidate.id}) }}" class="href">
+										{{ candidate.name }}
+										{{ candidate.firstname }}
+									</a>
+								</td>
+								<td class="col-sm-5">
+
 									<a href="{{ path('candidate.edit', {'id': candidate.id}) }}">
 										<button class="btn btn-info">
 											<span class="d-sm-none">
@@ -32,6 +32,7 @@
 											<span class="d-none d-sm-block">Edition</span>
 										</button>
 									</a>
+
 									<form method="post" action="{{ path('candidate.delete',{id: candidate.id}) }}" style="display: inline-block" onsubmit="return confirm('Voulez-vous supprimer cet élément ?');">
 										<input name="_method" type="hidden" value="DELETE"/>
 										<input type="hidden" name="_token" value="{{ csrf_token('candidate.delete' ~ candidate.id) }}"/>
@@ -45,24 +46,10 @@
 									</form>
 								</td>
 							</tr>
-						{% else %}
-							<tr>
-								<td colspan="4">Pas d'enregistrement</td>
-							</tr>
-						{% endfor %}
+						</td>
 					</tbody>
-				</table>
-				<div class="text-right">
-					<a href="{{ path('candidate.new') }}">
-						<button class="btn btn-success">
-							<span class="d-sm-none">
-								<i class="fas fa-plus-square"></i>
-							</span>
-							<span class="d-none d-sm-block">{{button_label|default('Nouveau')}}</span>
-						</button>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-{% endblock %}
+				</tr>
+			</td>
+		</tbody>
+	</tr>
+</tbody></tbody></tr>{% else %}<tr><td colspan="4">Pas d'enregistrement</td></tr>{% endfor %}</tbody></table><div class="text-right"><a href="{{ path('candidate.new') }}"><button class="btn btn-success"><span class="d-sm-none"><i class="fas fa-plus-square"></i></span><span class="d-none d-sm-block">{{button_label|default('Nouveau')}}</span></button></a></div></div></div></div>{% endblock %}

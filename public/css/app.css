@@ -6,3 +6,33 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
+.avatar {
+    border: 1px solid #fff;
+    background: #fff;
+    background-image: none;
+    background-size: auto;
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    background-size: cover;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+.avatar2 img{
+    border: 1px solid #fff;
+    background: #fff;
+    background-image: none;
+    background-size: auto;
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    background-size: cover;
+    -o-object-fit: cover;
+    object-fit: cover;
+}

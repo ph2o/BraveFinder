@@ -12,7 +12,7 @@ class BraveFinderController extends AbstractController
      */
     public function index()
     {
-        return $this->render('brave_finder/index.html.twig', [
+        return $this->render('bravefinder/index.html.twig', [
             'controller_name' => 'BraveFinderController',
         ]);
     }

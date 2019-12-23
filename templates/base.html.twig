@@ -35,17 +35,29 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="{{path('practice.index')}}">Exercices
-							<span class="sr-only">(current)</span>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Administratif
 						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{path('candidate.index')}}">Candidats</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="{{path('practice.index')}}">Exercices</a>
+						</div>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{path('candidate.index')}}">Candidats</a>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Secretariat
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{path('secretariat.accueil')}}">Accueil</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="{{path('secretariat.mesure')}}">Mesure</a>
+							<a class="dropdown-item" href="{{path('secretariat.administratif')}}">Données administratives</a>
+						</div>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{path('evaluation.index')}}">evaluation</a>
-					</li>
+
 				</ul>
 			</div>
 		</nav>

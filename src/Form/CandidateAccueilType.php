@@ -4,36 +4,16 @@ namespace App\Form;
 
 use App\Entity\Candidate;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
-class CandidateType extends AbstractType
+class CandidateAccueilType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('firstname')
-            ->add('birthdate', DateType::class, [
-                'required'   => false,
-                'widget' => 'single_text',
-            ])
-            ->add('phone')
-            ->add('mobile')
-            ->add('street')
-            ->add('houseNumber')
-            ->add('zip')
-            ->add('city')
-            ->add('mail', EmailType::class, [
-                'required'   => false
-            ])
-            ->add('mailPro', EmailType::class, [
-                'required'   => false
-            ])
             ->add('pictureFile', VichImageType::class, [
                 'required'   => false,
                 'attr' => ['capture' => 'camera'],

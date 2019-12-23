@@ -102,11 +102,17 @@ class Candidate
      */
     private $evaluations;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $onSite;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
         $this->updated_at = new \DateTimeImmutable();
         $this->evaluations = new ArrayCollection();
+        $this->onSite = false;
     }
 
     public function getId(): ?int
@@ -346,6 +352,18 @@ class Candidate
                 $evaluation->setCandidate(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOnSite(): ?bool
+    {
+        return $this->onSite;
+    }
+
+    public function setOnSite(bool $onSite): self
+    {
+        $this->onSite = $onSite;
 
         return $this;
     }

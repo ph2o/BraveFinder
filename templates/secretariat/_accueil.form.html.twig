@@ -1,0 +1,28 @@
+{{ form_start(form) }}
+<div class="row">
+	<h1>{{candidate.name}}
+		{{candidate.firstname}}</h1>
+</div>
+
+<div class="col-md-3 custom-control custom-switch">
+	{{ form_row(form.onSite, {'label_attr': {'class':'custom-control-label' }}) }}
+</div>
+
+<div class="row">
+	<div class="col-md-3">
+		<div class="avatar2">
+			{{ form_row(form.pictureFile) }}
+		</div>
+	</div>
+	<div class="col-md-3 custom-control custom-switch">
+		{{ form_row(form.onSite, {'label_attr': {'class':'custom-control-label' }}) }}
+	</div>
+</div>
+
+<button class="btn btn-success">
+	<span class="d-sm-none">
+		<i class="fas fa-save"></i>
+	</span>
+	<span class="d-none d-sm-block">{{button_label|default('Enregistrer')}}</span>
+</button>
+{{ form_end(form) }}

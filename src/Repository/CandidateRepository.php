@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Candidate;
+use App\Entity\CandidateSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -17,6 +18,34 @@ class CandidateRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Candidate::class);
+    }
+
+    public function findAllQuery(CandidateSearch $search)
+    {
+        $query = $this->createQueryBuilder('c');
+
+        if ($search->getCandidateSearch()) {
+            $query
+                ->orWhere('c.name like :val')
+                ->orWhere('c.firstname like :val')
+                ->setParameter('val', $search->getCandidateSearch() . '%');
+        }
+        return $query->getQuery()
+            ->getResult();
+    }
+
+    public function findAllOnSiteQuery(CandidateSearch $search)
+    {
+        $query = $this->createQueryBuilder('c')
+            ->andWhere('c.onSite = 1 ');
+
+        if ($search->getCandidateSearch()) {
+            $query
+                ->andWhere('c.name like :val or c.firstname like :val')
+                ->setParameter('val', $search->getCandidateSearch() . '%');
+        }
+        return $query->getQuery()
+            ->getResult();
     }
 
     // /**

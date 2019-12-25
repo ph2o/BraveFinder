@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{% if job == 'accueil' %}
+	{% if job == 'reception' %}
 		BraveFinder : Secrétariat
 	{% elseif job == 'mesure' %}
 		BraveFinder : Mesure
@@ -10,34 +10,19 @@
 	{% endif  %}
 {% endblock %}
 
-
 {% block body %}
 	<div class="jumbotron text-center">
-		{% if job == 'accueil' %}
-			<h1>Accueil</h1>
+		{% if job == 'reception' %}
+			<h1>Accueil des candidats</h1>
 		{% elseif job == 'mesure' %}
-			<h1>Mesure</h1>
+			<h1>Mesure des candidats</h1>
 		{% elseif job == 'office' %}
-			<h1>Administratif</h1>
+			<h1>Données administratives</h1>
 		{% endif  %}
-		<div class="container">
-			{{form_start(form)}}
-			<div class="form-row">
-				<div class="col-xs-11">
-					{{form_row(form.candidateSearch)}}
-				</div>
-				<div class="col-xs-1">
-					<button class="btn btn-primary">
-						<span class="d-sm-none">
-							<i class="fas fa-search"></i>
-						</span>
-						<span class="d-none d-sm-block">{{button_label|default('Rechercher')}}
-						</span>
-					</button>
-				</div>
-			</div>
-			{{form_end(form)}}
-		</div>
+
+		{% include "candidate/_form_candidateSearch.html.twig" %}
+
+		{{form_end(form)}}
 	</div>
 	<div class="container body-container">
 		<div class="row">
@@ -45,29 +30,81 @@
 				<table class="table">
 					<tbody>
 						{% for candidate in candidates %}
-							<tr>
-								<td class="col-sm-1">
-									<a href="{{ path('secretariat.accueil.edit', {'id': candidate.id}) }}" class="href">
-										<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
-									</a>
-								</td>
-								<td class="col-sm-7 align-middle h5">
-									<a href="{{ path('secretariat.accueil.edit', {'id': candidate.id}) }}" class="href">
-										{{ candidate.name }}
-										{{ candidate.firstname }}
-									</a>
-								</td>
-								<td class="col-sm-4 align-middle">
-									<a href="{{ path('secretariat.accueil.edit', {'id': candidate.id}) }}">
-										<button class="btn btn-info">
-											<span class="d-sm-none">
-												<i class="fas fa-eye"></i>
-											</span>
-											<span class="d-none d-sm-block">Arrivée du candidat</span>
-										</button>
-									</a>
-								</td>
-							</tr>
+							{% if job == 'reception' %}
+								<tr>
+									<td class="col-sm-1">
+										<a href="{{ path('secretariat.reception.edit', {'id': candidate.id}) }}" class="href">
+											<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
+										</a>
+									</td>
+									<td class="col-sm-7 align-middle h5">
+										<a href="{{ path('secretariat.reception.edit', {'id': candidate.id}) }}" class="href">
+											{{ candidate.name }}
+											{{ candidate.firstname }}
+										</a>
+									</td>
+									<td class="col-sm-4 align-middle">
+										<a href="{{ path('secretariat.reception.edit', {'id': candidate.id}) }}">
+											<button class="btn btn-info">
+												<span class="d-sm-none">
+													<i class="fas fa-eye"></i>
+												</span>
+												<span class="d-none d-sm-block">Arrivée du candidat</span>
+											</button>
+										</a>
+									</td>
+								</tr>
+
+							{% elseif job == 'mesure' %}
+								<tr>
+									<td class="col-sm-1">
+										<a href="{{ path('secretariat.mesure.edit', {'id': candidate.id}) }}" class="href">
+											<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
+										</a>
+									</td>
+									<td class="col-sm-7 align-middle h5">
+										<a href="{{ path('secretariat.mesure.edit', {'id': candidate.id}) }}" class="href">
+											{{ candidate.name }}
+											{{ candidate.firstname }}
+										</a>
+									</td>
+									<td class="col-sm-4 align-middle">
+										<a href="{{ path('secretariat.mesure.edit', {'id': candidate.id}) }}">
+											<button class="btn btn-info">
+												<span class="d-sm-none">
+													<i class="fas fa-tshirt"></i>
+												</span>
+												<span class="d-none d-sm-block">Mesures du candidat</span>
+											</button>
+										</a>
+									</td>
+								</tr>
+
+							{% elseif job == 'office' %}
+								<tr>
+									<td class="col-sm-1">
+										<a href="{{ path('secretariat.administratif.edit', {'id': candidate.id}) }}" class="href">
+											<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
+										</a>
+									</td>
+									<td class="col-sm-7 align-middle h5">
+										<a href="{{ path('secretariat.administratif.edit', {'id': candidate.id}) }}" class="href">
+											{{ candidate.name }}
+											{{ candidate.firstname }}
+										</a>
+									</td>
+									<td class="col-sm-4 align-middle">
+										<a href="{{ path('secretariat.administratif.edit', {'id': candidate.id}) }}">
+											<button class="btn btn-info">
+												<span class="d-sm-none">
+													<i class="fas fa-id-card"></i>
+												</span>
+												<span class="d-none d-sm-block">Administratif du candidat</span>
+											</button>
+										</a>
+									</td>
+								</tr>
+							{% endif  %}
 						{% else %}
 							<tr>
 								<td colspan="4">Pas d'enregistrement</td>

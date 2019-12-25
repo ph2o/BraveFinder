@@ -6,23 +6,7 @@
 {% block body %}
 	<div class="jumbotron text-center">
 		<h1>Candidats</h1>
-		<div class="container">
-			{{form_start(form)}}
-			<div class="form-row">
-				<div class="col-xs-11">
-					{{form_row(form.candidateSearch)}}
-				</div>
-				<div class="col-xs-1">
-					<button class="btn btn-primary">
-						<span class="d-sm-none">
-							<i class="fas fa-search"></i>
-						</span>
-						<span class="d-none d-sm-block">{{button_label|default('Rechercher')}}</span>
-					</button>
-				</div>
-			</div>
-			{{form_end(form)}}
-		</div>
+		{% include "candidate/_form_candidateSearch.html.twig" %}
 	</div>
 	<div class="container body-container">
 		<div class="row">
@@ -33,14 +17,15 @@
 							<tr>
 								<td class="col-sm-1">
 									<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
+
 								</td>
-								<td class="col-sm-3">
+								<td class="col-sm-3  align-middle">
+
 									<a href="{{ path('candidate.edit', {'id': candidate.id}) }}" class="href">
 										{{ candidate.name }}
-										{{ candidate.firstname }}
-									</a>
+										{{ candidate.firstname }}</a>
 								</td>
-								<td class="col-sm-5">
+								<td class="col-sm-5  align-middle">
 									<a href="{{ path('candidate.edit', {'id': candidate.id}) }}">
 										<button class="btn btn-info">
 											<span class="d-sm-none">
@@ -62,24 +47,20 @@
 									</form>
 								</td>
 							</tr>
-						{% else %}
-							<tr>
-								<td colspan="4">Pas d'enregistrement</td>
-							</tr>
-						{% endfor %}
+						</td>
 					</tbody>
-				</table>
-				<div class="text-right col-sm-2">
-					<a href="{{ path('candidate.new') }}">
-						<button class="btn btn-success">
-							<span class="d-sm-none">
-								<i class="fas fa-plus-square"></i>
-							</span>
-							<span class="d-none d-sm-block">{{button_label|default('Nouveau')}}</span>
-						</button>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-{% endblock %}
+				</tr>
+			</tbody>
+		</tbody>
+	</tr>
+{% else %}
+	<tr>
+		<td colspan="4">Pas d'enregistrement</td>
+	</tr>
+{% endfor %}</tbody></table><div class="text-right col-sm-2"><a href="{{ path('candidate.new') }}">
+<button class="btn btn-success">
+	<span class="d-sm-none">
+		<i class="fas fa-plus-square"></i>
+	</span>
+	<span class="d-none d-sm-block">{{button_label|default('Nouveau')}}</span>
+</button></a></div></div></div></div>{% endblock %}

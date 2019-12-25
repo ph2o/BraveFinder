@@ -1,31 +1,32 @@
 {{ form_start(form) }}
 <div class="row">
-	<div class="col-md-4">{{ form_row(form.name) }}</div>
-	<div class="col-md-4">{{ form_row(form.firstname) }}</div>
-	<div class="col-md-3">{{ form_row(form.birthdate, {'attr': {'data-provider':'datepicker' }}) }}
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-5">{{ form_row(form.street) }}</div>
-	<div class="col-md-1">{{ form_row(form.houseNumber) }}</div>
-	<div class="col-md-1">{{ form_row(form.zip) }}</div>
-	<div class="col-md-5">{{ form_row(form.city) }}</div>
-</div>
-
-<div class="row">
-	<div class="col-md-2">{{ form_row(form.mobile) }}</div>
-	<div class="col-md-2">{{ form_row(form.phone) }}</div>
-	<div class="col-md-4">{{ form_row(form.mail) }}</div>
-	<div class="col-md-4">{{ form_row(form.mailPro) }}</div>
-</div>
-
-<div class="row">
 	<div class="col-md-3">
-		<div class="avatar2">
-			{{ form_row(form.pictureFile) }}
+		<div class="col-sm-1">
+			<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
 		</div>
 	</div>
+	<div class="col-md-9">
+		<h1>{{candidate.name}}
+			{{candidate.firstname}}</h1>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-4">{{ form_row(form.teeshirt) }}</div>
+	<div class="col-md-4">{{ form_row(form.sweat) }}</div>
+	<div class="col-md-4">{{ form_row(form.waitingPants) }}</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4">{{ form_row(form.fireJacket) }}</div>
+	<div class="col-md-4">{{ form_row(form.fireGloves) }}</div>
+	<div class="col-md-4">{{ form_row(form.firePants) }}</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4">{{ form_row(form.rubberBoots) }}</div>
+	<div class="col-md-4">{{ form_row(form.rangerBoots) }}</div>
 </div>
 
 <button class="btn btn-success">

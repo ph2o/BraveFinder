@@ -107,6 +107,47 @@ class Candidate
      */
     private $onSite;
 
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $rubberBoots;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $rangerBoots;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $fireGloves;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\DetailSize")
+     */
+    private $waitingPants;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\DetailSize")
+     */
+    private $firePants;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\DetailSize")
+     */
+    private $sweat;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\DetailSize")
+     */
+    private $teeshirt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\DetailSize")
+     */
+    private $fireJacket;
+
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
@@ -289,6 +330,210 @@ class Candidate
     }
 
     /**
+     * Get the value of rubberBoots
+     *
+     * @return  mixed
+     */
+    public function getRubberBoots()
+    {
+        return $this->rubberBoots;
+    }
+
+    public function getOnSite(): ?bool
+    {
+        return $this->onSite;
+    }
+
+    public function setOnSite(bool $onSite): self
+    {
+        $this->onSite = $onSite;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of rubberBoots
+     *
+     * @param   mixed  $rubberBoots  
+     *
+     * @return  self
+     */
+    public function setRubberBoots($rubberBoots)
+    {
+        $this->rubberBoots = $rubberBoots;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of rangerBoots
+     *
+     * @return  mixed
+     */
+    public function getRangerBoots()
+    {
+        return $this->rangerBoots;
+    }
+
+    /**
+     * Set the value of rangerBoots
+     *
+     * @param   mixed  $rangerBoots  
+     *
+     * @return  self
+     */
+    public function setRangerBoots($rangerBoots)
+    {
+        $this->rangerBoots = $rangerBoots;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fireGloves
+     *
+     * @return  mixed
+     */
+    public function getFireGloves()
+    {
+        return $this->fireGloves;
+    }
+
+    /**
+     * Set the value of fireGloves
+     *
+     * @param   mixed  $fireGloves  
+     *
+     * @return  self
+     */
+    public function setFireGloves($fireGloves)
+    {
+        $this->fireGloves = $fireGloves;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of waitingPants
+     *
+     * @return  mixed
+     */
+    public function getWaitingPants()
+    {
+        return $this->waitingPants;
+    }
+
+    /**
+     * Set the value of waitingPants
+     *
+     * @param   mixed  $waitingPants  
+     *
+     * @return  self
+     */
+    public function setWaitingPants($waitingPants)
+    {
+        $this->waitingPants = $waitingPants;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of firePants
+     *
+     * @return  mixed
+     */
+    public function getFirePants()
+    {
+        return $this->firePants;
+    }
+
+    /**
+     * Set the value of firePants
+     *
+     * @param   mixed  $firePants  
+     *
+     * @return  self
+     */
+    public function setFirePants($firePants)
+    {
+        $this->firePants = $firePants;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of sweat
+     *
+     * @return  mixed
+     */
+    public function getSweat()
+    {
+        return $this->sweat;
+    }
+
+    /**
+     * Set the value of sweat
+     *
+     * @param   mixed  $sweat  
+     *
+     * @return  self
+     */
+    public function setSweat($sweat)
+    {
+        $this->sweat = $sweat;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of teeshirt
+     *
+     * @return  mixed
+     */
+    public function getTeeshirt()
+    {
+        return $this->teeshirt;
+    }
+
+    /**
+     * Set the value of teeshirt
+     *
+     * @param   mixed  $teeshirt  
+     *
+     * @return  self
+     */
+    public function setTeeshirt($teeshirt)
+    {
+        $this->teeshirt = $teeshirt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fireJacket
+     *
+     * @return  mixed
+     */
+    public function getFireJacket()
+    {
+        return $this->fireJacket;
+    }
+
+    /**
+     * Set the value of fireJacket
+     *
+     * @param   mixed  $fireJacket  
+     *
+     * @return  self
+     */
+    public function setFireJacket($fireJacket)
+    {
+        $this->fireJacket = $fireJacket;
+
+        return $this;
+    }
+
+    /**
      * Get objet contenant l'image stockée par le bundle VichUpload
      *
      * @return  mixed
@@ -352,19 +597,11 @@ class Candidate
                 $evaluation->setCandidate(null);
             }
         }
-
         return $this;
     }
 
-    public function getOnSite(): ?bool
+    public function __toString()
     {
-        return $this->onSite;
-    }
-
-    public function setOnSite(bool $onSite): self
-    {
-        $this->onSite = $onSite;
-
-        return $this;
+        return $this->name . ' ' . $this->firstname;
     }
 }

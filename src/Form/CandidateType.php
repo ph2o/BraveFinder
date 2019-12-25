@@ -37,8 +37,9 @@ class CandidateType extends AbstractType
             ->add('pictureFile', VichImageType::class, [
                 'required'   => false,
                 'attr' => ['capture' => 'camera'],
+                'download_uri' => false,
+                'allow_delete' => false,
                 /*
-                'allow_delete' => true,
                 'download_label' => '...',
                 'download_uri' => true,
                 'image_uri' => true,

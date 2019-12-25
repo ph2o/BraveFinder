@@ -1,0 +1,37 @@
+{{ form_start(form) }}
+<div class="row">
+	<h1>{{candidate.name}}
+		{{candidate.firstname}}</h1>
+</div>
+
+<div class="row">
+	<div class="col-sm-3">
+		<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
+	</div>
+	<div class="col-md-3">{{ form_row(form.firstname)}}</div>
+	<div class="col-md-4">{{ form_row(form.name) }}</div>
+</div>
+
+<div class="row">
+	<div class="col-md-3">{{ form_row(form.birthdate, {'attr': {'data-provider':'datepicker' }}) }}</div>
+	<div class="col-md-4">{{ form_row(form.street) }}</div>
+	<div class="col-md-1">{{ form_row(form.houseNumber) }}</div>
+	<div class="col-md-1">{{ form_row(form.zip) }}</div>
+	<div class="col-md-3">{{ form_row(form.city) }}</div>
+</div>
+
+<div class="row">
+	<div class="col-md-2">{{ form_row(form.mobile) }}</div>
+	<div class="col-md-2">{{ form_row(form.phone) }}</div>
+	<div class="col-md-4">{{ form_row(form.mail) }}</div>
+	<div class="col-md-4">{{ form_row(form.mailPro) }}</div>
+</div>
+
+<button class="btn btn-success">
+	<span class="d-sm-none">
+		<i class="fas fa-save"></i>
+	</span>
+	<span class="d-none d-sm-block">{{button_label|default('Enregistrer')}}</span>
+</button>
+
+{{ form_end(form) }}

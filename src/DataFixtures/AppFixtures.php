@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use Faker\Factory;
 use App\Entity\Practice;
 use App\Entity\Candidate;
+use App\Entity\DetailSize;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -27,6 +28,9 @@ class AppFixtures extends Fixture
 
         /* Chargement des candidats*/
         $this->loadCandidat($manager);
+
+        /* Chargement des tailles*/
+        $this->loadDetailSize($manager);
     }
 
     private function loadPractice(ObjectManager $manager)
@@ -49,5 +53,43 @@ class AppFixtures extends Fixture
             $manager->persist($candidat);
         }
         $manager->flush();
+    }
+
+    private function loadAndFlushDS(ObjectManager $manager, string $value)
+    {
+        $detaiSize = new DetailSize();
+        $detaiSize->setName($value);
+        $manager->persist($detaiSize);
+        $manager->flush();
+    }
+
+    private function loadDetailSize(ObjectManager $manager)
+    {
+        $this->loadAndFlushDS($manager, '76 L');
+        $this->loadAndFlushDS($manager, '80 S');
+        $this->loadAndFlushDS($manager, '80 M');
+        $this->loadAndFlushDS($manager, '80 L');
+        $this->loadAndFlushDS($manager, '80 XL');
+        $this->loadAndFlushDS($manager, '84 S');
+        $this->loadAndFlushDS($manager, '84 M');
+        $this->loadAndFlushDS($manager, '84 L');
+        $this->loadAndFlushDS($manager, '84 XL');
+        $this->loadAndFlushDS($manager, '88 S');
+        $this->loadAndFlushDS($manager, '88 M');
+        $this->loadAndFlushDS($manager, '88 L');
+        $this->loadAndFlushDS($manager, '88 XL');
+        $this->loadAndFlushDS($manager, '92 M');
+        $this->loadAndFlushDS($manager, '92 L');
+        $this->loadAndFlushDS($manager, '92 XL');
+        $this->loadAndFlushDS($manager, '96 M');
+        $this->loadAndFlushDS($manager, '96 L');
+        $this->loadAndFlushDS($manager, '96 XL');
+        $this->loadAndFlushDS($manager, '100 M');
+        $this->loadAndFlushDS($manager, '100 L');
+        $this->loadAndFlushDS($manager, '100 XL');
+        $this->loadAndFlushDS($manager, '104 L');
+        $this->loadAndFlushDS($manager, '104 XL');
+        $this->loadAndFlushDS($manager, '112 L');
+        $this->loadAndFlushDS($manager, '112 XL');
     }
 }

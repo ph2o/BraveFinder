@@ -12,7 +12,7 @@ class BraveFinderTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Accueil');
+        $this->assertSelectorTextContains('h1', 'reception');
     }
 
     public function testBraveFinderIndexTitle()

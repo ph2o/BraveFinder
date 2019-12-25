@@ -9,7 +9,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
-class CandidateAccueilType extends AbstractType
+class CandidateReceptionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -17,8 +17,9 @@ class CandidateAccueilType extends AbstractType
             ->add('pictureFile', VichImageType::class, [
                 'required'   => false,
                 'attr' => ['capture' => 'camera'],
+                'download_uri' => false,
+                'allow_delete' => false,
                 /*
-                'allow_delete' => true,
                 'download_label' => '...',
                 'download_uri' => true,
                 'image_uri' => true,

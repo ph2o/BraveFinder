@@ -1,0 +1,17 @@
+<div class="container" style=" display: inline-block">
+	{{form_start(form)}}
+	<div class="form-row">
+		<div class="col-10">
+			{{form_row(form.candidateSearch)}}
+		</div>
+		<div class="col-1">
+			<button class="btn btn-primary">
+				<span class="d-sm-none">
+					<i class="fas fa-search"></i>
+				</span>
+				<span class="d-none d-sm-block">{{button_label|default('Rechercher')}}</span>
+			</button>
+		</div>
+	</div>
+	{{form_end(form)}}
+</div>

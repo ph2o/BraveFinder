@@ -12,10 +12,12 @@
 		<h1>Candidat</h1>
 	</div>
 	<div class="container body-container">
-		{% if job == 'accueil' %}
-			{{ include('secretariat/_accueil.form.html.twig') }}
+		{% if job == 'reception' %}
+			{{ include('secretariat/_reception.form.html.twig') }}
 		{% elseif job == 'mesure' %}
 			{{ include('secretariat/_mesure.form.html.twig') }}
+		{% elseif job == 'office' %}
+			{{ include('secretariat/_office.form.html.twig') }}
 		{% endif %}
 	</div>
 {% endblock %}

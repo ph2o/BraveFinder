@@ -7,6 +7,7 @@ use App\Form\CandidateType;
 use App\Entity\CandidateSearch;
 use App\Form\CandidateSearchType;
 use App\Repository\CandidateRepository;
+use App\Repository\EvaluationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,7 +36,7 @@ class CandidateController extends AbstractController
     /**
      * @Route("/new", name="candidate.new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, EvaluationRepository $EvaluationRepository): Response
     {
         $candidate = new Candidate();
         $form = $this->createForm(CandidateType::class, $candidate);
@@ -45,6 +46,8 @@ class CandidateController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($candidate);
             $entityManager->flush();
+
+            $EvaluationRepository->addNewEvaluations();
 
             return $this->redirectToRoute('candidate.index');
         }

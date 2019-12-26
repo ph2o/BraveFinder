@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Practice;
 use App\Form\PracticeType;
 use App\Repository\PracticeRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\EvaluationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/practice")
@@ -28,7 +29,7 @@ class PracticeController extends AbstractController
     /**
      * @Route("/new", name="practice.new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, EvaluationRepository $EvaluationRepository): Response
     {
         $practice = new Practice();
         $form = $this->createForm(PracticeType::class, $practice);
@@ -38,6 +39,8 @@ class PracticeController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($practice);
             $entityManager->flush();
+
+            $EvaluationRepository->addNewEvaluations();
 
             return $this->redirectToRoute('practice.index');
         }

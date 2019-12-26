@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Candidate;
 use App\Entity\Evaluation;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Evaluation|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,11 +13,33 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  * @method Evaluation[]    findAll()
  * @method Evaluation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
 class EvaluationRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Evaluation::class);
+    }
+
+    /**
+     * addNewEvaluations function
+     *
+     * Complète les évaluations 
+     * 
+     * @param Candidate $candidate
+     * @return void
+     */
+    public function addNewEvaluations()
+    {
+        $this->getEntityManager()->getConnection()->executeUpdate('
+            insert 
+              into evaluation (candidate_id, practice_id) 
+                   select c.id, p.id
+                     from candidate c, practice p
+                    where concat(CONVERT(c.id,char), "*", convert(p.id,char)) 
+				      not in ( select concat(CONVERT(e.candidate_id,char), "*", convert(e.practice_id,char)) 
+							     from evaluation e)
+            ');
     }
 
     // /**

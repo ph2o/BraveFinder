@@ -3,14 +3,16 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\User;
 use App\Entity\Practice;
 use App\Entity\Candidate;
 use App\Entity\DetailSize;
 use App\Entity\Evaluation;
-use App\Repository\CandidateRepository;
 use App\Repository\PracticeRepository;
+use App\Repository\CandidateRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
@@ -18,16 +20,21 @@ class AppFixtures extends Fixture
     private $faker;
     private $cr;
     private $pr;
+    private $passwordEncoder;
 
-    public function __construct(CandidateRepository $CandidateREpository, PracticeRepository $practiceRepository)
+    public function __construct(CandidateRepository $CandidateREpository, PracticeRepository $practiceRepository, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->faker = Factory::create('fr_CH');
         $this->cr = $CandidateREpository;
         $this->pr = $practiceRepository;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     public function load(ObjectManager $manager)
     {
+        /* Chargement des exercices */
+        $this->loadUser($manager);
+
         /* Chargement des exercices */
         $this->loadPractice($manager);
 
@@ -39,6 +46,17 @@ class AppFixtures extends Fixture
 
         /* Chargement des tailles*/
         $this->loadDetailSize($manager);
+    }
+
+
+    private function loadUser(ObjectManager $manager)
+    {
+        $user = new User();
+        $user->setUsername('admin');
+        $user->setRoles(['ROLE_ADMIN']);
+        $user->setPassword($this->passwordEncoder->encodePassword($user, '1234'));
+        $manager->persist($user);
+        $manager->flush();
     }
 
     private function loadPractice(ObjectManager $manager)

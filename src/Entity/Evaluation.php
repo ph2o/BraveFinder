@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EvaluationRepository")
@@ -30,6 +31,12 @@ class Evaluation
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 5,
+     *      minMessage = "Evaluation minimale de  {{ limit }}",
+     *      maxMessage = "Evaluation maximale de  {{ limit }}"
+     * )
      */
     private $rate;
 
@@ -37,6 +44,23 @@ class Evaluation
      * @ORM\Column(type="text", nullable=true)
      */
     private $comment;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+        $this->updated_at = new \DateTimeImmutable();
+        $this->rate = 1;
+    }
 
     public function getId(): ?int
     {
@@ -89,5 +113,39 @@ class Evaluation
         $this->comment = $comment;
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Set la date de mise à jour.
+     *
+     * @ORM\PreUpdate
+     */
+    public function SetUpdateDateTime()
+    {
+        $this->updated_at = new \DateTime();
     }
 }

@@ -143,4 +143,14 @@ class Practice
 
         return $this;
     }
+
+    /**
+     * Permet de populer les listbox
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

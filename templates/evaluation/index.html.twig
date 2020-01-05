@@ -1,38 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Evaluation index
+{% block title %}BraveFinder : Evaluation
+
 {% endblock %}
 
 {% block body %}
-	<h1>Evaluation index</h1>
+<div class="jumbotron text-center">
+	<h1>Evaluation des candidats</h1>
+	{% include "evaluation/_form_EvalSearch.html.twig" %}
+</div>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Rate</th>
-				<th>Comment</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for evaluation in evaluations %}
-				<tr>
-					<td>{{ evaluation.id }}</td>
-					<td>{{ evaluation.rate }}</td>
-					<td>{{ evaluation.comment }}</td>
-					<td>
-						<a href="{{ path('evaluation.show', {'id': evaluation.id}) }}">show</a>
-						<a href="{{ path('evaluation.edit', {'id': evaluation.id}) }}">edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="4">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-
-	<a href="{{ path('evaluation.new') }}">Create new</a>
+<div class="container body-container">
+	<div class="row">
+		<div class="col-sm-12" id="main">
+			<table class="table">
+				<tbody>
+					{% for evaluation in evaluations %}
+						<tr>
+							<td class="col-sm-1">
+								<a href="{{ path('evaluation.edit', {'id': evaluation.id}) }}" class="href">
+									<img class="avatar" src="{{ vich_uploader_asset(evaluation.candidate, 'pictureFile') }}" alt="{{ evaluation.candidate.name }} {{ evaluation.candidate.firstname }}"/>
+								</a>
+							</td>
+							<td class="col-sm-1 align-middle h6">
+								<a href="{{ path('evaluation.edit', {'id': evaluation.id}) }}" class="href">
+									{{ evaluation.candidate.name }}
+									{{ evaluation.candidate.firstname }}
+                                    {{ evaluation.practice.name }}
+								</a>
+							</td>
+							<td class="col-sm-1 align-middle">
+								<a href="{{ path('evaluation.edit', {'id': evaluation.id}) }}">
+									<button class="btn btn-info">
+										<span class="d-sm-none">
+											<i class="fas fa-balance-scale-left"></i>
+										</span>
+										<span class="d-none d-sm-block">Evaluation du candidat</span>
+									</button>
+								</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="4">Pas d'enregistrement</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
 {% endblock %}

@@ -6,19 +6,24 @@ use Faker\Factory;
 use App\Entity\Practice;
 use App\Entity\Candidate;
 use App\Entity\DetailSize;
+use App\Entity\Evaluation;
+use App\Repository\CandidateRepository;
+use App\Repository\PracticeRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $faker;
 
-    public function __construct()
+    private $faker;
+    private $cr;
+    private $pr;
+
+    public function __construct(CandidateRepository $CandidateREpository, PracticeRepository $practiceRepository)
     {
         $this->faker = Factory::create('fr_CH');
+        $this->cr = $CandidateREpository;
+        $this->pr = $practiceRepository;
     }
 
     public function load(ObjectManager $manager)
@@ -28,6 +33,9 @@ class AppFixtures extends Fixture
 
         /* Chargement des candidats*/
         $this->loadCandidat($manager);
+
+        /* Chargement des evaluations*/
+        $this->loadEvaluation($manager);
 
         /* Chargement des tailles*/
         $this->loadDetailSize($manager);
@@ -51,6 +59,22 @@ class AppFixtures extends Fixture
             $candidat->setFirstname($this->faker->firstName());
             $candidat->setMobile($this->faker->mobileNumber);
             $manager->persist($candidat);
+        }
+        $manager->flush();
+    }
+
+    private function loadEvaluation(ObjectManager $manager)
+    {
+        $candidates = $this->cr->findAll();
+        $practices = $this->pr->findAll();
+
+        foreach ($candidates as $candidate) {
+            foreach ($practices as $practice) {
+                $evaluation = new Evaluation();
+                $evaluation->setCandidate($candidate);
+                $evaluation->setPractice($practice);
+                $manager->persist($evaluation);
+            }
         }
         $manager->flush();
     }

@@ -1,0 +1,68 @@
+/* */
+
+/* Lgend du résumé */
+.resume-legend {
+    color: grey;
+}
+
+/* Star resumé */
+span.star {
+    color : chocolate;
+    font-size: 2.5em;
+}
+
+div.stars  {
+    border: none;
+    display: inline-block;
+}
+
+.stars .form-check{
+/*  passe en mode en ligne */
+    float: right;
+    padding-left: 0.5em;
+} 
+
+.stars input.star{
+    /* cache les radiobuttons */
+    display: none;
+    position: absolute;
+
+}
+
+.stars input.star ~ label {
+    overflow: hidden;
+    float: right;
+    width: 1.9em;
+    padding: 0 0.05em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 180%;
+    color: red; /* Texte en blanc */
+}
+
+/* Affiche l'étoile de l'input checked */
+.stars .form-check > input.star:checked + label:before {
+    content: '★';
+    color : orangered;
+    font-size: 2.5em;
+
+}
+
+/* Affiche les étoiles vides*/
+.stars .form-check > input.star:not(:checked) ~ label:before {
+    content: '☆';  
+    color : orangered;
+    font-size: 2.5em;
+
+}  
+
+
+/* Affiche les étoiles précédent l'input checked */
+.stars .form-check > input:checked ~ .label:before
+{
+    content: '★';
+    color : violet;
+    font-size: 2.5em;
+
+}

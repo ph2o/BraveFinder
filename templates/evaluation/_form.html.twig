@@ -1,4 +1,41 @@
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="row">
+    <div class="col h3">
+        {{ evaluation.candidate.name }}
+        {{ evaluation.candidate.firstname }} / 
+        {{ evaluation.practice.name }}
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        {{ form_row(form.rate) }}
+    </div>
+</div>
+
+<div class="row col stars">
+
+    <span class="resume-legend">{{evaluation.practice.name}} </span>
+    {% for i in 1..evaluation.rate  %}
+    <span class='star'>★</span>
+    {% endfor %}
+    {% if evaluation.rate < 5 %}
+        {% for i in 1..(5 - evaluation.rate) %}
+        <span class='star'>☆</span>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<div class="row">
+    <div class="col">
+	    {{ form_row(form.comment) }}
+    </div>
+</div>
+
+<button class="btn btn-success">
+	<span class="d-sm-none">
+		<i class="fas fa-save"></i>
+	</span>
+	<span class="d-none d-sm-block">{{button_label|default('Enregistrer')}}</span>
+</button>
 {{ form_end(form) }}

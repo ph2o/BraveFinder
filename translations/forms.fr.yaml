@@ -1,23 +1,25 @@
-Name: Nom
-Firstname: Prénom
 Birthdate: Date de naissance
-Phone: Téléphone
-Mobile: Natel
-Street: Rue
-House number: N°
-Zip: NPA
-City: Ville
-Mail: Courriel
-Mail pro: Courriel professionel
-Picture: Photo 
 Browse: ...
-Picture file: Portrait
-On site: Sur site
-Rubber boots: Bottes caoutchouc
-Ranger boots: Bottes ranger
+City: Ville
+Comment: Commentaire
 Fire gloves: Gants feu
-Waiting pants: Pantalon d'attente
+Fire jacket: Veste feu
 Fire pants: Pantalon feu
+Firstname: Prénom
+House number: N°
+Mail pro: Courriel professionel
+Mail: Courriel
+Mobile: Natel
+Name: Nom
+On site: Sur site
+Phone: Téléphone
+Picture file: Portrait
+Picture: Photo 
+Ranger boots: Bottes ranger
+Rate: Note
+Rubber boots: Bottes caoutchouc
+Street: Rue
 Sweat: Sweatshirt
 Teeshirt: Tee-shirt
-Fire jacket: Veste feu
+Waiting pants: Pantalon d'attente
+Zip: NPA

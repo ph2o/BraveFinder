@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Candidate;
 use App\Entity\Evaluation;
+use App\Entity\EvaluationSearch;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -20,6 +21,33 @@ class EvaluationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Evaluation::class);
     }
+
+    public function findAllQuery(EvaluationSearch $search)
+    {
+        $query = $this->createQueryBuilder('e');
+
+
+        if ($search->getCandidate()) {
+            $query
+                ->AndWhere('e.candidate in (select c.id 
+                                                 from App\Entity\candidate c 
+									            where (c.name like :val1
+                                                   or c.firstname like :val1))')
+                ->setParameter('val1', $search->getCandidate() . '%');
+        }
+
+
+        if ($search->getPractice()) {
+            $query
+                ->AndWhere('e.practice in (select p.id
+                                                from App\Entity\practice p
+								               where p.name like :val2)')
+                ->setParameter('val2', $search->getPractice() . '%');
+        }
+        return $query->getQuery()
+            ->getResult();
+    }
+
 
     /**
      * addNewEvaluations function

@@ -36,4 +36,9 @@ class CandidateOfficeType extends AbstractType
             'translation_domain' => 'forms',
         ]);
     }
+
+    public function getBlockPrefix()
+    {
+        return '';
+    }
 }

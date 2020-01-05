@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Evaluation;
 use App\Form\EvaluationType;
+use App\Entity\EvaluationSearch;
+use App\Form\EvaluationSearchType;
 use App\Repository\EvaluationRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/evaluation")
@@ -18,10 +20,15 @@ class EvaluationController extends AbstractController
     /**
      * @Route("/", name="evaluation.index", methods={"GET"})
      */
-    public function index(EvaluationRepository $evaluationRepository): Response
+    public function index(Request $request, EvaluationRepository $evaluationRepository): Response
     {
+        $search = new EvaluationSearch;
+        $form = $this->createForm(EvaluationSearchType::class, $search);
+        $form->handleRequest($request);
+
         return $this->render('evaluation/index.html.twig', [
-            'evaluations' => $evaluationRepository->findAll(),
+            'form' => $form->createView(),
+            'evaluations' => $evaluationRepository->findAllQuery($search),
         ]);
     }
 
@@ -45,16 +52,6 @@ class EvaluationController extends AbstractController
         return $this->render('evaluation/new.html.twig', [
             'evaluation' => $evaluation,
             'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="evaluation.show", methods={"GET"})
-     */
-    public function show(Evaluation $evaluation): Response
-    {
-        return $this->render('evaluation/show.html.twig', [
-            'evaluation' => $evaluation,
         ]);
     }
 

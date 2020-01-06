@@ -43,6 +43,11 @@ class Practice
      */
     private $evaluations;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $group_allowed;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
@@ -152,5 +157,17 @@ class Practice
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getGroupAllowed(): ?string
+    {
+        return $this->group_allowed;
+    }
+
+    public function setGroupAllowed(?string $group_allowed): self
+    {
+        $this->group_allowed = $group_allowed;
+
+        return $this;
     }
 }

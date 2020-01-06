@@ -33,9 +33,6 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         /* Chargement des exercices */
-        $this->loadUser($manager);
-
-        /* Chargement des exercices */
         $this->loadPractice($manager);
 
         /* Chargement des candidats*/
@@ -46,27 +43,30 @@ class AppFixtures extends Fixture
 
         /* Chargement des tailles*/
         $this->loadDetailSize($manager);
+
+        /* Chargement des exercices */
+        $this->loadUser($manager);
     }
 
-
-    private function loadUser(ObjectManager $manager)
+    private function loadPracticeDetail(ObjectManager $manager, string $practicename, string $groupallowed)
     {
-        $user = new User();
-        $user->setUsername('admin');
-        $user->setRoles(['ROLE_ADMIN']);
-        $user->setPassword($this->passwordEncoder->encodePassword($user, '1234'));
-        $manager->persist($user);
+        $practice = new Practice();
+        $practice->setName($practicename);
+        $practice->setGroupAllowed($groupallowed);
+        $manager->persist($practice);
         $manager->flush();
     }
 
     private function loadPractice(ObjectManager $manager)
     {
-        for ($i = 1; $i < 10; $i++) {
-            $practice = new Practice();
-            $practice->setName('Exercice ' . $i);
-            $manager->persist($practice);
-        }
-        $manager->flush();
+        $this->loadPracticeDetail($manager, 'Accueil', 'ROLE_ACCUEIL');
+        $this->loadPracticeDetail($manager, 'Administratif', 'ROLE_SECRETARIAT');
+        $this->loadPracticeDetail($manager, 'Test endurance', 'ROLE_ENDURANCE');
+        $this->loadPracticeDetail($manager, 'Test clostrophobie', 'ROLE_CLOSTROPHOBIE');
+        $this->loadPracticeDetail($manager, 'Test vertige', 'ROLE_VERTIGE');
+        $this->loadPracticeDetail($manager, 'Test force physique', 'ROLE_FORCE');
+        $this->loadPracticeDetail($manager, 'Test confiance', '');
+        $this->loadPracticeDetail($manager, 'Entretien', 'ROLE_ENTRETIEN');
     }
 
     private function loadCandidat(ObjectManager $manager)
@@ -133,5 +133,29 @@ class AppFixtures extends Fixture
         $this->loadAndFlushDS($manager, '104 XL');
         $this->loadAndFlushDS($manager, '112 L');
         $this->loadAndFlushDS($manager, '112 XL');
+    }
+
+    private function loadUserDetail(ObjectManager $manager, string $username, string $mdp, array $roles)
+    {
+        $user = new User();
+        $user->setUsername($username);
+        $user->setRoles($roles);
+        $user->setPassword($this->passwordEncoder->encodePassword($user, $mdp));
+        $manager->persist($user);
+        $manager->flush();
+    }
+
+    private function loadUser(ObjectManager $manager)
+    {
+        $this->loadUserDetail($manager, 'admin', '1234', ['ROLE_ADMIN']);
+
+        $this->loadUserDetail($manager, 'accueil', '1234', ['ROLE_ACCUEIL']);
+        $this->loadUserDetail($manager, 'secretariat', '1234', ['ROLE_SECRETARIAT']);
+        $this->loadUserDetail($manager, 'mesure', '1234', ['ROLE_MESURE']);
+        $this->loadUserDetail($manager, 'clostro', '1234', ['ROLE_CLOSTROPHOBIE']);
+        $this->loadUserDetail($manager, 'endurance', '1234', ['ROLE_ENDURANCE']);
+        $this->loadUserDetail($manager, 'force', '1234', ['ROLE_FORCE']);
+        $this->loadUserDetail($manager, 'entretien', '1234', ['ROLE_ENTRETIEN']);
+        $this->loadUserDetail($manager, 'vertige', '1234', ['ROLE_VERTIGE']);
     }
 }

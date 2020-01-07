@@ -44,7 +44,7 @@ class AppFixtures extends Fixture
         /* Chargement des tailles*/
         $this->loadDetailSize($manager);
 
-        /* Chargement des exercices */
+        /* Chargement des utilisateurs */
         $this->loadUser($manager);
     }
 

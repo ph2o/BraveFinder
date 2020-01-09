@@ -37,6 +37,7 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
+				{% if is_granted('ROLE_ADMIN') %}
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							BackOffice
@@ -47,18 +48,33 @@
 							<a class="dropdown-item" href="{{path('practice.index')}}">Exercices</a>
 						</div>
 					</li>
+				{% endif %}
 
+					{% if (is_granted('ROLE_ADMIN') 
+						or is_granted('ROLE_ACCUEIL') 
+						or is_granted('ROLE_SECRETARIAT') 
+						or is_granted('ROLE_MESURE')
+						) %}
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Secretariat
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ACCUEIL') %}
 							<a class="dropdown-item" href="{{path('secretariat.reception')}}">Accueil</a>
 							<div class="dropdown-divider"></div>
+							{% endif %}
+
+							{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MESURE')  %}
 							<a class="dropdown-item" href="{{path('secretariat.mesure')}}">Mesure</a>
+							{% endif %}
+				
+							{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SECRETARIAT')  %}
 							<a class="dropdown-item" href="{{path('secretariat.administratif')}}">Données administratives</a>
+							{% endif %}
 						</div>
 					</li>
+					{% endif %}
 
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -76,6 +92,20 @@
 							<a class="dropdown-item" href="#">Poste 6</a>
 							<a class="dropdown-item" href="#">Poste 7</a>
 							<a class="dropdown-item" href="#">Poste 8</a>
+						</div>
+					</li>
+				</ul>
+				<ul class="navbar-nav ml-md-auto">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="far fa-user-circle"></i>
+						</a>
+						<div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="navbarDropdown">
+						{% if app.user %}
+							<a class="dropdown-item" href="{{path('app_logout')}}">Se déconnecter</a>
+						{% else %}
+							<a class="dropdown-item" href="{{path('app_login')}}">Se connecter</a>
+						{% endif %}
 						</div>
 					</li>
 				</ul>

@@ -2,10 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Measure;
-use App\Form\MesureType;
 use App\Entity\Candidate;
-use App\Form\CandidateType;
 use App\Entity\CandidateSearch;
 use App\Form\CandidateMesureType;
 use App\Form\CandidateOfficeType;
@@ -13,8 +10,8 @@ use App\Form\CandidateSearchType;
 use App\Form\CandidateReceptionType;
 use App\Repository\CandidateRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -26,6 +23,7 @@ class SecretariatController extends AbstractController
     /**
      * @Route("/reception", name="secretariat.reception")
      * @Route("/")
+     * 
      */
     public function reception(Request $request, CandidateRepository $candidateRepository)
     {
@@ -42,6 +40,7 @@ class SecretariatController extends AbstractController
 
     /**
      * @Route("/reception/{id}/edit", name="secretariat.reception.edit", methods={"GET","POST"})
+     * 
      */
     public function editreception(Request $request, Candidate $candidate)
     {
@@ -100,6 +99,7 @@ class SecretariatController extends AbstractController
 
     /**
      * @Route("/administratif", name="secretariat.administratif")
+     * 
      */
     public function administratif(Request $request, CandidateRepository $candidateRepository)
     {
@@ -116,6 +116,7 @@ class SecretariatController extends AbstractController
 
     /**
      * @Route("administratif/{id}/edit", name="secretariat.administratif.edit", methods={"GET","POST"})
+     * 
      */
     public function editAdministratif(Request $request, Candidate $candidate)
     {

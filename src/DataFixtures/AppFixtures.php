@@ -59,8 +59,6 @@ class AppFixtures extends Fixture
 
     private function loadPractice(ObjectManager $manager)
     {
-        $this->loadPracticeDetail($manager, 'Accueil', 'ROLE_ACCUEIL');
-        $this->loadPracticeDetail($manager, 'Administratif', 'ROLE_SECRETARIAT');
         $this->loadPracticeDetail($manager, 'Test endurance', 'ROLE_ENDURANCE');
         $this->loadPracticeDetail($manager, 'Test clostrophobie', 'ROLE_CLOSTROPHOBIE');
         $this->loadPracticeDetail($manager, 'Test vertige', 'ROLE_VERTIGE');

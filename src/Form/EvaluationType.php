@@ -21,7 +21,6 @@ class EvaluationType extends AbstractType
                     '2' => 2,
                     '1' => 1,
                 ], 'expanded' => true, 'multiple' => false, 'attr' => ['class' => 'stars'], 'label_attr' => ['class' => 'star'], 'choice_attr' => function ($choice, $key, $value) {
-                    // adds a class like attending_yes, attending_no, etc
                     return ['class' => 'star'];
                 },
             ])

@@ -1,18 +1,19 @@
-
 {{ form_start(form) }}
 <div class="row">
-    <div class="col h3">
-        {{ evaluation.candidate.name }}
-        {{ evaluation.candidate.firstname }} / 
-        {{ evaluation.practice.name }}
-    </div>
+	<div class="col h3">
+		{{ evaluation.candidate.name }}
+		{{ evaluation.candidate.firstname }}
+		/
+		{{ evaluation.practice.name }}
+	</div>
 </div>
 <div class="row">
-    <div class="col">
-        {{ form_row(form.rate) }}
-    </div>
+	<div class="col">
+		{{ form_row(form.rate) }}
+	</div>
 </div>
 
+<!-- 
 <div class="row col stars">
 
     <span class="resume-legend">{{evaluation.practice.name}} </span>
@@ -25,11 +26,12 @@
         {% endfor %}
     {% endif %}
 </div>
+ -->
 
 <div class="row">
-    <div class="col">
-	    {{ form_row(form.comment) }}
-    </div>
+	<div class="col">
+		{{ form_row(form.comment) }}
+	</div>
 </div>
 
 <button class="btn btn-success">

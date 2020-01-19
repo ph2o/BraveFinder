@@ -117,6 +117,9 @@
     "jms/metadata": {
         "version": "2.1.0"
     },
+    "liip/test-fixtures-bundle": {
+        "version": "1.0.0"
+    },
     "monolog/monolog": {
         "version": "1.25.2"
     },

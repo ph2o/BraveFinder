@@ -22,6 +22,12 @@ class EvaluationRepository extends ServiceEntityRepository
         parent::__construct($registry, Evaluation::class);
     }
 
+    /**
+     * Recherche toutes les évals
+     *
+     * @param EvaluationSearch $search
+     * @return void
+     */
     public function findAllQuery(EvaluationSearch $search)
     {
         $query = $this->createQueryBuilder('e');

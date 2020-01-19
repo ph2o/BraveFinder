@@ -6,6 +6,7 @@ use App\Entity\Evaluation;
 use App\Form\EvaluationType;
 use App\Entity\EvaluationSearch;
 use App\Form\EvaluationSearchType;
+use App\Repository\PracticeRepository;
 use App\Repository\EvaluationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,9 +21,16 @@ class EvaluationController extends AbstractController
     /**
      * @Route("/", name="evaluation.index", methods={"GET"})
      */
-    public function index(Request $request, EvaluationRepository $evaluationRepository): Response
+    public function index(Request $request, EvaluationRepository $evaluationRepository, PracticeRepository $PracticeRepository): Response
     {
         $search = new EvaluationSearch;
+
+        // Filtre par rôle/épreuve
+        $roles = $this->getUser()->getEvaluationRoles();
+        if ((count($roles) == 1) and ($roles[0] != "ROLE_ADMIN")) {
+            $search->setPractice($PracticeRepository->findOneByGroupAllowed($roles[0])->getName());
+        }
+
         $form = $this->createForm(EvaluationSearchType::class, $search);
         $form->handleRequest($request);
 

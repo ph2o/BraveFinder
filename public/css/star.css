@@ -57,9 +57,8 @@ div.stars  {
 
 }  
 
-
 /* Affiche les étoiles précédent l'input checked */
-.stars .form-check > input:checked ~ .label:before
+input.star:checked input.star-before > label:before
 {
     content: '★';
     color : violet;

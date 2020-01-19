@@ -67,6 +67,16 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @see UserInterface
+     */
+    public function getEvaluationRoles(): array
+    {
+        $roles = $this->getRoles();
+        $roles = array_diff($roles, ["ROLE_ACCUEIL", "ROLE_SECRETARIAT", "ROLE_MESURE", "ROLE_USER"]);
+        return array_unique($roles);
+    }
+
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -104,5 +114,15 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * Is this user is an admin user
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return in_array('ROLE_ADMIN', $this->getRoles());
     }
 }

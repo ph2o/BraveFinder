@@ -14,14 +14,14 @@
 			<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 			<link rel="stylesheet" type="text/css" href="/css/all.css">
 			<link rel="stylesheet" type="text/css" href="/css/app.css">
-			<link rel="stylesheet" type="text/css" href="/css/star.css">			
+			<link rel="stylesheet" type="text/css" href="/css/star.css">
 		{% endblock %}
 
 		{% block head_js %}
 			<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
- 			<script src="/js/starr.js" ></script>
+			<script src="/js/starr.js"></script>
 		{% endblock %}
 		{% block head_js_detail %}{% endblock %}
 
@@ -37,75 +37,78 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-				{% if is_granted('ROLE_ADMIN') %}
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							BackOffice
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="{{path('candidate.index')}}">Candidats</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="{{path('practice.index')}}">Exercices</a>
-						</div>
-					</li>
-				{% endif %}
+					{% if is_granted('ROLE_ADMIN') %}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								BackOffice
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{path('candidate.index')}}">Candidats</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{{path('practice.index')}}">Exercices</a>
+							</div>
+						</li>
+					{% endif %}
 
 					{% if (is_granted('ROLE_ADMIN') 
 						or is_granted('ROLE_ACCUEIL') 
 						or is_granted('ROLE_SECRETARIAT') 
 						or is_granted('ROLE_MESURE')
 						) %}
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Secretariat
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ACCUEIL') %}
-							<a class="dropdown-item" href="{{path('secretariat.reception')}}">Accueil</a>
-							<div class="dropdown-divider"></div>
-							{% endif %}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Secretariat
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ACCUEIL') %}
+									<a class="dropdown-item" href="{{path('secretariat.reception')}}">Accueil</a>
+									<div class="dropdown-divider"></div>
+								{% endif %}
 
-							{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MESURE')  %}
-							<a class="dropdown-item" href="{{path('secretariat.mesure')}}">Mesure</a>
-							{% endif %}
-				
-							{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SECRETARIAT')  %}
-							<a class="dropdown-item" href="{{path('secretariat.administratif')}}">Données administratives</a>
-							{% endif %}
-						</div>
-					</li>
+								{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MESURE')  %}
+									<a class="dropdown-item" href="{{path('secretariat.mesure')}}">Mesure</a>
+								{% endif %}
+
+								{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SECRETARIAT')  %}
+									<a class="dropdown-item" href="{{path('secretariat.administratif')}}">Données administratives</a>
+								{% endif %}
+							</div>
+						</li>
 					{% endif %}
 
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Evaluation
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="{{path('evaluation.index')}}">Evaluation</a>
-							<a class="dropdown-item" href="#">Entretien</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Poste 1</a>
-							<a class="dropdown-item" href="#">Poste 2</a>
-							<a class="dropdown-item" href="#">Poste 3</a>
-							<a class="dropdown-item" href="#">Poste 4</a>
-							<a class="dropdown-item" href="#">Poste 5</a>
-							<a class="dropdown-item" href="#">Poste 6</a>
-							<a class="dropdown-item" href="#">Poste 7</a>
-							<a class="dropdown-item" href="#">Poste 8</a>
-						</div>
-					</li>
+					{% if is_granted('ROLE_ADMIN') 
+							or is_granted('ROLE_CLOSTROPHOBIE')
+							or is_granted('ROLE_ENDURANCE')
+							or is_granted('ROLE_FORCE')
+							or is_granted('ROLE_VERTIGE')
+							or is_granted('ROLE_ENTRETIEN')
+						%}
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Evaluation
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{path('evaluation.index')}}">Evaluation</a>
+								<a class="dropdown-item" href="#">Entretien</a>
+							</div>
+						</li>
+					{% endif %}
 				</ul>
 				<ul class="navbar-nav ml-md-auto">
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="far fa-user-circle"></i>
+							<i class="far fa-user"></i>
 						</a>
 						<div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="navbarDropdown">
-						{% if app.user %}
-							<a class="dropdown-item" href="{{path('app_logout')}}">Se déconnecter</a>
-						{% else %}
-							<a class="dropdown-item" href="{{path('app_login')}}">Se connecter</a>
-						{% endif %}
+							{% if app.user %}
+								<a class="dropdown-item" href="#">Connecté en tant que
+									{{ app.user.username }}</a>
+								<a class="dropdown-item" href="{{path('app_logout')}}">Se déconnecter</a>
+							{% else %}
+								<a class="dropdown-item" href="{{path('app_login')}}">
+									Se connecter</a>
+							{% endif %}
 						</div>
 					</li>
 				</ul>

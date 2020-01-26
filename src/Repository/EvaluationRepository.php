@@ -32,16 +32,17 @@ class EvaluationRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('e');
 
+        $andWhere = 'e.candidate in (
+            select c.id 
+              from App\Entity\candidate c 
+             where c.onSite = 1 )';
 
         if ($search->getCandidate()) {
-            $query
-                ->AndWhere('e.candidate in (select c.id 
-                                                 from App\Entity\candidate c 
-									            where (c.name like :val1
-                                                   or c.firstname like :val1))')
-                ->setParameter('val1', $search->getCandidate() . '%');
+            $andWhere .= ' and (c.name like :val1 or c.firstname like :val1) ';
+            $query->setParameter('val1', $search->getCandidate() . '%');
         }
 
+        $query->AndWhere($andWhere);
 
         if ($search->getPractice()) {
             $query
@@ -53,7 +54,6 @@ class EvaluationRepository extends ServiceEntityRepository
         return $query->getQuery()
             ->getResult();
     }
-
 
     /**
      * addNewEvaluations function

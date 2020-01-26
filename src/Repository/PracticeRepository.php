@@ -35,8 +35,6 @@ class PracticeRepository extends ServiceEntityRepository
         ;
     }
     */
-
-
     public function findOneByGroupAllowed($value): ?Practice
     {
         return $this->createQueryBuilder('p')

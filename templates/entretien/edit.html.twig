@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	BraveFinder : Evaluation
+{% endblock %}
+
+{% block body %}
+	{% block head_css %}
+		{{ parent() }}
+		<link rel="stylesheet" href="/css/star.css">
+	{% endblock %}
+
+	<div class="jumbotron text-center">
+		<h1>Evaluation</h1>
+	</div>
+	<div class="container body-container">
+		{{ include('entretien/_form.html.twig') }}
+	</div>
+{% endblock %}

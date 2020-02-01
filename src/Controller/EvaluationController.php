@@ -66,7 +66,7 @@ class EvaluationController extends AbstractController
     /**
      * @Route("/{id}/edit", name="evaluation.edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Evaluation $evaluation): Response
+    public function edit(Request $request, Evaluation $evaluation, EvaluationRepository $EvaluationRepository): Response
     {
         $form = $this->createForm(EvaluationType::class, $evaluation);
         $form->handleRequest($request);
@@ -77,9 +77,18 @@ class EvaluationController extends AbstractController
             return $this->redirectToRoute('evaluation.index');
         }
 
-        return $this->render('evaluation/edit.html.twig', [
+        $evaluations = $EvaluationRepository->findBy(['candidate' => $evaluation->getCandidate()]);
+
+        if ($evaluation->getPractice()->getGroupAllowed() == 'ROLE_ENTRETIEN') {
+            $edit = 'entretien/edit.html.twig';
+        } else {
+            $edit = 'evaluation/edit.html.twig';
+        }
+
+        return $this->render($edit, [
             'evaluation' => $evaluation,
             'form' => $form->createView(),
+            'evaluations' => $evaluations,
         ]);
     }
 

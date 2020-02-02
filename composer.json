@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "brokoskokoli/star-rating-bundle": "^4.0",
+        "dompdf/dompdf": "^0.8.4",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "4.4.*",
         "symfony/console": "4.4.*",

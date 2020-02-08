@@ -21,7 +21,7 @@ class EvaluationType extends AbstractType
                     'required' => true,
                 ]
             )
-            ->add('comment');
+            ->add('comment', null, ['attr' => ['rows' => 10]]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -32,6 +32,12 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        /* Chargement des utilisateurs */
+        $this->loadUser($manager);
+
+        /* Chargement des tailles*/
+        $this->loadDetailSize($manager);
+
         /* Chargement des exercices */
         $this->loadPractice($manager);
 
@@ -40,19 +46,14 @@ class AppFixtures extends Fixture
 
         /* Chargement des evaluations*/
         $this->loadEvaluation($manager);
-
-        /* Chargement des tailles*/
-        $this->loadDetailSize($manager);
-
-        /* Chargement des utilisateurs */
-        $this->loadUser($manager);
     }
 
-    private function loadPracticeDetail(ObjectManager $manager, string $practicename, string $groupallowed)
+    private function loadPracticeDetail(ObjectManager $manager, string $practicename, string $groupallowed, int $interview = 0)
     {
         $practice = new Practice();
         $practice->setName($practicename);
         $practice->setGroupAllowed($groupallowed);
+        $practice->setInterview($interview);
         $manager->persist($practice);
         $manager->flush();
     }
@@ -63,8 +64,8 @@ class AppFixtures extends Fixture
         $this->loadPracticeDetail($manager, 'Clostrophobie', 'ROLE_CLOSTROPHOBIE');
         $this->loadPracticeDetail($manager, 'Vertige', 'ROLE_VERTIGE');
         $this->loadPracticeDetail($manager, 'Force physique', 'ROLE_FORCE');
-        $this->loadPracticeDetail($manager, 'Confiance', '');
-        $this->loadPracticeDetail($manager, 'Entretien', 'ROLE_ENTRETIEN');
+        $this->loadPracticeDetail($manager, 'Confiance', 'ROLE_CONFIANCE');
+        $this->loadPracticeDetail($manager, 'Entretien', 'ROLE_ENTRETIEN', 1);
     }
 
     private function loadCandidat(ObjectManager $manager)
@@ -153,7 +154,8 @@ class AppFixtures extends Fixture
         $this->loadUserDetail($manager, 'clostro', '1234', ['ROLE_CLOSTROPHOBIE']);
         $this->loadUserDetail($manager, 'endurance', '1234', ['ROLE_ENDURANCE']);
         $this->loadUserDetail($manager, 'force', '1234', ['ROLE_FORCE']);
-        $this->loadUserDetail($manager, 'entretien', '1234', ['ROLE_ENTRETIEN']);
+        $this->loadUserDetail($manager, 'entretien', '1234', ['ROLE_ENTRETIEN'], 1);
         $this->loadUserDetail($manager, 'vertige', '1234', ['ROLE_VERTIGE']);
+        $this->loadUserDetail($manager, 'confiance', '1234', ['ROLE_CONFIANCE']);
     }
 }

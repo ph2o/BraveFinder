@@ -48,6 +48,11 @@ class Practice
      */
     private $group_allowed;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $interview;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
@@ -167,6 +172,18 @@ class Practice
     public function setGroupAllowed(?string $group_allowed): self
     {
         $this->group_allowed = $group_allowed;
+
+        return $this;
+    }
+
+    public function getInterview(): ?bool
+    {
+        return $this->interview;
+    }
+
+    public function setInterview(bool $interview): self
+    {
+        $this->interview = $interview;
 
         return $this;
     }

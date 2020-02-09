@@ -76,6 +76,26 @@ class EvaluationRepository extends ServiceEntityRepository
             ');
     }
 
+    /**
+     * function findAllPracticesForCandidate
+     * 
+     * Recherche toutes les évaluations pour un candidat (hors entretien)
+     *
+     */
+    public function findAllPracticesForCandidate(Candidate $candidate)
+    {
+        $query = $this->createQueryBuilder('e');
+
+        $query->AndWhere('e.candidate = ' . $candidate->getId());
+
+        $query->AndWhere('e.practice in (   select p.id 
+                                              from App\Entity\practice p 
+                                             where p.interview = 0 )');
+
+        return $query->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Evaluation[] Returns an array of Evaluation objects
     //  */

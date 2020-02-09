@@ -77,7 +77,7 @@ class EvaluationController extends AbstractController
             return $this->redirectToRoute('evaluation.index');
         }
 
-        $evaluations = $EvaluationRepository->findBy(['candidate' => $evaluation->getCandidate()]);
+        $evaluations = $EvaluationRepository->findAllPracticesForCandidate($evaluation->getCandidate());
 
         if ($evaluation->getPractice()->getGroupAllowed() == 'ROLE_ENTRETIEN') {
             $edit = 'entretien/edit.html.twig';

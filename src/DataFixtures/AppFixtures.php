@@ -61,7 +61,7 @@ class AppFixtures extends Fixture
     private function loadPractice(ObjectManager $manager)
     {
         $this->loadPracticeDetail($manager, 'Endurance', 'ROLE_ENDURANCE');
-        $this->loadPracticeDetail($manager, 'Clostrophobie', 'ROLE_CLOSTROPHOBIE');
+        $this->loadPracticeDetail($manager, 'Claustrophobie', 'ROLE_CLOSTROPHOBIE');
         $this->loadPracticeDetail($manager, 'Vertige', 'ROLE_VERTIGE');
         $this->loadPracticeDetail($manager, 'Force physique', 'ROLE_FORCE');
         $this->loadPracticeDetail($manager, 'Confiance', 'ROLE_CONFIANCE');
@@ -151,7 +151,7 @@ class AppFixtures extends Fixture
         $this->loadUserDetail($manager, 'accueil', '1234', ['ROLE_ACCUEIL']);
         $this->loadUserDetail($manager, 'secretariat', '1234', ['ROLE_SECRETARIAT']);
         $this->loadUserDetail($manager, 'mesure', '1234', ['ROLE_MESURE']);
-        $this->loadUserDetail($manager, 'clostro', '1234', ['ROLE_CLOSTROPHOBIE']);
+        $this->loadUserDetail($manager, 'claustro', '1234', ['ROLE_CLOSTROPHOBIE']);
         $this->loadUserDetail($manager, 'endurance', '1234', ['ROLE_ENDURANCE']);
         $this->loadUserDetail($manager, 'force', '1234', ['ROLE_FORCE']);
         $this->loadUserDetail($manager, 'entretien', '1234', ['ROLE_ENTRETIEN'], 1);

@@ -1,0 +1,26 @@
+	h1.title {
+		text-align: center;
+		color: white;
+		font-family: Raleway-Regular;
+		font-size: 30pt
+	}
+	td.tiers {
+		width: 33%;
+    }
+    table.page_header {
+        width :100%;
+    }
+    table.big_table{
+        width :100%;
+        border : 1px #370050;
+    }
+    tr {
+        border : 1px #c5c5c5;
+    }
+    td.small {
+        width : 10%;
+    }
+    td.big {
+        width : 40%;
+        text-align: left;
+    }

@@ -1,0 +1,160 @@
+<link type="text/css" href="./css/pdf.css" rel="stylesheet"/>
+
+<style type="text/css"></style>
+
+<page backcolor="#ff7b4e">
+	<page_header>
+		<h1 class="title">
+			RDISMN
+		</h1>
+	</page_header>
+	<page_footer></page_footer>
+	<br><br>
+	<br><br><br><br><br><br><br><br>
+
+	<br><br><br><br><br><br><br><br>
+
+	<br><br><br><br><br><br><br><br>
+
+	<h1 class="title">RAPPORT DE RECRUTEMENT
+		{{ "now"|date("Y") }}</h1>
+</page>
+
+{% for candidate in candidates %}
+	<page backtop="7mm" backbottom="7mm" backleft="10mm" backright="10mm">
+		<page_header></page_header>
+		<page_footer></page_footer>
+		<hr>
+		<table class="page_header" align="right">
+			<tr>
+				<td>
+					<span style="font-weight: bold; font-size: 20pt; background: black; color: white;">{{ candidate.firstname }}
+						{{ candidate.name }}</span><br>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img src=".{{vich_uploader_asset(candidate, 'pictureFile') }}" alt="test" height="55" width="55">
+				</td>
+			</tr>
+		</table>
+		<hr>
+
+		<br><br><br>
+
+		<table class="big_table">
+			<tr>
+				<td class="small">Nom</td>
+				<td class="big">{{candidate.name}}</td>
+				<td class="small">Prénom</td>
+				<td class="big">{{candidate.firstname}}</td>
+			</tr>
+			<tr>
+				<td>Rue</td>
+				<td>{{candidate.street}}</td>
+				<td>n°</td>
+				<td>{{candidate.housenumber}}</td>
+			</tr>
+			<tr>
+				<td>NPA</td>
+				<td>{{candidate.zip}}</td>
+				<td>Ville</td>
+				<td>{{candidate.city}}</td>
+			</tr>
+			<tr>
+				<td>Téléphone</td>
+				<td>{{candidate.phone}}</td>
+				<td>Mobile</td>
+				<td>{{candidate.mobile}}</td>
+			</tr>
+			<tr>
+				<td>Courriel</td>
+				<td>{{candidate.mail}}</td>
+				<td>Courriel pro</td>
+				<td>{{candidate.mailPro}}</td>
+			</tr>
+		</table>
+
+		<br><br><br>
+
+		<table class="big_table">
+			<tr>
+				<td class="big">Tee-shirt</td>
+				<td class="small">{{candidate.teeshirt}}</td>
+				<td class="big">Sweatshirt</td>
+				<td class="small">{{candidate.sweat}}</td>
+			</tr>
+			<tr>
+				<td>Pantalon d'attente</td>
+				<td>{{candidate.waitingPants}}</td>
+				<td>Veste feu</td>
+				<td>{{candidate.fireJacket}}</td>
+			</tr>
+			<tr>
+				<td>Gants feu</td>
+				<td>{{candidate.fireGloves}}</td>
+				<td>Pantalon feu</td>
+				<td>{{candidate.firePants}}</td>
+			</tr>
+			<tr>
+				<td>Bottes caoutchouc</td>
+				<td>{{candidate.rubberBoots}}</td>
+				<td>Bottes ranger</td>
+				<td>{{candidate.rangerBoots}}</td>
+			</tr>
+		</table>
+
+		<br><br><br>
+
+		<table class="big_table">
+			{% for evaluation in candidate.evaluations %}
+				{% if evaluation.practice.name != 'Entretien' %}
+					<tr>
+						<td style="width : 15%">
+							<div style="background-color : #DDDDDD; border-top-left-radius : 5px; border-bottom-left-radius : 5px">{{evaluation.practice.name}}</div>
+						</td>
+						<td style="width : 15%;">
+							<div style="background-color : #DDDDDD">
+								{% for i in 1..5 %}
+									{% if i <= evaluation.rate %}
+										<img src="./images/star_mini_full.png" alt="StarFull" height="15" width="15">
+									{% else %}
+										<img src="./images/star_mini_empty.png" alt="StarEmpty" height="15" width="15">
+									{% endif %}
+								{% endfor %}
+							</div>
+						</td>
+						<td style="width : 70%;">{{evaluation.comment}}</td>
+					</tr>
+				{% endif %}
+			{% endfor %}
+		</table>
+		<br><br><br>
+
+		<table class="big_table">
+			{% for evaluation in candidate.evaluations %}
+				{% if evaluation.practice.name == 'Entretien' %}
+					<tr>
+						<td style="width : 15%">
+							<div style="background-color : #DDDDDD; border-top-left-radius : 5px; border-bottom-left-radius : 5px">{{evaluation.practice.name}}</div>
+						</td>
+						<td style="width : 15%;">
+							<div style="background-color : #DDDDDD">
+								{% for i in 1..5 %}
+									{% if i <= evaluation.rate %}
+										<img src="./images/star_mini_full.png" alt="StarFull" height="15" width="15">
+									{% else %}
+										<img src="./images/star_mini_empty.png" alt="StarEmpty" height="15" width="15">
+									{% endif %}
+								{% endfor %}
+							</div>
+						</td>
+						<td style="width : 70%;">{{evaluation.comment}}</td>
+					</tr>
+				{% endif %}
+			{% endfor %}
+		</table>
+
+		<br>
+	</page>
+{% endfor %}

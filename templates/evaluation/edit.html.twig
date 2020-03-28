@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-BraveFinder : Evaluation
+	BraveFinder : Evaluation
 {% endblock %}
 
 {% block body %}
 	<div class="jumbotron text-center">
-		<h1>Evaluation</h1>
+		<h1>Evaluation
+			{{ evaluation.practice.name |lower}}</h1>
+
+
 	</div>
 	<div class="container body-container">
 		{{ include('evaluation/_form.html.twig') }}

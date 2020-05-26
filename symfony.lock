@@ -99,18 +99,6 @@
     "dompdf/dompdf": {
         "version": "v0.8.4"
     },
-    "easycorp/easy-log-handler": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "70062abc2cd58794d2a90274502f81b55cd9951b"
-        },
-        "files": [
-            "./config/packages/dev/easy_log_handler.yaml"
-        ]
-    },
     "egulias/email-validator": {
         "version": "2.1.11"
     },
@@ -122,6 +110,9 @@
     },
     "jms/metadata": {
         "version": "2.1.0"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.0.3"
     },
     "liip/test-fixtures-bundle": {
         "version": "1.0.0"

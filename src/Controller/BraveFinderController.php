@@ -28,18 +28,9 @@ class BraveFinderController extends AbstractController
      *
      * @return void
      */
-    public function generatePdf2(CandidateRepository $CandidateRepository, EvaluationRepository $EvaluationRepository)
+    public function generatePdf2(CandidateRepository $CandidateRepository)
     {
         $candidates = $CandidateRepository->findAll();
-        $evaluations = $EvaluationRepository->findAll();
-
-        /*
-        return $this->render('pdf/allpdf.html.twig', [
-            'candidates' => $candidates,
-            'evaluations' => '$evaluations',
-        ]);
-*/
-        // instantiate and use the dompdf class
 
         $html2pdf = new Html2Pdf('P', 'A4');
         // $html2pdf->setModeDebug();

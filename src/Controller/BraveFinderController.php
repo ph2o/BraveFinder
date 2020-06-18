@@ -7,7 +7,9 @@ use Dompdf\Options;
 use Spipu\Html2Pdf\Html2Pdf;
 use App\Repository\CandidateRepository;
 use App\Repository\EvaluationRepository;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BraveFinderController extends AbstractController
@@ -42,6 +44,17 @@ class BraveFinderController extends AbstractController
         $html2pdf->writeHTML($this->renderView('pdf/allpdf.html.twig', [
             'candidates' => $candidates
         ]));
-        $html2pdf->output('RapportRecrutement' . date('Y') . '.pdf');
+
+        $fileContent =
+            $html2pdf->output('RapportRecrutement' . date('Y') . '.pdf'); // the generated file content
+
+        $response = new Response($fileContent);
+
+        $disposition = HeaderUtils::makeDisposition(
+            HeaderUtils::DISPOSITION_ATTACHMENT,
+            'RapportRecrutement' . date('Y') . '.pdf'
+        );
+
+        $response->headers->set('Content-Disposition', $disposition);
     }
 }

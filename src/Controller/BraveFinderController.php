@@ -56,5 +56,6 @@ class BraveFinderController extends AbstractController
         );
 
         $response->headers->set('Content-Disposition', $disposition);
+        $response->send();
     }
 }

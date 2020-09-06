@@ -9,6 +9,7 @@
         "dompdf/dompdf": "^0.8.4",
         "laminas/laminas-code": "^3.4",
         "laminas/laminas-eventmanager": "^3.2",
+        "phpoffice/phpspreadsheet": "^1.12",
         "sensio/framework-extra-bundle": "^5.1",
         "spipu/html2pdf": "^5.2",
         "symfony/apache-pack": "^1.0",

@@ -5,7 +5,6 @@ namespace App\Form;
 use App\Entity\Evaluation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Brokoskokoli\StarRatingBundle\Form\StarRatingType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EvaluationType extends AbstractType
@@ -14,12 +13,7 @@ class EvaluationType extends AbstractType
     {
         $builder
             ->add(
-                'rate',
-                StarRatingType::class,
-                [
-                    'label' => 'Rate',
-                    'required' => true,
-                ]
+                'rate'
             )
             ->add('comment', null, ['attr' => ['rows' => 10]]);
     }

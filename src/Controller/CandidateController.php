@@ -90,4 +90,16 @@ class CandidateController extends AbstractController
         }
         return $this->redirectToRoute('candidate.index');
     }
+
+    /**
+     * @Route("/candidate_csv", name="candidate.csv", methods={"GET"})
+     */
+    public function candidateCsv(Request $request, CandidateRepository $candidateRepository): Response
+    {
+        /*         $search = new CandidateSearch;
+        $form = $this->createForm(CandidateSearchType::class, $search);
+        $form->handleRequest($request);
+ */
+        return $this->render('candidate/imex_candidat.html.twig', []);
+    }
 }

@@ -13,7 +13,9 @@ class EvaluationType extends AbstractType
     {
         $builder
             ->add(
-                'rate'
+                'rate',
+                null,
+                ['attr' => ['class' => 'rating']]
             )
             ->add('comment', null, ['attr' => ['rows' => 10]]);
     }

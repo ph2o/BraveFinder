@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "dompdf/dompdf": "^0.8.4",
+        "kartik-v/bootstrap-star-rating": "^4.0",
         "laminas/laminas-code": "^3.4",
         "laminas/laminas-eventmanager": "^3.2",
         "phpoffice/phpspreadsheet": "^1.12",

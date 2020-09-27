@@ -108,6 +108,9 @@
     "jms/metadata": {
         "version": "2.1.0"
     },
+    "kartik-v/bootstrap-star-rating": {
+        "version": "v4.0.6"
+    },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.3"
     },

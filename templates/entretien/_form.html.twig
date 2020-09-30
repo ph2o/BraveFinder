@@ -37,7 +37,15 @@
 					</svg>
 
 					<strong class="mr-auto">{{eval.practice.name}}</strong>
-					<small>{{eval.rate|rating}}</small>
+
+					{% for i in 1..eval.rate  %}
+						<span class='star'>★</span>
+					{% endfor %}
+					{% if eval.rate < 5 %}
+						{% for i in 1..(5 - eval.rate) %}
+							<span class='star'>☆</span>
+						{% endfor %}
+					{% endif %}
 				</div>
 				<div class="toast-body">
 					{{eval.comment}}

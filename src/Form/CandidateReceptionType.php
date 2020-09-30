@@ -16,7 +16,10 @@ class CandidateReceptionType extends AbstractType
         $builder
             ->add('pictureFile', VichImageType::class, [
                 'required'   => false,
-                'attr' => ['capture' => 'camera'],
+                'attr' => [
+                    'accept' => 'image/*',
+                    'capture' => 'environment'
+                ],
                 'download_uri' => false,
                 'allow_delete' => false,
                 /*

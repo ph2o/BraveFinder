@@ -37,9 +37,6 @@ class BraveFinderController extends AbstractController
         $html2pdf = new Html2Pdf('P', 'A4');
         // $html2pdf->setModeDebug();
         $html2pdf->setTestIsImage(false);
-        // font de page d'en-tête
-        $html2pdf->addFont('Raleway', '', 'Raleway-Thin.ttf');
-        $html2pdf->addFont('Raleway-Regular', '', 'Raleway-Regular.ttf');
 
         $html2pdf->writeHTML($this->renderView('pdf/allpdf.html.twig', [
             'candidates' => $candidates

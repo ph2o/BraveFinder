@@ -116,7 +116,7 @@
 						<td style="width : 15%;">
 							<div style="background-color : #DDDDDD">
 								{% for i in 1..5 %}
-									{% if i <= evaluation.rate %}
+									{% if i < evaluation.rate %}
 										<img src="./images/star_mini_full.png" alt="StarFull" height="15" width="15">
 									{% else %}
 										<img src="./images/star_mini_empty.png" alt="StarEmpty" height="15" width="15">
@@ -142,7 +142,7 @@
 						<td style="width : 15%;">
 							<div style="background-color : #DDDDDD">
 								{% for i in 1..5 %}
-									{% if i <= evaluation.rate %}
+									{% if i < evaluation.rate %}
 										<img src="./images/star_mini_full.png" alt="StarFull" height="15" width="15">
 									{% else %}
 										<img src="./images/star_mini_empty.png" alt="StarEmpty" height="15" width="15">

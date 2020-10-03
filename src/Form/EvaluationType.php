@@ -15,7 +15,10 @@ class EvaluationType extends AbstractType
             ->add(
                 'rate',
                 null,
-                ['attr' => ['class' => 'rating']]
+                ['attr' => [
+                    'class' => 'rating',
+                    'step' => '1'
+                ]]
             )
             ->add('comment', null, ['attr' => ['rows' => 10]]);
     }

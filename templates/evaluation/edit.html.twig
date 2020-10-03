@@ -7,15 +7,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/star-rating.css" media="all" type="text/css"/>
-    <link rel="stylesheet" href="/css/themes/krajee-fa/theme.css" media="all" type="text/css"/>
 {% endblock %}
 
 
 {% block head_js_detail %}
     <script src="/js/star-rating.js" type="text/javascript"></script>
-    <script src="/js/themes/krajee-fa/theme.js" type="text/javascript"></script>
-    <script src="/js/themes/krajee-svg/theme.js" type="text/javascript"></script>
-	<script src="/js/themes/krajee-uni/theme.js" type="text/javascript"></script>
 	<script src="/js/locales/fr.js"></script>
 {% endblock %}
 
@@ -27,8 +23,4 @@
 	<div class="container body-container">
 		{{ include('evaluation/_form.html.twig') }}
 	</div>
-{% endblock %}
-
-{% block javascripts %}
-<script>$("#input-id").rating({step:1, data-size:'xl', showCaption:false});</script>
 {% endblock %}

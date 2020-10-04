@@ -34,8 +34,7 @@ class Evaluation
      * @Assert\Range(
      *      min = 1,
      *      max = 5,
-     *      minMessage = "Evaluation minimale de  {{ limit }}",
-     *      maxMessage = "Evaluation maximale de  {{ limit }}"
+     *      notInRangeMessage = "Evaluation entre {{ min }} et {{ max }}"
      * )
      */
     private $rate;

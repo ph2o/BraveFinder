@@ -127,7 +127,7 @@ class SecretariatController extends AbstractController
             $candidate->setUpdatedAt(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('secretariat.mesure');
+            return $this->redirectToRoute('secretariat.administratif');
         }
         return $this->render('secretariat/edit.html.twig', [
             'candidate' => $candidate,

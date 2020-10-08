@@ -16,3 +16,4 @@
 ###< symfony/phpunit-bridge ###
 tests/hug_rappannual2017.pdf
 tests/2019_Sélection.xlsx
+src/.preload.php

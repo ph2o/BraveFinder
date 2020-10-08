@@ -2,14 +2,13 @@
 
 namespace App\Controller;
 
-use Dompdf\Dompdf;
-use Dompdf\Options;
 use Spipu\Html2Pdf\Html2Pdf;
 use App\Repository\CandidateRepository;
-use App\Repository\EvaluationRepository;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\HeaderUtils;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BraveFinderController extends AbstractController
@@ -23,7 +22,6 @@ class BraveFinderController extends AbstractController
             'controller_name' => 'BraveFinderController',
         ]);
     }
-
 
     /**
      * @Route("/generatepdf", name="main.generatePdf")
@@ -54,5 +52,23 @@ class BraveFinderController extends AbstractController
 
         $response->headers->set('Content-Disposition', $disposition);
         $response->send();
+    }
+
+    /**
+     * @Route("/exportcandidatexlsx", name="backoffice.xlsx", methods={"GET"})
+     */
+    public function candidateXlsx(CandidateRepository $CandidateRepository): Response
+    {
+        $spreadsheet = $CandidateRepository->getXlsxData();
+        $writer = new Xlsx($spreadsheet);
+        // Create a Temporary file in the system
+        $fileName = 'RDISMN_Candidats.xlsx';
+        $temp_file = tempnam(sys_get_temp_dir(), $fileName);
+
+        // Create the excel file in the tmp directory of the system
+        $writer->save($temp_file);
+
+        // Return the excel file as an attachment
+        return $this->file($temp_file, $fileName, ResponseHeaderBag::DISPOSITION_INLINE);
     }
 }

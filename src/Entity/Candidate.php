@@ -577,6 +577,12 @@ class Candidate
         return $this->evaluations;
     }
 
+    /**
+     * Add an evaluation
+     *
+     * @param Evaluation $evaluation
+     * @return self
+     */
     public function addEvaluation(Evaluation $evaluation): self
     {
         if (!$this->evaluations->contains($evaluation)) {
@@ -587,6 +593,12 @@ class Candidate
         return $this;
     }
 
+    /**
+     * Remove an evaluation
+     *
+     * @param Evaluation $evaluation
+     * @return self
+     */
     public function removeEvaluation(Evaluation $evaluation): self
     {
         if ($this->evaluations->contains($evaluation)) {
@@ -599,6 +611,11 @@ class Candidate
         return $this;
     }
 
+    /**
+     * Permet d'afficher simplement une occurance de l'objet dans les listes déroulantes
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->name . ' ' . $this->firstname;

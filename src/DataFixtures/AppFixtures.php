@@ -3,11 +3,17 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\Size;
 use App\Entity\User;
 use App\Entity\Practice;
 use App\Entity\Candidate;
 use App\Entity\DetailSize;
 use App\Entity\Evaluation;
+use App\Entity\MaritalStatus;
+use App\Entity\MaritalStatut;
+use App\Entity\PathWay;
+use App\Entity\Station;
+use App\Entity\Title;
 use App\Repository\PracticeRepository;
 use App\Repository\CandidateRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -22,10 +28,13 @@ class AppFixtures extends Fixture
     private $pr;
     private $passwordEncoder;
 
-    public function __construct(CandidateRepository $CandidateREpository, PracticeRepository $practiceRepository, UserPasswordEncoderInterface $passwordEncoder)
-    {
+    public function __construct(
+        CandidateRepository $CandidateRepository,
+        PracticeRepository $practiceRepository,
+        UserPasswordEncoderInterface $passwordEncoder
+    ) {
         $this->faker = Factory::create('fr_CH');
-        $this->cr = $CandidateREpository;
+        $this->cr = $CandidateRepository;
         $this->pr = $practiceRepository;
         $this->passwordEncoder = $passwordEncoder;
     }
@@ -35,8 +44,11 @@ class AppFixtures extends Fixture
         /* Chargement des utilisateurs */
         $this->loadUser($manager);
 
-        /* Chargement des tailles*/
+        /* Chargement des tailles détaillées*/
         $this->loadDetailSize($manager);
+
+        /* Chargement des tailles*/
+        $this->loadSize($manager);
 
         /* Chargement des exercices */
         $this->loadPractice($manager);
@@ -46,6 +58,18 @@ class AppFixtures extends Fixture
 
         /* Chargement des evaluations*/
         $this->loadEvaluation($manager);
+
+        /* Chargement des statut marital*/
+        $this->loadMaritalStatut($manager);
+
+        /* Chargement des DPS*/
+        $this->loadStation($manager);
+
+        /* Chargement des filières*/
+        $this->loadPathWay($manager);
+
+        /* Chargement des formules de politesses*/
+        $this->loadTitle($manager);
     }
 
     private function loadPracticeDetail(ObjectManager $manager, string $practicename, string $groupallowed, int $interview = 0)
@@ -134,6 +158,23 @@ class AppFixtures extends Fixture
         $this->loadAndFlushDS($manager, '112 XL');
     }
 
+    private function loadAndFlushSize(ObjectManager $manager, string $value)
+    {
+        $detai = new Size();
+        $detai->setName($value);
+        $manager->persist($detai);
+        $manager->flush();
+    }
+
+    private function loadSize(ObjectManager $manager)
+    {
+        $this->loadAndFlushSize($manager, 'XS');
+        $this->loadAndFlushSize($manager, 'S');
+        $this->loadAndFlushSize($manager, 'M');
+        $this->loadAndFlushSize($manager, 'L');
+        $this->loadAndFlushSize($manager, 'XL');
+    }
+
     private function loadUserDetail(ObjectManager $manager, string $username, string $mdp, array $roles)
     {
         $user = new User();
@@ -157,5 +198,66 @@ class AppFixtures extends Fixture
         $this->loadUserDetail($manager, 'entretien', '1234', ['ROLE_ENTRETIEN'], 1);
         $this->loadUserDetail($manager, 'vertige', '1234', ['ROLE_VERTIGE']);
         $this->loadUserDetail($manager, 'confiance', '1234', ['ROLE_CONFIANCE']);
+    }
+
+    private function CreateFlushMaritalStatut(ObjectManager $manager, string $statut)
+    {
+        $obj = new MaritalStatus();
+        $obj->setName($statut);
+        $manager->persist($obj);
+        $manager->flush();
+    }
+    private function loadMaritalStatut(ObjectManager $manager)
+    {
+        $this->CreateFlushMaritalStatut($manager, 'Célibataire/e');
+        $this->CreateFlushMaritalStatut($manager, 'Marié/e');
+        $this->CreateFlushMaritalStatut($manager, 'Veuf/veuve');
+        $this->CreateFlushMaritalStatut($manager, 'Divorcé/e');
+        $this->CreateFlushMaritalStatut($manager, 'Non marié/e ');
+        $this->CreateFlushMaritalStatut($manager, 'Lié/e par un partenariat enregistré');
+        $this->CreateFlushMaritalStatut($manager, 'Partenariat dissous');
+        $this->CreateFlushMaritalStatut($manager, 'Inconnu');
+    }
+
+    private function CreateFlushStation(ObjectManager $manager, string $statut)
+    {
+        $obj = new Station();
+        $obj->setName($statut);
+        $manager->persist($obj);
+        $manager->flush();
+    }
+    private function loadStation(ObjectManager $manager)
+    {
+        $this->CreateFlushStation($manager, 'DPS1 - La Chaux-de-Fonds');
+        $this->CreateFlushStation($manager, 'DPS3 - La Brévine');
+        $this->CreateFlushStation($manager, 'DPS3 - Les Brenets');
+        $this->CreateFlushStation($manager, 'DPS3 - Les Ponts-de-Martel');
+        $this->CreateFlushStation($manager, 'DPS4 - La Chaux-du-Milieu');
+        $this->CreateFlushStation($manager, 'DPS4 - La Sagne');
+        $this->CreateFlushStation($manager, 'DPS4 - Les Planchettes');
+    }
+    private function CreateFlushPathWay(ObjectManager $manager, string $statut)
+    {
+        $obj = new PathWay();
+        $obj->setName($statut);
+        $manager->persist($obj);
+        $manager->flush();
+    }
+    private function loadPathWay(ObjectManager $manager)
+    {
+        $this->CreateFlushPathWay($manager, 'Filière A');
+        $this->CreateFlushPathWay($manager, 'Filière B');
+    }
+    private function CreateFlushTitle(ObjectManager $manager, string $statut)
+    {
+        $obj = new Title();
+        $obj->setName($statut);
+        $manager->persist($obj);
+        $manager->flush();
+    }
+    private function loadTitle(ObjectManager $manager)
+    {
+        $this->CreateFlushTitle($manager, 'Monsieur');
+        $this->CreateFlushTitle($manager, 'Madame');
     }
 }

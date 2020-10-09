@@ -19,7 +19,8 @@ class CandidateMesureType extends AbstractType
             ->add('firePants')
             ->add('sweat')
             ->add('teeshirt')
-            ->add('fireJacket');
+            ->add('fireJacket')
+            ->add('HeadCircumference');
     }
 
     public function configureOptions(OptionsResolver $resolver)

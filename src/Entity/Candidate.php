@@ -128,24 +128,74 @@ class Candidate
     private $waitingPants;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\DetailSize")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Size")
      */
     private $firePants;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\DetailSize")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Size")
      */
     private $sweat;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\DetailSize")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Size")
      */
     private $teeshirt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\DetailSize")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Size")
      */
     private $fireJacket;
+
+    /**
+     * @ORM\Column(type="string", length=16, nullable=true)
+     */
+    private $SocialNumber;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $originName;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=PathWay::class)
+     */
+    private $PathWay;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $Iban;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $BankName;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $Education;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Title::class)
+     */
+    private $Title;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=MaritalStatus::class)
+     */
+    private $MaritalStatus;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Station::class, inversedBy="candidates")
+     */
+    private $Station;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Size::class)
+     */
+    private $HeadCircumference;
 
 
     public function __construct()
@@ -619,5 +669,125 @@ class Candidate
     public function __toString()
     {
         return $this->name . ' ' . $this->firstname;
+    }
+
+    public function getSocialNumber(): ?string
+    {
+        return $this->SocialNumber;
+    }
+
+    public function setSocialNumber(?string $SocialNumber): self
+    {
+        $this->SocialNumber = $SocialNumber;
+
+        return $this;
+    }
+
+    public function getOriginName(): ?string
+    {
+        return $this->originName;
+    }
+
+    public function setOriginName(?string $originName): self
+    {
+        $this->originName = $originName;
+
+        return $this;
+    }
+
+    public function getPathWay(): ?PathWay
+    {
+        return $this->PathWay;
+    }
+
+    public function setPathWay(?PathWay $PathWay): self
+    {
+        $this->PathWay = $PathWay;
+
+        return $this;
+    }
+
+    public function getIban(): ?string
+    {
+        return $this->Iban;
+    }
+
+    public function setIban(?string $Iban): self
+    {
+        $this->Iban = $Iban;
+
+        return $this;
+    }
+
+    public function getBankName(): ?string
+    {
+        return $this->BankName;
+    }
+
+    public function setBankName(?string $BankName): self
+    {
+        $this->BankName = $BankName;
+
+        return $this;
+    }
+
+    public function getEducation(): ?string
+    {
+        return $this->Education;
+    }
+
+    public function setEducation(?string $Education): self
+    {
+        $this->Education = $Education;
+
+        return $this;
+    }
+
+    public function getTitle(): ?Title
+    {
+        return $this->Title;
+    }
+
+    public function setTitle(?Title $Title): self
+    {
+        $this->Title = $Title;
+
+        return $this;
+    }
+
+    public function getMaritalStatus(): ?MaritalStatus
+    {
+        return $this->MaritalStatus;
+    }
+
+    public function setMaritalStatus(?MaritalStatus $MaritalStatus): self
+    {
+        $this->MaritalStatus = $MaritalStatus;
+
+        return $this;
+    }
+
+    public function getStation(): ?Station
+    {
+        return $this->Station;
+    }
+
+    public function setStation(?Station $Station): self
+    {
+        $this->Station = $Station;
+
+        return $this;
+    }
+
+    public function getHeadCircumference(): ?Size
+    {
+        return $this->HeadCircumference;
+    }
+
+    public function setHeadCircumference(?Size $HeadCircumference): self
+    {
+        $this->HeadCircumference = $HeadCircumference;
+
+        return $this;
     }
 }

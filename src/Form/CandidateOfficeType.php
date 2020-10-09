@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class CandidateOfficeType extends AbstractType
 {
@@ -26,7 +27,15 @@ class CandidateOfficeType extends AbstractType
             ->add('zip')
             ->add('city')
             ->add('mail')
-            ->add('mailPro');
+            ->add('SocialNumber')
+            ->add('originName')
+            ->add('PathWay')
+            ->add('Iban')
+            ->add('BankName')
+            ->add('Education')
+            ->add('Title')
+            ->add('MaritalStatus')
+            ->add('Station');
     }
 
     public function configureOptions(OptionsResolver $resolver)

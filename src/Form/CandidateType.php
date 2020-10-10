@@ -31,9 +31,6 @@ class CandidateType extends AbstractType
             ->add('mail', EmailType::class, [
                 'required'   => false
             ])
-            ->add('mailPro', EmailType::class, [
-                'required'   => false
-            ])
             ->add('pictureFile', VichImageType::class, [
                 'required'   => false,
                 'attr' => ['capture' => 'camera'],

@@ -32,7 +32,7 @@ class Evaluation
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Range(
-     *      min = 1,
+     *      min = 0,
      *      max = 5,
      *      notInRangeMessage = "Evaluation entre {{ min }} et {{ max }}"
      * )

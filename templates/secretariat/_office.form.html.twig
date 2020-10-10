@@ -4,7 +4,7 @@
 		{{candidate.firstname}}</h1>
 </div>
 
-<div class="row">
+<div class="row shadow p-3 mb-5 bg-light rounded">
 	<div class="col-sm-3">
 		<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
 	</div>
@@ -13,7 +13,7 @@
 	<div class="col-md-4">{{ form_row(form.name) }}</div>
 </div>
 
-<div class="row">
+<div class="row shadow p-3 mb-5 bg-light rounded">
 	<div class="col-md-3">{{ form_row(form.birthdate, {'attr': {'data-provider':'datepicker' }}) }}</div>
 	<div class="col-md-4">{{ form_row(form.street) }}</div>
 	<div class="col-md-1">{{ form_row(form.houseNumber) }}</div>
@@ -21,39 +21,30 @@
 	<div class="col-md-3">{{ form_row(form.city) }}</div>
 </div>
 
-<div class="form-group">
-	<div class="row">
-		<div class="col-md-2">{{ form_row(form.mobile) }}</div>
-		<div class="col-md-2">{{ form_row(form.phone) }}</div>
-		<div class="col-md-8">{{ form_row(form.mail) }}</div>
-	</div>
-</div>
-<div class="form-group">
-	<div class="row">
-		<div class="col-md-5">{{ form_row(form.Iban) }}</div>
-		<div class="col-md-7">{{ form_row(form.BankName) }}</div>
-	</div>
+<div class="row shadow p-3 mb-5 bg-light rounded">
+	<div class="col-md-2">{{ form_row(form.mobile) }}</div>
+	<div class="col-md-2">{{ form_row(form.phone) }}</div>
+	<div class="col-md-8">{{ form_row(form.mail) }}</div>
 </div>
 
-<div class="form-group">
-	<div class="row">
-		<div class="col-md-3">{{ form_row(form.SocialNumber) }}</div>
-		<div class="col-md-5">{{ form_row(form.originName) }}</div>
-		<div class="col-md-4">{{ form_row(form.MaritalStatus) }}</div>
-	</div>
+<div class="row shadow p-3 mb-5 bg-light rounded">
+	<div class="col-md-5">{{ form_row(form.Iban) }}</div>
+	<div class="col-md-7">{{ form_row(form.BankName) }}</div>
 </div>
 
-<div class="form-group">
-	<div class="row">
-		<div class="col-md-12">{{ form_row(form.Education) }}</div>
-	</div>
+<div class="row shadow p-3 mb-5 bg-light rounded">
+	<div class="col-md-3">{{ form_row(form.SocialNumber) }}</div>
+	<div class="col-md-5">{{ form_row(form.originName) }}</div>
+	<div class="col-md-4">{{ form_row(form.MaritalStatus) }}</div>
 </div>
 
-<div class="form-group">
-	<div class="row">
-		<div class="col-md-6">{{ form_row(form.PathWay) }}</div>
-		<div class="col-md-6">{{ form_row(form.Station) }}</div>
-	</div>
+<div class="row shadow p-3 mb-5 bg-light rounded">
+	<div class="col-md-12">{{ form_row(form.Education) }}</div>
+</div>
+
+<div class="row shadow p-3 mb-5 bg-light rounded">
+	<div class="col-md-6">{{ form_row(form.PathWay) }}</div>
+	<div class="col-md-6">{{ form_row(form.Station) }}</div>
 </div>
 
 <button class="btn btn-success">

@@ -11,12 +11,13 @@ use App\Repository\EvaluationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/evaluation")
- * @IsGranted("ROLE_CLOSTROPHOBIE, ROLE_ENDURANCE, ROLE_FORCE, ROLE_ENTRETIEN, ROLE_VERTIGE, ROLE_CONFIANCE, ROLE_ADMIN")
+ * @Security("is_granted('ROLE_CLOSTROPHOBIE') or  is_granted('ROLE_ENDURANCE') or  is_granted('ROLE_FORCE') or  is_granted('ROLE_ENTRETIEN') or  is_granted('ROLE_VERTIGE') or  is_granted('ROLE_CONFIANCE') or  is_granted('ROLE_ADMIN')")
  */
 class EvaluationController extends AbstractController
 {

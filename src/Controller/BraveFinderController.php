@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BraveFinderController extends AbstractController
@@ -25,6 +26,7 @@ class BraveFinderController extends AbstractController
 
     /**
      * @Route("/generatepdf", name="main.generatePdf")
+     * @IsGranted("ROLE_ADMIN")
      *
      * @return void
      */
@@ -51,11 +53,12 @@ class BraveFinderController extends AbstractController
         );
 
         $response->headers->set('Content-Disposition', $disposition);
-        $response->send();
+        return $response;
     }
 
     /**
      * @Route("/exportcandidatexlsx", name="backoffice.xlsx", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function candidateXlsx(CandidateRepository $CandidateRepository): Response
     {

@@ -12,6 +12,7 @@ use App\Repository\CandidateRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -23,6 +24,7 @@ class SecretariatController extends AbstractController
     /**
      * @Route("/reception", name="secretariat.reception")
      * @Route("/")
+     * @Security("is_granted('ROLE_ACCUEIL') or is_granted('ROLE_ADMIN')")
      * 
      */
     public function reception(Request $request, CandidateRepository $candidateRepository)
@@ -40,6 +42,7 @@ class SecretariatController extends AbstractController
 
     /**
      * @Route("/reception/{id}/edit", name="secretariat.reception.edit", methods={"GET","POST"})
+     * @Security("is_granted('ROLE_ACCUEIL') or is_granted('ROLE_ADMIN')")
      * 
      */
     public function editreception(Request $request, Candidate $candidate)
@@ -62,6 +65,7 @@ class SecretariatController extends AbstractController
 
     /**
      * @Route("/mesure", name="secretariat.mesure")
+     * @Security("is_granted('ROLE_MESURE') or is_granted('ROLE_ADMIN')")
      */
     public function mesure(Request $request, CandidateRepository $candidateRepository)
     {
@@ -78,6 +82,7 @@ class SecretariatController extends AbstractController
 
     /**
      * @Route("/mesure/{id}/edit", name="secretariat.mesure.edit", methods={"GET","POST"})
+     * @Security("is_granted('ROLE_MESURE') or is_granted('ROLE_ADMIN')")
      */
     public function editMesure(Request $request, Candidate $candidate)
     {
@@ -99,6 +104,7 @@ class SecretariatController extends AbstractController
 
     /**
      * @Route("/administratif", name="secretariat.administratif")
+     * @Security("is_granted('ROLE_SECRETARIAT') or is_granted('ROLE_ADMIN')")
      * 
      */
     public function administratif(Request $request, CandidateRepository $candidateRepository)
@@ -116,6 +122,7 @@ class SecretariatController extends AbstractController
 
     /**
      * @Route("administratif/{id}/edit", name="secretariat.administratif.edit", methods={"GET","POST"})
+     * @Security("is_granted('ROLE_SECRETARIAT') or is_granted('ROLE_ADMIN')")
      * 
      */
     public function editAdministratif(Request $request, Candidate $candidate)

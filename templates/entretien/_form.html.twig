@@ -1,7 +1,7 @@
 <div class="row">
-	<div class="col col-7">
+	<div class="col col-6 mr-2">
 		{{ form_start(form) }}
-		<div class="row">
+		<div class="row shadow p-3 mb-5 bg-light rounded">
 			<div class="col h3">
 				{{ evaluation.candidate.name }}
 				{{ evaluation.candidate.firstname }}
@@ -9,12 +9,13 @@
 				{{ evaluation.practice.name }}
 			</div>
 		</div>
-		<div class="row">
+		<div class="row shadow p-3 mb-5 bg-light rounded">
 			<div class="col">
 				{{ form_row(form.rate) }}
 			</div>
 		</div>
-		<div class="row">
+		<div class="row shadow p-3 mb-5 bg-light rounded">
+
 			<div class="col">
 				{{ form_row(form.comment) }}
 			</div>
@@ -28,24 +29,21 @@
 		</button>
 		{{ form_end(form) }}
 	</div>
-	<div class="col col-5 bg-info p-3 rounded-lg" id="evaluation-box">
+	<div class="col col-5 bg-info p-3 ml-3 rounded-lg" id="evaluation-box">
 		{% for eval in evaluations %}
 			<div class="toast rounded bg-light" role="alert" aria-live="assertive" aria-atomic="true">
 				<div class="toast-header">
 					<svg class="bd-placeholder-img rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img">
 						<rect width="100%" height="100%" fill="#17a1b7"></rect>
 					</svg>
-
 					<strong class="mr-auto">{{eval.practice.name}}</strong>
-
-					{% for i in 1..eval.rate  %}
-						<span class='star'>★</span>
-					{% endfor %}
-					{% if eval.rate < 5 %}
-						{% for i in 1..(5 - eval.rate) %}
+					{% for i in 1..5 %}
+						{% if eval.rate >= i %}
+							<span class='star'>★</span>
+						{% else %}
 							<span class='star'>☆</span>
-						{% endfor %}
-					{% endif %}
+						{% endif %}
+					{% endfor %}
 				</div>
 				<div class="toast-body">
 					{{eval.comment}}

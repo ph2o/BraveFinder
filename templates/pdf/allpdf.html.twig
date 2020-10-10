@@ -70,12 +70,12 @@
 			<tr>
 				<td>Courriel</td>
 				<td>{{candidate.mail}}</td>
-				<td>Courriel pro</td>
-				<td>{{candidate.mailPro}}</td>
+				<td>Date de naissance</td>
+				<td>{{candidate.birthdate|date("d/m/Y")}}</td>
 			</tr>
 		</table>
 
-		<br><br><br>
+		<br>
 
 		<table class="big_table">
 			<tr>
@@ -102,9 +102,40 @@
 				<td>Bottes ranger</td>
 				<td>{{candidate.rangerBoots}}</td>
 			</tr>
+			<tr>
+				<td>Tour de tête</td>
+				<td>{{candidate.HeadCircumference}}</td>
+			</tr>
 		</table>
 
-		<br><br><br>
+		<br>
+
+		<table class="big_table">
+			<tr>
+				<td class="small">N° AVS</td>
+				<td class="big">{{candidate.SocialNumber}}</td>
+				<td class="small">Lieu d'origine</td>
+				<td class="big">{{candidate.originName}}</td>
+			</tr>
+			<tr>
+				<td>Iban</td>
+				<td>{{candidate.Iban}}</td>
+				<td>Banque</td>
+				<td>{{candidate.BankName}}</td>
+			</tr>
+			<tr>
+				<td>Filière</td>
+				<td>{{candidate.PathWay}}</td>
+				<td>Affectation</td>
+				<td>{{candidate.Station}}</td>
+			</tr>
+			<tr>
+				<td>Formation</td>
+				<td>{{candidate.Education}}</td>
+			</tr>
+		</table>
+
+		<br>
 
 		<table class="big_table">
 			{% for evaluation in candidate.evaluations %}

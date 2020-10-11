@@ -16,11 +16,9 @@
     
     td.small {
         width : 20%;
-        border-bottom : 1px #370050;
     }
 
     td.big {
         width : 30%;
         text-align: left;
-        border-bottom : 1px #370050;
     }

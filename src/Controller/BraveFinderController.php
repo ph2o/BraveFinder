@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use Spipu\Html2Pdf\Html2Pdf;
+use App\Entity\CandidateSearch;
+use App\Form\CandidateSearchType;
 use App\Repository\CandidateRepository;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\HeaderUtils;
@@ -73,5 +76,20 @@ class BraveFinderController extends AbstractController
 
         // Return the excel file as an attachment
         return $this->file($temp_file, $fileName, ResponseHeaderBag::DISPOSITION_INLINE);
+    }
+
+    /**
+     * @Route("/engageCandidate", name="backoffice.engage", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function EngageCandidate(Request $request, CandidateRepository $candidateRepository): Response
+    {
+        $search = new CandidateSearch;
+        $form = $this->createForm(CandidateSearchType::class, $search);
+        $form->handleRequest($request);
+        return $this->render('candidate/engaged.html.twig', [
+            'form' => $form->createView(),
+            'candidates' => $candidateRepository->findAllOnSiteQuery($search),
+        ]);
     }
 }

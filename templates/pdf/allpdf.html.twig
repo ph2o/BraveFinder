@@ -22,6 +22,8 @@
 
 {% for candidate in candidates %}
 	<page backtop="7mm" backbottom="7mm" backleft="10mm" backright="10mm">
+		<page_header></page_header>
+
 		<page_footer>
 			<table style="width: 100%; border: solid 1px black;">
 				<tr>
@@ -30,28 +32,27 @@
 				</tr>
 			</table>
 		</page_footer>
-		<page_header></page_header>
-
-		<page_footer></page_footer>
 		<hr>
-		<table class="page_header" align="right">
+		<table class="page_header">
 			<tr>
-				<td>
+				<td align="left" style="text-align: right; width: 55%" rowspan="2">
+					{% if candidate.engaged %}
+						<img src="./img/approuved.png" alt="Accepté" height="80" width="80">
+					{% else %}
+						<img src="./img/rejected.png" alt="Refusé" height="80" width="80">
+					{% endif %}
+				</td>
+				<td style="text-align: right;">
 					<span style="font-weight: bold; font-size: 20pt; background: black; color: white;">{{ candidate.firstname }}
-						{{ candidate.name }}</span><br>
+						{{ candidate.name }}</span>
 				</td>
 			</tr>
 			<tr>
-				<td>
-					<img src=".{{vich_uploader_asset(candidate, 'pictureFile') }}" alt="test" height="55" width="55">
+				<td style="">
+					<img src=".{{vich_uploader_asset(candidate, 'pictureFile') }}" alt="Portrait" height="55" width="55">
 				</td>
 			</tr>
-		</table>
-		<hr>
-
-		<br>
-
-		<table class="big_table">
+		</table><hr><br><table class="big_table">
 			<tr>
 				<td class="small">Rue</td>
 				<td class="big">{{candidate.street}}</td>
@@ -76,11 +77,7 @@
 				<td>Date de naissance</td>
 				<td>{{candidate.birthdate is empty ? "": candidate.birthdate|date("d/m/Y")}}</td>
 			</tr>
-		</table>
-
-		<br>
-
-		<table class="big_table">
+		</table><br><table class="big_table">
 			<tr>
 				<td class="small">Tee-shirt</td>
 				<td class="big">{{candidate.teeshirt}}</td>
@@ -109,11 +106,7 @@
 				<td>Tour de tête</td>
 				<td>{{candidate.HeadCircumference}}</td>
 			</tr>
-		</table>
-
-		<br>
-
-		<table class="big_table">
+		</table><br><table class="big_table">
 			<tr>
 				<td class="small">N° AVS</td>
 				<td class="big">{{candidate.SocialNumber}}</td>
@@ -136,11 +129,7 @@
 				<td>Formation</td>
 				<td>{{candidate.Education}}</td>
 			</tr>
-		</table>
-
-		<br>
-
-		<table class="big_table">
+		</table><br><table class="big_table">
 			{% for evaluation in candidate.evaluations %}
 				{% if evaluation.practice.name != 'Entretien' %}
 					<tr>
@@ -162,10 +151,7 @@
 					</tr>
 				{% endif %}
 			{% endfor %}
-		</table>
-		<br><br>
-
-		<table class="big_table">
+		</table><br><br><table class="big_table">
 			{% for evaluation in candidate.evaluations %}
 				{% if evaluation.practice.name == 'Entretien' %}
 					<tr>

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BraveFinder : Liste des candidats
+{% endblock %}
+
+{% block body %}
+	<div class="jumbotron text-center">
+		<h1>Candidats</h1>
+	</div>
+	<div class="container body-container">
+		<div class="row">
+			<div class="col-sm-12" id="main">
+				{% for candidate in candidates %}
+					<table class="table">
+						<tbody>
+							<tr>
+								<td class="col-sm-1">
+									<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
+
+								</td>
+								<td class="col-sm-2 align-middle">
+									{{ candidate.name }}
+									{{ candidate.firstname }}
+								</td>
+								<td class="col-sm-2 align-middle">
+									{% if (candidate.engaged is defined) and (candidate.engaged) %}
+										<div class="alert alert-success">
+											Engagé
+										</div>
+									{% else %}
+										<div class="alert alert-danger">
+											Non engagé
+										</div>
+									{% endif %}
+								</td>
+								<td class="col-sm-5  align-middle">
+									<form method="post" action="{{ path('candidate.engaged',{id: candidate.id}) }}" style="display: inline-block" onsubmit="return confirm('Voulez vous engager cette personne ?');">
+										<input name="_method" type="hidden" value="ENGAGED"/>
+										<input type="hidden" name="_token" value="{{ csrf_token('candidate.engaged' ~ candidate.id) }}"/>
+										<button class="btn btn-warning">
+											<span class="d-sm-none">
+												<i class="fas fa-trash-alt"></i>
+											</span>
+											<span class="d-none d-sm-block">Action</span>
+										</button>
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				{% else %}
+					<tr>
+						<td colspan="4">Pas d'enregistrement</td>
+					</tr>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

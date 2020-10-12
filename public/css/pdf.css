@@ -1,6 +1,11 @@
-	h1.title {
+    .header, .footer {
+        margin: auto;
+        text-align: center;
+    }
+
+    h1.title {
 		text-align: center;
-		color: white;
+		color: rgb(0, 0, 0);
 		font-size: 30pt
 	}
 	td.tiers {

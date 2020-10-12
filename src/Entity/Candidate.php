@@ -197,6 +197,11 @@ class Candidate
      */
     private $HeadCircumference;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $engaged;
+
 
     public function __construct()
     {
@@ -204,6 +209,7 @@ class Candidate
         $this->updated_at = new \DateTimeImmutable();
         $this->evaluations = new ArrayCollection();
         $this->onSite = false;
+        $this->engaged = false;
     }
 
     public function getId(): ?int
@@ -787,6 +793,18 @@ class Candidate
     public function setHeadCircumference(?Size $HeadCircumference): self
     {
         $this->HeadCircumference = $HeadCircumference;
+
+        return $this;
+    }
+
+    public function getEngaged(): ?bool
+    {
+        return $this->engaged;
+    }
+
+    public function setEngaged(bool $engaged): self
+    {
+        $this->engaged = $engaged;
 
         return $this;
     }

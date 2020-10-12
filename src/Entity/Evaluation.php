@@ -58,7 +58,7 @@ class Evaluation
     {
         $this->created_at = new \DateTimeImmutable();
         $this->updated_at = new \DateTimeImmutable();
-        $this->rate = 1;
+        $this->rate = 0;
     }
 
     public function getId(): ?int

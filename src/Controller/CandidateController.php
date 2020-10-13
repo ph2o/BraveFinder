@@ -81,7 +81,7 @@ class CandidateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="candidate.delete", methods={"DELETE"})
+     * @Route("/engage/{id}", name="candidate.delete", methods={"DELETE"})
      */
     public function delete(Request $request, Candidate $candidate): Response
     {
@@ -91,5 +91,17 @@ class CandidateController extends AbstractController
             $entityManager->flush();
         }
         return $this->redirectToRoute('candidate.index');
+    }
+
+    /**
+     * @Route("/{id}", name="candidate.engaged", methods={"ENGAGED"})
+     */
+    public function engaged(Request $request, Candidate $candidate): Response
+    {
+        if ($this->isCsrfTokenValid('candidate.engaged' . $candidate->getId(), $request->request->get('_token'))) {
+            $candidate->setEngaged(!$candidate->getEngaged());
+            $this->getDoctrine()->getManager()->flush();
+        }
+        return $this->redirectToRoute('backoffice.engage');
     }
 }

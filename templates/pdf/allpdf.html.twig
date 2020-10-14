@@ -155,13 +155,14 @@
 					</tr>
 				{% endif %}
 			{% endfor %}
-		</table><br><br><table class="big_table">
-			{% for evaluation in candidate.evaluations %}
-				{% if evaluation.practice.name == 'Entretien' %}
+		</table>
+		<br><br>
+		{% for evaluation in candidate.evaluations %}
+			{% if evaluation.practice.interview %}
+				<table class="big_table">
 					<tr>
 						<td style="width : 15%">
 							<div style="background-color : #DDDDDD; border-radius : 5px; padding-left : 3px;">{{evaluation.practice.name}}</div>
-
 						</td>
 						<td style="width : 15%;">
 							<div style="background-color : #DDDDDD">
@@ -176,8 +177,17 @@
 						</td>
 						<td style="width : 70%;">{{evaluation.comment}}</td>
 					</tr>
-				{% endif %}
-			{% endfor %}
-		</table>
+				</table>
+				<table class="big_table">
+					<tr>
+						<td style="width : 25%">Entretien réalisé par :
+						</td>
+						<td style="width : 25%">{{evaluation.interviewer1}}</td>
+						<td style="width : 25%">et</td>
+						<td style="width : 25%">{{evaluation.interviewer2}}</td>
+					</tr>
+				</table>
+			{% endif %}
+		{% endfor %}
 	</page>
 {% endfor %}

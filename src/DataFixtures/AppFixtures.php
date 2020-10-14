@@ -9,6 +9,7 @@ use App\Entity\Practice;
 use App\Entity\Candidate;
 use App\Entity\DetailSize;
 use App\Entity\Evaluation;
+use App\Entity\Interviewer;
 use App\Entity\MaritalStatus;
 use App\Entity\MaritalStatut;
 use App\Entity\PathWay;
@@ -70,6 +71,9 @@ class AppFixtures extends Fixture
 
         /* Chargement des formules de politesses*/
         $this->loadTitle($manager);
+
+        /* Chargement des interviwers*/
+        $this->loadInterview($manager);
     }
 
     private function loadPracticeDetail(ObjectManager $manager, string $practicename, string $groupallowed, int $interview = 0)
@@ -279,5 +283,23 @@ class AppFixtures extends Fixture
     {
         $this->CreateFlushTitle($manager, 'Monsieur');
         $this->CreateFlushTitle($manager, 'Madame');
+    }
+    private function CreateFlushInterview(ObjectManager $manager, string $statut)
+    {
+        $obj = new Interviewer();
+        $obj->setName($statut);
+        $manager->persist($obj);
+        $manager->flush();
+    }
+    private function loadInterview(ObjectManager $manager)
+    {
+        $this->CreateFlushInterview($manager, "BRAICHET Richard");
+        $this->CreateFlushInterview($manager, "HINTZY Marc");
+        $this->CreateFlushInterview($manager, "HUGUENIN Patrice");
+        $this->CreateFlushInterview($manager, "KREBS Denis");
+        $this->CreateFlushInterview($manager, "L'EPLATTENIER Joël");
+        $this->CreateFlushInterview($manager, "PITTET Olivier");
+        $this->CreateFlushInterview($manager, "RIVOIRE Christian");
+        $this->CreateFlushInterview($manager, "ROETHLISBERGER Jean Marie");
     }
 }

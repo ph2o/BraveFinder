@@ -52,7 +52,6 @@ class EvaluationRepository extends ServiceEntityRepository
 								               where p.name like :val2)')
                 ->setParameter('val2', $search->getPractice() . '%');
         }
-        $log = $query->getQuery()->getSQL();
         return $query->getQuery()
             ->getResult();
     }

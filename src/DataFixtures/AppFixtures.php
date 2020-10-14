@@ -209,12 +209,31 @@ class AppFixtures extends Fixture
     }
     private function loadMaritalStatut(ObjectManager $manager)
     {
-        $this->CreateFlushMaritalStatut($manager, 'Célibataire/e');
-        $this->CreateFlushMaritalStatut($manager, 'Marié/e');
+        // selon norme eCH-0011 (https://www.ech.ch/fr/)
+        // value 1
+        // $this->CreateFlushMaritalStatut($manager, 'Célibataire/e');
+        // value 2
+        // $this->CreateFlushMaritalStatut($manager, 'Marié/e');
+        // value 3
+        // $this->CreateFlushMaritalStatut($manager, 'Veuf/veuve');
+        // value 4
+        // $this->CreateFlushMaritalStatut($manager, 'Divorcé/e');
+        // value 5
+        // $this->CreateFlushMaritalStatut($manager, 'Non marié/e ');
+        // value 6
+        // $this->CreateFlushMaritalStatut($manager, 'Lié/e par un partenariat enregistré');
+        // value 7
+        // $this->CreateFlushMaritalStatut($manager, 'Partenariat dissous');
+        // value 9
+        // $this->CreateFlushMaritalStatut($manager, 'Inconnu');
+
+        // selon demande RDISMN
+        $this->CreateFlushMaritalStatut($manager, 'Célibataire');
+        $this->CreateFlushMaritalStatut($manager, 'Marié');
         $this->CreateFlushMaritalStatut($manager, 'Veuf/veuve');
-        $this->CreateFlushMaritalStatut($manager, 'Divorcé/e');
-        $this->CreateFlushMaritalStatut($manager, 'Non marié/e ');
-        $this->CreateFlushMaritalStatut($manager, 'Lié/e par un partenariat enregistré');
+        $this->CreateFlushMaritalStatut($manager, 'Divorcé');
+        $this->CreateFlushMaritalStatut($manager, 'Non marié');
+        $this->CreateFlushMaritalStatut($manager, 'Pacs');
         $this->CreateFlushMaritalStatut($manager, 'Partenariat dissous');
         $this->CreateFlushMaritalStatut($manager, 'Inconnu');
     }
@@ -228,7 +247,8 @@ class AppFixtures extends Fixture
     }
     private function loadStation(ObjectManager $manager)
     {
-        $this->CreateFlushStation($manager, 'DPS1 - La Chaux-de-Fonds');
+        // $this->CreateFlushStation($manager, 'DPS1 - La Chaux-de-Fonds');
+        $this->CreateFlushStation($manager, 'DPS1 - SPV');
         $this->CreateFlushStation($manager, 'DPS3 - La Brévine');
         $this->CreateFlushStation($manager, 'DPS3 - Les Brenets');
         $this->CreateFlushStation($manager, 'DPS3 - Les Ponts-de-Martel');

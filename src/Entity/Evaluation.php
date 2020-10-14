@@ -54,6 +54,16 @@ class Evaluation
      */
     private $updated_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Interviewer::class)
+     */
+    private $interviewer_1;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Interviewer::class)
+     */
+    private $interviewer_2;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
@@ -146,5 +156,29 @@ class Evaluation
     public function SetUpdateDateTime()
     {
         $this->updated_at = new \DateTime();
+    }
+
+    public function getInterviewer1(): ?Interviewer
+    {
+        return $this->interviewer_1;
+    }
+
+    public function setInterviewer1(?Interviewer $interviewer_1): self
+    {
+        $this->interviewer_1 = $interviewer_1;
+
+        return $this;
+    }
+
+    public function getInterviewer2(): ?Interviewer
+    {
+        return $this->interviewer_2;
+    }
+
+    public function setInterviewer2(?Interviewer $interviewer_2): self
+    {
+        $this->interviewer_2 = $interviewer_2;
+
+        return $this;
     }
 }

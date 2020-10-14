@@ -34,16 +34,21 @@
 									{% endif %}
 								</td>
 								<td class="col-sm-5  align-middle">
-									<form method="post" action="{{ path('candidate.engaged',{id: candidate.id}) }}" style="display: inline-block" onsubmit="return confirm('Voulez vous engager cette personne ?');">
-										<input name="_method" type="hidden" value="ENGAGED"/>
-										<input type="hidden" name="_token" value="{{ csrf_token('candidate.engaged' ~ candidate.id) }}"/>
-										<button class="btn btn-warning">
-											<span class="d-sm-none">
-												<i class="fas fa-trash-alt"></i>
-											</span>
-											<span class="d-none d-sm-block">Action</span>
-										</button>
-									</form>
+									{% if (candidate.engaged is defined) and (candidate.engaged) %}
+										<form method="post" action="{{ path('candidate.engaged',{id: candidate.id}) }}" style="display: inline-block" onsubmit="return confirm('Voulez vous désengager cette personne ?');">
+										{% else %}
+											<form method="post" action="{{ path('candidate.engaged',{id: candidate.id}) }}" style="display: inline-block" onsubmit="return confirm('Voulez vous engager cette personne ?');">
+											{% endif %}
+											<input name="_method" type="hidden" value="ENGAGED"/>
+											<input type="hidden" name="_token" value="{{ csrf_token('candidate.engaged' ~ candidate.id) }}"/>
+											<button class="btn btn-warning">
+												<span class="d-sm-none">
+													<i class="fas fa-trash-alt"></i>
+												</span>
+												<span class="d-none d-sm-block">Action</span>
+											</button>
+										</form>
+									</td>
 								</td>
 							</tr>
 						</tbody>

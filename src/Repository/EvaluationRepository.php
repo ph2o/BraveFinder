@@ -35,12 +35,13 @@ class EvaluationRepository extends ServiceEntityRepository
         $andWhere = 'e.candidate in (
             select c.id 
               from App\Entity\candidate c 
-             where c.onSite = 1 )';
+             where c.onSite = 1 ';
 
         if ($search->getCandidate()) {
-            $andWhere .= ' and (c.name like :val1 or c.firstname like :val1) ';
+            $andWhere .= ' and ((c.name like :val1) or (c.firstname like :val1)) ';
             $query->setParameter('val1', $search->getCandidate() . '%');
         }
+        $andWhere .= ')';
 
         $query->AndWhere($andWhere);
 
@@ -51,6 +52,7 @@ class EvaluationRepository extends ServiceEntityRepository
 								               where p.name like :val2)')
                 ->setParameter('val2', $search->getPractice() . '%');
         }
+        $log = $query->getQuery()->getSQL();
         return $query->getQuery()
             ->getResult();
     }

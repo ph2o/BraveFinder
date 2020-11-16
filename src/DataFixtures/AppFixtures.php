@@ -11,14 +11,14 @@ use App\Entity\DetailSize;
 use App\Entity\Evaluation;
 use App\Entity\Interviewer;
 use App\Entity\MaritalStatus;
-use App\Entity\MaritalStatut;
 use App\Entity\PathWay;
 use App\Entity\Station;
 use App\Entity\Title;
 use App\Repository\PracticeRepository;
 use App\Repository\CandidateRepository;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
@@ -54,12 +54,6 @@ class AppFixtures extends Fixture
         /* Chargement des exercices */
         $this->loadPractice($manager);
 
-        /* Chargement des candidats*/
-        $this->loadCandidat($manager);
-
-        /* Chargement des evaluations*/
-        $this->loadEvaluation($manager);
-
         /* Chargement des statut marital*/
         $this->loadMaritalStatut($manager);
 
@@ -74,6 +68,12 @@ class AppFixtures extends Fixture
 
         /* Chargement des interviwers*/
         $this->loadInterview($manager);
+
+        /* Chargement des candidats*/
+        $this->loadCandidat($manager);
+
+        /* Chargement des evaluations*/
+        $this->loadEvaluation($manager);
     }
 
     private function loadPracticeDetail(ObjectManager $manager, string $practicename, string $groupallowed, int $interview = 0)
@@ -94,18 +94,6 @@ class AppFixtures extends Fixture
         $this->loadPracticeDetail($manager, 'Force physique', 'ROLE_FORCE');
         $this->loadPracticeDetail($manager, 'Confiance', 'ROLE_CONFIANCE');
         $this->loadPracticeDetail($manager, 'Entretien', 'ROLE_ENTRETIEN', 1);
-    }
-
-    private function loadCandidat(ObjectManager $manager)
-    {
-        for ($i = 1; $i < 20; $i++) {
-            $candidat = new Candidate();
-            $candidat->setName($this->faker->lastName);
-            $candidat->setFirstname($this->faker->firstName());
-            $candidat->setMobile($this->faker->mobileNumber);
-            $manager->persist($candidat);
-        }
-        $manager->flush();
     }
 
     private function loadEvaluation(ObjectManager $manager)
@@ -158,6 +146,7 @@ class AppFixtures extends Fixture
         $this->loadAndFlushDS($manager, '100 XL');
         $this->loadAndFlushDS($manager, '104 L');
         $this->loadAndFlushDS($manager, '104 XL');
+        $this->loadAndFlushDS($manager, '108 L');
         $this->loadAndFlushDS($manager, '112 L');
         $this->loadAndFlushDS($manager, '112 XL');
     }
@@ -253,11 +242,11 @@ class AppFixtures extends Fixture
     {
         // $this->CreateFlushStation($manager, 'DPS1 - La Chaux-de-Fonds');
         $this->CreateFlushStation($manager, 'DPS1 - SPV');
-        $this->CreateFlushStation($manager, 'DPS3 - La Brévine');
-        $this->CreateFlushStation($manager, 'DPS3 - Les Brenets');
-        $this->CreateFlushStation($manager, 'DPS3 - Les Ponts-de-Martel');
-        $this->CreateFlushStation($manager, 'DPS4 - La Chaux-du-Milieu');
-        $this->CreateFlushStation($manager, 'DPS4 - La Sagne');
+        $this->CreateFlushStation($manager, 'DPS3 - LB');
+        $this->CreateFlushStation($manager, 'DPS3 - LsB');
+        $this->CreateFlushStation($manager, 'DPS3 - LPM');
+        $this->CreateFlushStation($manager, 'DPS4 - LCM');
+        $this->CreateFlushStation($manager, 'DPS4 - LS');
         $this->CreateFlushStation($manager, 'DPS4 - Les Planchettes');
     }
     private function CreateFlushPathWay(ObjectManager $manager, string $statut)
@@ -269,8 +258,9 @@ class AppFixtures extends Fixture
     }
     private function loadPathWay(ObjectManager $manager)
     {
-        $this->CreateFlushPathWay($manager, 'Filière A');
-        $this->CreateFlushPathWay($manager, 'Filière B');
+        $this->CreateFlushPathWay($manager, 'A');
+        $this->CreateFlushPathWay($manager, 'B');
+        $this->CreateFlushPathWay($manager, 'A + B');
     }
     private function CreateFlushTitle(ObjectManager $manager, string $statut)
     {
@@ -295,11 +285,22 @@ class AppFixtures extends Fixture
     {
         $this->CreateFlushInterview($manager, "BRAICHET Richard");
         $this->CreateFlushInterview($manager, "HINTZY Marc");
-        $this->CreateFlushInterview($manager, "HUGUENIN Patrice");
-        $this->CreateFlushInterview($manager, "KREBS Denis");
         $this->CreateFlushInterview($manager, "L'EPLATTENIER Joël");
-        $this->CreateFlushInterview($manager, "PITTET Olivier");
         $this->CreateFlushInterview($manager, "RIVOIRE Christian");
-        $this->CreateFlushInterview($manager, "ROETHLISBERGER Jean Marie");
+        $this->CreateFlushInterview($manager, "JOCCALLAZ Sylvain");
+    }
+
+
+    private function loadCandidat(ObjectManager $manager)
+    {
+        for ($i = 1; $i < 20; $i++) {
+            $candidat = new Candidate();
+            $candidat->setName($this->faker->lastName);
+            $candidat->setFirstname($this->faker->firstName());
+            $candidat->setMobile($this->faker->mobileNumber);
+            $manager->persist($candidat);
+        }
+
+        $manager->flush();
     }
 }

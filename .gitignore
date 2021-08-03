@@ -18,3 +18,8 @@ tests/hug_rappannual2017.pdf
 tests/2019_Sélection.xlsx
 src/.preload.php
 tests/Sélection_Extranet.xlsx
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

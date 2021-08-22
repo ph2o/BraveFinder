@@ -1,127 +1,120 @@
 <!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html>
+<head>
+    <base href="">
+    <meta charset="utf-8"/>
+    <title>{% block title %}{{ app_name }}{% endblock %}</title>
+    <meta name="description" content="Brave Finder application"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="shortcut icon" href="{{ asset('media/logos/favicon.ico') }}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+    <link href="{{ asset('plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/style.bundle.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css"/>
+    {% block stylesheets %}
+    {% endblock %}
+    <script src="{{ asset('plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('js/scripts.bundle.js') }}"></script>
+</head>
+{% block body %}
+<body id="kt_body"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<div class="d-flex flex-column flex-root">
+    <div class="page d-flex flex-row flex-column-fluid">
+        {% include '_asside.html.twig' %}
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            {% include '_header.html.twig' %}
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <div class="toolbar" id="kt_toolbar">
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <div data-kt-place="true" data-kt-place-mode="prepend"
+                             data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                             class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
+                            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">
+                                <a href="{% block header_title_link %}{{ path('main.index') }}{% endblock %}">
+                                    {% block header_title %}BraveFinder{% endblock %}
+                                </a>
+                                <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
+                                <small class="text-muted fs-7 fw-bold my-1 ms-1">#{% block header_subtitle %}{% endblock %}</small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <div id="kt_content_container" class="container">
+                        {% block content %}
 
-		<title>
-			{% block title %}Brave Finder application
-			{% endblock %}
-		</title>
+                        {% endblock %}
+                    </div>
+                </div>
+                {% include '_footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    {% block modal %}{% endblock %}
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+            <span class="svg-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                         height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <polygon points="0 0 24 0 24 24 0 24"/>
+                            <rect fill="#000000" opacity="0.5" x="11" y="10" width="2" height="10" rx="1"/>
+                            <path d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
+                                  fill="#000000" fill-rule="nonzero"/>
+                        </g>
+                    </svg>
+                </span>
+    </div>
+</div>
 
-		{% block head_css %}
-			<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-			<link rel="stylesheet" type="text/css" href="/css/all.min.css">
-			<link rel="stylesheet" type="text/css" href="/css/app.css">
-		{% endblock %}
-		{% block head_css_detail %}{% endblock %}
+{% endblock %}
+<script>
+    {% set session = app.session.flashbag.all %}
+    {% if session %}
+    {% for key, flashs in session %}
+    {% for  flash in flashs %}
+    Command: toastr.{{ key }}("{{ flash }}", "{{ key|upper }}");
+    {% endfor %}
+    {% endfor %}
+    {% endif %}
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+</script>
+{% block javascripts %}
+{% endblock %}
+{% block custom_scripts %}
 
-		{% block head_js %}
-			<script src="/js/jquery-3.4.1.min.js"></script>
-			<script src="/js/bootstrap.min.js" crossorigin="anonymous"></script>
-			<script src="/js/popper.min.js"></script>
-			<!-- script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script -->
-		<!-- script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script -->
-			<!-- script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script -->
-		{% endblock %}
-		{% block head_js_detail %}{% endblock %}
+{% endblock %}
+<script>
 
-		{% block stylesheets %}{% endblock %}
-		<link rel="icon" type="image/png" href="/favicon/favicon.ico">
-	</head>
-	<body>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-			<a class="navbar-brand" href="{{path('main.index')}}">BraveFinder</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+    var route_name = '{{ app.request.get('_route') }}';
+    var route_array = route_name.split('.');
+    var route_formated = route_name.replace('.', '_');
+    var route_id = {{ (app.request.get('id')?:0) ~ ';' }}
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					{% if is_granted('ROLE_ADMIN')
-
-							or is_granted('ROLE_CLOSTROPHOBIE')
-							or is_granted('ROLE_ENDURANCE')
-							or is_granted('ROLE_FORCE')
-							or is_granted('ROLE_VERTIGE')
-							or is_granted('ROLE_ENTRETIEN')
-						%}
-
-						<li class="nav-item ">
-							<a class="nav-link" href="{{path('evaluation.index')}}">
-								Evaluation
-							</a>
-						</li>
-					{% endif %}
-
-					{% if (is_granted('ROLE_ADMIN') 
-						or is_granted('ROLE_ACCUEIL') 
-						or is_granted('ROLE_SECRETARIAT') 
-						or is_granted('ROLE_MESURE')
-						) %}
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Secretariat
-							</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ACCUEIL') %}
-									<a class="dropdown-item" href="{{path('secretariat.reception')}}">Accueil</a>
-									<div class="dropdown-divider"></div>
-								{% endif %}
-
-								{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MESURE')  %}
-									<a class="dropdown-item" href="{{path('secretariat.mesure')}}">Mesure</a>
-								{% endif %}
-
-								{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SECRETARIAT')  %}
-									<a class="dropdown-item" href="{{path('secretariat.administratif')}}">Données administratives</a>
-								{% endif %}
-							</div>
-						</li>
-					{% endif %}
-
-					{% if is_granted('ROLE_ADMIN') %}
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								BackOffice
-							</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="{{path('candidate.index')}}">Candidats</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{path('practice.index')}}">Exercices</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{path('backoffice.engage')}}">Engagement</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{path('main.generatePdf')}}">Rapport</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{path('backoffice.xlsx')}}">Candidats Xlsx</a>
-							</div>
-						</li>
-					{% endif %}
-
-				</ul>
-				<ul class="navbar-nav ml-md-auto">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="far fa-user"></i>
-						</a>
-						<div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="navbarDropdown">
-							{% if app.user %}
-								<a class="dropdown-item" href="#">Connecté en tant que
-									{{ app.user.username }}</a>
-								<a class="dropdown-item" href="{{path('app_logout')}}">Se déconnecter</a>
-							{% else %}
-								<a class="dropdown-item" href="{{path('app_login')}}">
-									Se connecter</a>
-							{% endif %}
-						</div>
-					</li>
-				</ul>
-			</div>
-		</nav>
-		{% block body %}{% endblock %}
-
-		{% block javascripts %}{% endblock %}
-	</body>
-</html></head></html></head></html>
+        $('.menu-' + route_array[0]).addClass('show')
+    $('.menu-item-' + route_formated).addClass('active')
+    $('.menu-item-' + route_formated + '_' + route_id).addClass('active')
+    console.log('.menu-item-' + route_formated + '_' + route_id);
+    $('.confirm').click(function () {
+        return confirm($(this).data('confirm'));
+    })
+</script>
+</body>
+</html>

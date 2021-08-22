@@ -1,3 +1,15 @@
 input.form-control.form-control-solid:disabled {
   color: #4caf50;
 }
+
+.vich-image {
+  position: absolute;
+}
+
+.vich-image a {
+  display: none;
+}
+
+.form-check .form-check {
+  padding-left: 0;
+}

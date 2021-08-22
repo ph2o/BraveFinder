@@ -76,47 +76,28 @@ class AppFixtures extends Fixture
         $this->loadEvaluation($manager);
     }
 
-    private function loadPracticeDetail(ObjectManager $manager, string $practicename, string $groupallowed, int $interview = 0)
+    private function loadUser(ObjectManager $manager)
     {
-        $practice = new Practice();
-        $practice->setName($practicename);
-        $practice->setGroupAllowed($groupallowed);
-        $practice->setInterview($interview);
-        $manager->persist($practice);
-        $manager->flush();
+        $this->loadUserDetail($manager, 'admin', '1234', ['ROLE_ADMIN']);
+
+        $this->loadUserDetail($manager, 'accueil', '1234', ['ROLE_ACCUEIL']);
+        $this->loadUserDetail($manager, 'secretariat', '1234', ['ROLE_SECRETARIAT']);
+        $this->loadUserDetail($manager, 'mesure', '1234', ['ROLE_MESURE']);
+        $this->loadUserDetail($manager, 'claustro', '1234', ['ROLE_CLOSTROPHOBIE']);
+        $this->loadUserDetail($manager, 'endurance', '1234', ['ROLE_ENDURANCE']);
+        $this->loadUserDetail($manager, 'force', '1234', ['ROLE_FORCE']);
+        $this->loadUserDetail($manager, 'entretien', '1234', ['ROLE_ENTRETIEN'], 1);
+        $this->loadUserDetail($manager, 'vertige', '1234', ['ROLE_VERTIGE']);
+        $this->loadUserDetail($manager, 'confiance', '1234', ['ROLE_CONFIANCE']);
     }
 
-    private function loadPractice(ObjectManager $manager)
+    private function loadUserDetail(ObjectManager $manager, string $username, string $mdp, array $roles)
     {
-        $this->loadPracticeDetail($manager, 'Endurance', 'ROLE_ENDURANCE');
-        $this->loadPracticeDetail($manager, 'Claustrophobie', 'ROLE_CLOSTROPHOBIE');
-        $this->loadPracticeDetail($manager, 'Vertige', 'ROLE_VERTIGE');
-        $this->loadPracticeDetail($manager, 'Force physique', 'ROLE_FORCE');
-        $this->loadPracticeDetail($manager, 'Confiance', 'ROLE_CONFIANCE');
-        $this->loadPracticeDetail($manager, 'Entretien', 'ROLE_ENTRETIEN', 1);
-    }
-
-    private function loadEvaluation(ObjectManager $manager)
-    {
-        $candidates = $this->cr->findAll();
-        $practices = $this->pr->findAll();
-
-        foreach ($candidates as $candidate) {
-            foreach ($practices as $practice) {
-                $evaluation = new Evaluation();
-                $evaluation->setCandidate($candidate);
-                $evaluation->setPractice($practice);
-                $manager->persist($evaluation);
-            }
-        }
-        $manager->flush();
-    }
-
-    private function loadAndFlushDS(ObjectManager $manager, string $value)
-    {
-        $detaiSize = new DetailSize();
-        $detaiSize->setName($value);
-        $manager->persist($detaiSize);
+        $user = new User();
+        $user->setUsername($username);
+        $user->setRoles($roles);
+        $user->setPassword($this->passwordEncoder->encodePassword($user, $mdp));
+        $manager->persist($user);
         $manager->flush();
     }
 
@@ -151,11 +132,11 @@ class AppFixtures extends Fixture
         $this->loadAndFlushDS($manager, '112 XL');
     }
 
-    private function loadAndFlushSize(ObjectManager $manager, string $value)
+    private function loadAndFlushDS(ObjectManager $manager, string $value)
     {
-        $detai = new Size();
-        $detai->setName($value);
-        $manager->persist($detai);
+        $detaiSize = new DetailSize();
+        $detaiSize->setName($value);
+        $manager->persist($detaiSize);
         $manager->flush();
     }
 
@@ -168,38 +149,38 @@ class AppFixtures extends Fixture
         $this->loadAndFlushSize($manager, 'XL');
     }
 
-    private function loadUserDetail(ObjectManager $manager, string $username, string $mdp, array $roles)
+    private function loadAndFlushSize(ObjectManager $manager, string $value)
     {
-        $user = new User();
-        $user->setUsername($username);
-        $user->setRoles($roles);
-        $user->setPassword($this->passwordEncoder->encodePassword($user, $mdp));
-        $manager->persist($user);
+        $detai = new Size();
+        $detai->setName($value);
+        $manager->persist($detai);
         $manager->flush();
     }
 
-    private function loadUser(ObjectManager $manager)
+    private function loadPractice(ObjectManager $manager)
     {
-        $this->loadUserDetail($manager, 'admin', '1234', ['ROLE_ADMIN']);
-
-        $this->loadUserDetail($manager, 'accueil', '1234', ['ROLE_ACCUEIL']);
-        $this->loadUserDetail($manager, 'secretariat', '1234', ['ROLE_SECRETARIAT']);
-        $this->loadUserDetail($manager, 'mesure', '1234', ['ROLE_MESURE']);
-        $this->loadUserDetail($manager, 'claustro', '1234', ['ROLE_CLOSTROPHOBIE']);
-        $this->loadUserDetail($manager, 'endurance', '1234', ['ROLE_ENDURANCE']);
-        $this->loadUserDetail($manager, 'force', '1234', ['ROLE_FORCE']);
-        $this->loadUserDetail($manager, 'entretien', '1234', ['ROLE_ENTRETIEN'], 1);
-        $this->loadUserDetail($manager, 'vertige', '1234', ['ROLE_VERTIGE']);
-        $this->loadUserDetail($manager, 'confiance', '1234', ['ROLE_CONFIANCE']);
+        $this->loadPracticeDetail($manager, 'Endurance', 'ROLE_ENDURANCE');
+        $this->loadPracticeDetail($manager, 'Claustrophobie', 'ROLE_CLOSTROPHOBIE');
+        $this->loadPracticeDetail($manager, 'Vertige', 'ROLE_VERTIGE');
+        $this->loadPracticeDetail($manager, 'Force physique', 'ROLE_FORCE');
+        $this->loadPracticeDetail($manager, 'Confiance', 'ROLE_CONFIANCE');
+        $this->loadPracticeDetail($manager, 'Entretien', 'ROLE_ENTRETIEN', 1);
     }
 
-    private function CreateFlushMaritalStatut(ObjectManager $manager, string $statut)
-    {
-        $obj = new MaritalStatus();
-        $obj->setName($statut);
-        $manager->persist($obj);
+    private function loadPracticeDetail(
+        ObjectManager $manager,
+        string $practicename,
+        string $groupallowed,
+        int $interview = 0
+    ) {
+        $practice = new Practice();
+        $practice->setName($practicename);
+        $practice->setGroupAllowed($groupallowed);
+        $practice->setInterview($interview);
+        $manager->persist($practice);
         $manager->flush();
     }
+
     private function loadMaritalStatut(ObjectManager $manager)
     {
         // selon norme eCH-0011 (https://www.ech.ch/fr/)
@@ -231,13 +212,14 @@ class AppFixtures extends Fixture
         $this->CreateFlushMaritalStatut($manager, 'Inconnu');
     }
 
-    private function CreateFlushStation(ObjectManager $manager, string $statut)
+    private function CreateFlushMaritalStatut(ObjectManager $manager, string $statut)
     {
-        $obj = new Station();
+        $obj = new MaritalStatus();
         $obj->setName($statut);
         $manager->persist($obj);
         $manager->flush();
     }
+
     private function loadStation(ObjectManager $manager)
     {
         // $this->CreateFlushStation($manager, 'DPS1 - La Chaux-de-Fonds');
@@ -249,6 +231,22 @@ class AppFixtures extends Fixture
         $this->CreateFlushStation($manager, 'DPS4 - LS');
         $this->CreateFlushStation($manager, 'DPS4 - Les Planchettes');
     }
+
+    private function CreateFlushStation(ObjectManager $manager, string $statut)
+    {
+        $obj = new Station();
+        $obj->setName($statut);
+        $manager->persist($obj);
+        $manager->flush();
+    }
+
+    private function loadPathWay(ObjectManager $manager)
+    {
+        $this->CreateFlushPathWay($manager, 'A');
+        $this->CreateFlushPathWay($manager, 'B');
+        $this->CreateFlushPathWay($manager, 'A + B');
+    }
+
     private function CreateFlushPathWay(ObjectManager $manager, string $statut)
     {
         $obj = new PathWay();
@@ -256,12 +254,13 @@ class AppFixtures extends Fixture
         $manager->persist($obj);
         $manager->flush();
     }
-    private function loadPathWay(ObjectManager $manager)
+
+    private function loadTitle(ObjectManager $manager)
     {
-        $this->CreateFlushPathWay($manager, 'A');
-        $this->CreateFlushPathWay($manager, 'B');
-        $this->CreateFlushPathWay($manager, 'A + B');
+        $this->CreateFlushTitle($manager, 'Monsieur');
+        $this->CreateFlushTitle($manager, 'Madame');
     }
+
     private function CreateFlushTitle(ObjectManager $manager, string $statut)
     {
         $obj = new Title();
@@ -269,18 +268,7 @@ class AppFixtures extends Fixture
         $manager->persist($obj);
         $manager->flush();
     }
-    private function loadTitle(ObjectManager $manager)
-    {
-        $this->CreateFlushTitle($manager, 'Monsieur');
-        $this->CreateFlushTitle($manager, 'Madame');
-    }
-    private function CreateFlushInterview(ObjectManager $manager, string $statut)
-    {
-        $obj = new Interviewer();
-        $obj->setName($statut);
-        $manager->persist($obj);
-        $manager->flush();
-    }
+
     private function loadInterview(ObjectManager $manager)
     {
         $this->CreateFlushInterview($manager, "BRAICHET Richard");
@@ -290,6 +278,13 @@ class AppFixtures extends Fixture
         $this->CreateFlushInterview($manager, "JOCCALLAZ Sylvain");
     }
 
+    private function CreateFlushInterview(ObjectManager $manager, string $statut)
+    {
+        $obj = new Interviewer();
+        $obj->setName($statut);
+        $manager->persist($obj);
+        $manager->flush();
+    }
 
     private function loadCandidat(ObjectManager $manager)
     {
@@ -301,6 +296,22 @@ class AppFixtures extends Fixture
             $manager->persist($candidat);
         }
 
+        $manager->flush();
+    }
+
+    private function loadEvaluation(ObjectManager $manager)
+    {
+        $candidates = $this->cr->findAll();
+        $practices  = $this->pr->findAll();
+
+        foreach ($candidates as $candidate) {
+            foreach ($practices as $practice) {
+                $evaluation = new Evaluation();
+                $evaluation->setCandidate($candidate);
+                $evaluation->setPractice($practice);
+                $manager->persist($evaluation);
+            }
+        }
         $manager->flush();
     }
 }

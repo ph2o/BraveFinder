@@ -1,66 +1,65 @@
 {% extends 'base.html.twig' %}
-{% block title %}BraveFinder : Liste des exercices
-{% endblock %}
+{% block title %}BraveFinder : {{ 'Practices list'|trans }}{% endblock %}
+{% block header_title %}{{ 'Practices'|trans }}{% endblock %}
+{% block header_subtitle %}{{ 'List'|trans }}{% endblock %}
 
-{% block body %}
-	<div class="jumbotron text-center">
-		<h1>Exercice</h1>
-	</div>
-	<div class="container body-container">
-		<div class="row">
-			<div class="col-sm-9" id="main">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for practice in practices %}
-							<tr>
-								<td>{{ practice.name }}</td>
-								<td>{{ practice.description }}</td>
-								<td>
-									<a href="{{ path('practice.edit', {'id': practice.id}) }}">
-										<button class="btn btn-info">
-											<span class="d-sm-none">
-												<i class="fas fa-edit"></i>
-											</span>
-											<span class="d-none d-sm-block">Edition</span>
-										</button>
-									</a>
-									<form method="post" action="{{ path('practice.delete',{id: practice.id}) }}" style="display: inline-block" onsubmit="return confirm('Voulez-vous supprimer cet élément ?');">
-										<input name="_method" type="hidden" value="DELETE"/>
-										<input type="hidden" name="_token" value="{{ csrf_token('practice.delete' ~ practice.id) }}"/>
-										<button class="btn btn-danger">
-											<span class="d-sm-none">
-												<i class="fas fa-trash-alt"></i>
-											</span>
-											<span class="d-none d-sm-block">Supprimer</span>
-										</button>
-									</form>
-								</td>
-							</tr>
-						{% else %}
-							<tr>
-								<td colspan="4">Pas d'enregistrement</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-				<div class="text-right">
-					<a href="{{ path('practice.new') }}">
-						<button class="btn btn-success">
-							<span class="d-sm-none">
-								<i class="fas fa-plus-square"></i>
-							</span>
-							<span class="d-none d-sm-block">{{button_label|default('Nouveau')}}</span>
-						</button>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+{% block content %}
+    <div class="row gy-5 g-xl-12">
+        <div class="col-xl-12">
+            <div class="card mb-5 mb-xl-12">
+                <div class="card-header border-0 pt-5">
+                    <div class="card-title align-items-start flex-column">
+                        <span>{{ 'Practices list'|trans }}</span>
+                    </div>
+                    <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
+                         title="" data-bs-original-title="{{ 'Click to add a new practice'|trans }}">
+                        <a href="{{ path('backoffice-practice.new') }}" class="btn btn-sm btn-primary">
+                            <i class="fa fa-plus"></i>
+                            {{ 'Add practice'|trans }}</a>
+                    </div>
+                </div>
+                <div class="card-body py-3">
+                    <div class="table-responsive">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="candidat_list">
+                            <thead>
+                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                                <th class="min-w-125px">{{ 'Name'|trans }}</th>
+                                <th class="min-w-1250px">{{ 'Description'|trans }}</th>
+                                <th class="text-end min-w-125px">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody class="text-gray-600 fw-bold">
+                            {% for practice in practices %}
+                                <tr>
+                                    <td>{{ practice.name }}</td>
+                                    <td>{{ practice.description }}</td>
+                                    <td class="text-end">
+                                        <a href="{{ path('backoffice-practice.edit', {'id': practice.id}) }}"
+                                           class="btn btn-sm btn-light-primary">
+                                            <i class="fa fa-file-alt"></i>
+                                            {{ 'Edition'|trans }}</a>
+                                        <form method="post" action="{{ path('backoffice-practice.delete',{id: practice.id}) }}"
+                                              style="display: inline-block"
+                                              onsubmit="return confirm('Voulez-vous supprimer cet élément ?');">
+                                            <input name="_method" type="hidden" value="DELETE"/>
+                                            <input type="hidden" name="_token"
+                                                   value="{{ csrf_token('backoffice-practice.delete' ~ practice.id) }}"/>
+                                            <button class="btn btn-sm btn-light-danger">
+                                                <i class="fas fa-trash-alt"></i>
+                                                {{ 'Delete'|trans }}</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">Pas d'enregistrement</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

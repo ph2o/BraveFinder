@@ -1,118 +1,94 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	{% if job == 'reception' %}
-		BraveFinder : Secrétariat
-	{% elseif job == 'mesure' %}
-		BraveFinder : Mesure
-	{% elseif job == 'office' %}
-		BraveFinder : Administratif
-	{% endif  %}
+{% block header_title %}{{ 'Secretariat'|trans }}{% endblock %}
+{% block header_subtitle %}{{ 'Candidat list'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="row gy-5 g-xl-12">
+        <div class="col-xl-12">
+            <div class="card mb-5 mb-xl-12">
+                <div class="card-header border-0 pt-5">
+                    <div class="card-title align-items-start flex-column">
+                        <div class="d-flex align-items-center position-relative my-1">
+                                        <span class="icon position-absolute ms-6">
+													 <i class="bi bi-search"></i>
+												</span>
+                            <input type="text" data-kt-user-table-filter="search"
+                                   class="form-control form-control-solid w-250px ps-14"
+                                   placeholder="{{ "Search candidat"|trans }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body py-3">
+                    <div class="table-responsive">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="candidat_list">
+                            <thead>
+                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                                <th class="min-w-125px">{{ 'Name'|trans }}</th>
+                                <th class="min-w-50px text-center">{{ 'On Site'|trans }}</th>
+                                <th class="min-w-50px text-center">{{ 'Admin data'|trans }}</th>
+                                <th class="min-w-50px text-center">{{ 'Measurements'|trans }}</th>
+                                <th class="min-w-50px text-center">{{ 'Engaged'|trans }}</th>
+                                <th class="text-end min-w-125px">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody class="text-gray-600 fw-bold">
+                            {% for candidate in candidates %}
+                                {% set picture = candidate.picture? vich_uploader_asset(candidate, 'pictureFile'):asset('media/avatars/blank.png') %}
+                                <tr>
+                                    <td class="d-flex align-items-center">
+                                        <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                                            <div class="symbol-label">
+                                                <img src="{{ picture | imagine_filter('image_thumb') }}"
+                                                     class="w-100"
+                                                     alt="{{ candidate.firstname ~ ' ' ~ candidate.name }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <span class="text-gray-800 text-hover-primary mb-1">{{ candidate.firstname ~ ' ' ~ candidate.name }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span><i class="fa fa-{{ candidate.onSite? 'check text-success':'times text-warning' }}"></i></span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span><i class="fa fa-{{ candidate.engaged? 'check text-success':'times text-warning' }}"></i></span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span><i class="fa fa-{{ candidate.engaged? 'check text-success':'times text-warning' }}"></i></span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span><i class="fa fa-{{ candidate.engaged? 'check text-success':'times text-warning' }}"></i></span>
+                                    </td>
+                                    <td class="text-end">
+                                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SECRETARIAT') or is_granted('ROLE_MESURE') %}
+                                            <a href="{{ path('secretariat.administratif.edit', {'id': candidate.id}) }}"
+                                               class="btn btn-sm btn-light-primary">
+                                                <i class="fa fa-file-alt"></i>
+                                                {{ 'Edition'|trans }}</a>
+                                        {% elseif is_granted('ROLE_ADMIN') or is_granted('ROLE_ACCUEIL') %}
+                                            <a href="{{ path('secretariat.reception.edit', {'id': candidate.id}) }}"
+                                               class="btn btn-sm btn-light-primary">
+                                                <i class="fa fa-file-alt"></i>
+                                                {{ 'Edition'|trans }}</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">Pas d'enregistrement</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
-{% block body %}
-	<div class="jumbotron text-center">
-		{% if job == 'reception' %}
-			<h1>Accueil des candidats</h1>
-		{% elseif job == 'mesure' %}
-			<h1>Mesure des candidats</h1>
-		{% elseif job == 'office' %}
-			<h1>Données administratives</h1>
-		{% endif  %}
-
-		{% include "candidate/_form_candidateSearch.html.twig" %}
-
-		{{form_end(form)}}
-	</div>
-	<div class="container body-container">
-		<div class="row">
-			<div class="col-sm-12" id="main">
-				<table class="table">
-					<tbody>
-						{% for candidate in candidates %}
-							{% if job == 'reception' %}
-								<tr>
-									<td class="col-sm-1">
-										<a href="{{ path('secretariat.reception.edit', {'id': candidate.id}) }}" class="href">
-											<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
-										</a>
-									</td>
-									<td class="col-sm-7 align-middle h5">
-										<a href="{{ path('secretariat.reception.edit', {'id': candidate.id}) }}" class="href">
-											{{ candidate.name }}
-											{{ candidate.firstname }}
-										</a>
-									</td>
-									<td class="col-sm-4 align-middle">
-										<a href="{{ path('secretariat.reception.edit', {'id': candidate.id}) }}">
-											<button class="btn btn-info">
-												<span class="d-sm-none">
-													<i class="fas fa-camera-retro"></i>
-												</span>
-												<span class="d-none d-sm-block">Arrivée du candidat</span>
-											</button>
-										</a>
-									</td>
-								</tr>
-
-							{% elseif job == 'mesure' %}
-								<tr>
-									<td class="col-sm-1">
-										<a href="{{ path('secretariat.mesure.edit', {'id': candidate.id}) }}" class="href">
-											<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
-										</a>
-									</td>
-									<td class="col-sm-7 align-middle h5">
-										<a href="{{ path('secretariat.mesure.edit', {'id': candidate.id}) }}" class="href">
-											{{ candidate.name }}
-											{{ candidate.firstname }}
-										</a>
-									</td>
-									<td class="col-sm-4 align-middle">
-										<a href="{{ path('secretariat.mesure.edit', {'id': candidate.id}) }}">
-											<button class="btn btn-info">
-												<span class="d-sm-none">
-													<i class="fas fa-tshirt"></i>
-												</span>
-												<span class="d-none d-sm-block">Mesures du candidat</span>
-											</button>
-										</a>
-									</td>
-								</tr>
-
-							{% elseif job == 'office' %}
-								<tr>
-									<td class="col-sm-1">
-										<a href="{{ path('secretariat.administratif.edit', {'id': candidate.id}) }}" class="href">
-											<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
-										</a>
-									</td>
-									<td class="col-sm-7 align-middle h5">
-										<a href="{{ path('secretariat.administratif.edit', {'id': candidate.id}) }}" class="href">
-											{{ candidate.name }}
-											{{ candidate.firstname }}
-										</a>
-									</td>
-									<td class="col-sm-4 align-middle">
-										<a href="{{ path('secretariat.administratif.edit', {'id': candidate.id}) }}">
-											<button class="btn btn-info">
-												<span class="d-sm-none">
-													<i class="fas fa-id-card"></i>
-												</span>
-												<span class="d-none d-sm-block">Administratif du candidat</span>
-											</button>
-										</a>
-									</td>
-								</tr>
-							{% endif  %}
-						{% else %}
-							<tr>
-								<td colspan="4">Pas d'enregistrement</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+{% block javascripts %}
+    <script src="{{ asset("plugins/custom/datatables/datatables.bundle.js") }}"></script>
+    <script src="{{ asset("js/custom/apps/candidat/table.js") }}"></script>
 {% endblock %}

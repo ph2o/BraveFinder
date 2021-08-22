@@ -19,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PracticeController extends AbstractController
 {
     /**
-     * @Route("/", name="practice.index", methods={"GET"})
+     * @Route("/practice/", name="backoffice-practice.index", methods={"GET"})
      */
     public function index(PracticeRepository $practiceRepository): Response
     {
@@ -28,8 +28,10 @@ class PracticeController extends AbstractController
         ]);
     }
 
+
+
     /**
-     * @Route("/new", name="practice.new", methods={"GET","POST"})
+     * @Route("/new", name="backoffice-practice.new", methods={"GET","POST"})
      */
     public function new(Request $request, EvaluationRepository $EvaluationRepository): Response
     {
@@ -44,7 +46,8 @@ class PracticeController extends AbstractController
 
             $EvaluationRepository->addNewEvaluations();
 
-            return $this->redirectToRoute('practice.index');
+            $this->addFlash('success', 'Practice successfully added');
+            return $this->redirectToRoute('backoffice-practice.index');
         }
 
         return $this->render('practice/new.html.twig', [
@@ -54,10 +57,13 @@ class PracticeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="practice.edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="backoffice-practice.edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Practice $practice): Response
     {
+        //override header id for practice id instead of evaluation one (for active menu purpose)
+        $request->attributes->set('id',$practice->getId());
+
         $form = $this->createForm(PracticeType::class, $practice);
         $form->handleRequest($request);
 
@@ -65,8 +71,10 @@ class PracticeController extends AbstractController
             $practice->setUpdatedAt(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('practice.index');
+            $this->addFlash('success', 'Practice successfully updated');
+            return $this->redirectToRoute('backoffice-practice.index');
         }
+
         return $this->render('practice/edit.html.twig', [
             'practice' => $practice,
             'form' => $form->createView(),
@@ -74,15 +82,16 @@ class PracticeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="practice.delete", methods={"DELETE"})
+     * @Route("/{id}", name="backoffice-practice.delete", methods={"DELETE"})
      */
     public function delete(Request $request, Practice $practice): Response
     {
-        if ($this->isCsrfTokenValid('practice.delete' . $practice->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('backoffice-practice.delete' . $practice->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($practice);
             $entityManager->flush();
+            $this->addFlash('success', 'Practice successfully deleted');
         }
-        return $this->redirectToRoute('practice.index');
+        return $this->redirectToRoute('backoffice-practice.index');
     }
 }

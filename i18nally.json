@@ -1,0 +1,47 @@
+{
+  "version" : "1.0",
+  "profiles" : [ {
+    "id" : "252e074c-413b-4f57-a896-d6857ce2f326",
+    "name" : "Symfony (PHP, TWIG)",
+    "keyNamingPattern" : "SNAKE_CASE_PATTERN",
+    "sink" : {
+      "id" : "d4b7057a-9494-494f-96f2-5f5e7ac659d1",
+      "type" : "symfony",
+      "translationsDirectory" : "$PROJECT_DIR$/translations",
+      "fileType" : "yaml",
+      "defaultLocale" : "fr",
+      "namespaces" : [ "messages" ],
+      "outputFilenameTemplate" : "%namespace%+intl-icu.%locale%.yaml",
+      "nestingType" : "DISABLED",
+      "placeholderFormatterName" : "ICU"
+    },
+    "sources" : [ {
+      "id" : "816df3ad-38e3-48a9-bee9-670ffa068df2",
+      "type" : "php",
+      "scopeName" : "i18n Ally: Symfony/PHP source",
+      "scopePattern" : "file[Bravefinder]:src//*&&!file[Bravefinder]:src/DataFixtures//*",
+      "functionName" : "$this->translator->trans",
+      "argumentsTemplate" : "'%key%', %map%, '%namespace%'",
+      "skipDefaultNamespace" : true,
+      "sprintfMode" : false
+    }, {
+      "id" : "b765adfb-865c-41e0-8411-d16dd84f9a86",
+      "type" : "twig",
+      "scopeName" : "i18n Ally: Symfony/Twig templates",
+      "scopePattern" : "file[Bravefinder]:templates//*",
+      "filterName" : "trans",
+      "argumentsTemplate" : "%map%, '%namespace%'",
+      "inlineTagNames" : [ "a", "abbr", "acronym", "b", "bdi", "bdo", "big", "br", "cite", "code", "data", "del", "dfn", "em", "i", "img", "input", "ins", "kbd", "label", "mark", "meter", "output", "progress", "q", "ruby", "s", "samp", "slot", "small", "span", "strong", "sub", "sup", "time", "u", "tt", "var", "wbr" ],
+      "translatableAttributeNames" : [ "title", "alt", "placeholder", "label", "aria-label" ],
+      "skipDefaultNamespace" : true
+    } ]
+  } ],
+  "ignores" : {
+    "valuesInProject" : [ ],
+    "valuesInFile" : { },
+    "filesInProject" : [ ],
+    "unignoredFunctionNames" : [ ],
+    "unignoredFunctionArguments" : { },
+    "ignoredArrayKeys" : [ ]
+  }
+}

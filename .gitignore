@@ -23,3 +23,7 @@ tests/Sélection_Extranet.xlsx
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###

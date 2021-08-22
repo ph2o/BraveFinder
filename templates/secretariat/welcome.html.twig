@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BraveFinder : Modification d'un candidat{% endblock %}
+
+
+{% block content %}
+    <div class="row gy-5 g-xl-8">
+        <div class="col-xl-8">
+            <div class="card mb-5 mb-xl-8">
+                <div class="card-header border-0 pt-5">
+                    <div class="card-title align-items-start flex-column">
+                        <h1>
+                            <span class="card-label fw-bolder fs-2 mb-1 text-primary">{{ 'Welcome'|trans  }}</span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="card-body py-3">
+                    {% include 'secretariat/_reception.form.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

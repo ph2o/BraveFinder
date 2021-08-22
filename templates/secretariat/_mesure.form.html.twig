@@ -1,38 +1,115 @@
-{{ form_start(form) }}
-<div class="row">
-	<div class="col-md-3">
-		<div class="col-sm-1">
-			<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
+<div class="card card-xxl-stretch mb-5 mb-xxl-10">
+	<div class="card-header">
+		<div class="card-title">
+			<h3>{{ 'Measurements'|trans }}</h3>
 		</div>
 	</div>
-	<div class="col-md-9">
-		<h1>{{candidate.name}}
-			{{candidate.firstname}}</h1>
+	<div class="card-body pb-0 min-h-350px">
+		{{ form_start(measureForm) }}
+		<div class="row mb-6">
+			{{ form_label(measureForm.teeshirt,null, {'label_attr': {'class': 'col-lg-4 col-form-label fw-bold fs-6'}}) }}
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-3 fv-row fv-plugins-icon-container">
+						{{ form_widget(measureForm.teeshirt, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold'}}) }}
+						<div class="fv-plugins-message-container invalid-feedback"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-6">
+			{{ form_label(measureForm.sweat,null, {'label_attr': {'class': 'col-lg-4 col-form-label fw-bold fs-6'}}) }}
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-3 fv-row fv-plugins-icon-container">
+						{{ form_widget(measureForm.sweat, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold'}}) }}
+						<div class="fv-plugins-message-container invalid-feedback"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-6">
+			{{ form_label(measureForm.waitingPants,null, {'label_attr': {'class': 'col-lg-4 col-form-label fw-bold fs-6'}}) }}
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-3 fv-row fv-plugins-icon-container">
+						{{ form_widget(measureForm.waitingPants, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold'}}) }}
+						<div class="fv-plugins-message-container invalid-feedback"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-6">
+			{{ form_label(measureForm.fireJacket,null, {'label_attr': {'class': 'col-lg-4 col-form-label fw-bold fs-6'}}) }}
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-3 fv-row fv-plugins-icon-container">
+						{{ form_widget(measureForm.fireJacket, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold'}}) }}
+						<div class="fv-plugins-message-container invalid-feedback"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-6">
+			{{ form_label(measureForm.fireGloves,null, {'label_attr': {'class': 'col-lg-4 col-form-label fw-bold fs-6'}}) }}
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-3 fv-row fv-plugins-icon-container">
+						{{ form_widget(measureForm.fireGloves, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+						<div class="fv-plugins-message-container invalid-feedback"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-6">
+			{{ form_label(measureForm.firePants,null, {'label_attr': {'class': 'col-lg-4 col-form-label fw-bold fs-6'}}) }}
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-3 fv-row fv-plugins-icon-container">
+						{{ form_widget(measureForm.firePants, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold'}}) }}
+						<div class="fv-plugins-message-container invalid-feedback"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-6">
+			{{ form_label(measureForm.rubberBoots,null, {'label_attr': {'class': 'col-lg-4 col-form-label fw-bold fs-6'}}) }}
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-3 fv-row fv-plugins-icon-container">
+						{{ form_widget(measureForm.rubberBoots, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+						<div class="fv-plugins-message-container invalid-feedback"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-6">
+			{{ form_label(measureForm.rangerBoots,null, {'label_attr': {'class': 'col-lg-4 col-form-label fw-bold fs-6'}}) }}
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-3 fv-row fv-plugins-icon-container">
+						{{ form_widget(measureForm.rangerBoots, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+						<div class="fv-plugins-message-container invalid-feedback"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-6">
+			{{ form_label(measureForm.HeadCircumference,null, {'label_attr': {'class': 'col-lg-4 col-form-label fw-bold fs-6'}}) }}
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-3 fv-row fv-plugins-icon-container">
+						{{ form_widget(measureForm.HeadCircumference, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold'}}) }}
+						<div class="fv-plugins-message-container invalid-feedback"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card-footer d-flex justify-content-end py-6 px-9">
+			<button class="btn btn-primary">{{ 'Save Changes'|trans }}</button>
+		</div>
+		{{ form_end(measureForm) }}
+
 	</div>
 </div>
 
-<div class="row shadow p-3 mb-5 bg-light rounded">
-	<div class="col-md-4">{{ form_row(form.teeshirt) }}</div>
-	<div class="col-md-4">{{ form_row(form.sweat) }}</div>
-	<div class="col-md-4">{{ form_row(form.waitingPants) }}</div>
-</div>
-
-<div class="row shadow p-3 mb-5 bg-light rounded">
-	<div class="col-md-4">{{ form_row(form.fireJacket) }}</div>
-	<div class="col-md-4">{{ form_row(form.fireGloves) }}</div>
-	<div class="col-md-4">{{ form_row(form.firePants) }}</div>
-</div>
-
-<div class="row shadow p-3 mb-5 bg-light rounded">
-	<div class="col-md-4">{{ form_row(form.rubberBoots) }}</div>
-	<div class="col-md-4">{{ form_row(form.rangerBoots) }}</div>
-	<div class="col-md-4">{{ form_row(form.HeadCircumference) }}</div>
-</div>
-
-<button class="btn btn-success">
-	<span class="d-sm-none">
-		<i class="fas fa-save"></i>
-	</span>
-	<span class="d-none d-sm-block">{{button_label|default('Enregistrer')}}</span>
-</button>
-{{ form_end(form) }}

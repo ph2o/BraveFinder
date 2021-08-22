@@ -30,3 +30,6 @@ Sweat: Sweat
 Teeshirt: Teeshirt
 FireJacket: Veste feu
 HeadCircumference: Tour de tête
+invalid_token: 'Invalid token'
+no_evaluation_yet: 'No evaluation yet'
+"Print report":

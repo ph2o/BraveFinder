@@ -15,12 +15,12 @@ class CandidateMesureType extends AbstractType
             ->add('rubberBoots')
             ->add('rangerBoots')
             ->add('fireGloves')
-            ->add('waitingPants')
-            ->add('firePants')
-            ->add('sweat')
-            ->add('teeshirt')
-            ->add('fireJacket')
-            ->add('HeadCircumference');
+            ->add('waitingPants', null, ['required' => true, 'placeholder' => 'Select...'])
+            ->add('firePants', null, ['required' => true, 'placeholder' => 'Select...'])
+            ->add('sweat', null, ['required' => true, 'placeholder' => 'Select...'])
+            ->add('teeshirt', null, ['required' => true, 'placeholder' => 'Select...'])
+            ->add('fireJacket', null, ['required' => true, 'placeholder' => 'Select...'])
+            ->add('HeadCircumference', null, ['required' => true, 'placeholder' => 'Select...']);
     }
 
     public function configureOptions(OptionsResolver $resolver)

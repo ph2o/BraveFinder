@@ -449,6 +449,18 @@
         <source>BackOffice</source>
         <target>Administration</target>
       </trans-unit>
+      <trans-unit id="O_ECbrG" resname="RDSISMN Bravefinder">
+        <source>RDSISMN Bravefinder</source>
+        <target>RDSISMN Bravefinder</target>
+      </trans-unit>
+      <trans-unit id=".cnA9p1" resname="Candidates">
+        <source>Candidates</source>
+        <target>Candidats</target>
+      </trans-unit>
+      <trans-unit id="60F7GIl" resname="Incomming">
+        <source> Incomming</source>
+        <target>Présumés</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

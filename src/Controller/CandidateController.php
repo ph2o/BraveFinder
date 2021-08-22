@@ -99,7 +99,7 @@ class CandidateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/{token}", name="candidate.engaged", methods={"POST"})
+     * @Route("/engaged/{id}/{token}", name="candidate.engaged", methods={"POST"})
      */
     public function engaged(Candidate $candidate, $token): Response
     {
@@ -113,7 +113,7 @@ class CandidateController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/{token}", name="candidate.toole.status", methods={"POST"})
+     * @Route("/onsite/{id}/{token}", name="candidate.toole.status", methods={"POST"})
      */
     public function toggleStatus(Candidate $candidate, $token): Response
     {

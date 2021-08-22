@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id=".qeI.Qn" resname="N°">
+        <source>N°</source>
+        <target>N°</target>
+      </trans-unit>
+      <trans-unit id="WnQmfBs" resname="Retenu">
+        <source>Retenu</source>
+        <target>Retenu</target>
+      </trans-unit>
+      <trans-unit id="xE4r4DV" resname="PathWay">
+        <source>PathWay</source>
+        <target>Filière</target>
+      </trans-unit>
+      <trans-unit id="3NHVIj9" resname="Name">
+        <source>Name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="ZHz6kbI" resname="Firstname">
+        <source>Firstname</source>
+        <target>PrénomFirstname</target>
+      </trans-unit>
+      <trans-unit id="fozSBW2" resname="Title">
+        <source>Title</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="yANxAwL" resname="Function">
+        <source>Function</source>
+        <target>Fonction</target>
+      </trans-unit>
+      <trans-unit id="g54g_zW" resname="Grade">
+        <source>Grade</source>
+        <target>Grade</target>
+      </trans-unit>
+      <trans-unit id="EVzPlhB" resname="Station">
+        <source>Station</source>
+        <target>Affectation</target>
+      </trans-unit>
+      <trans-unit id="WXzoaGl" resname="Birthdate">
+        <source>Birthdate</source>
+        <target>Date de naissance</target>
+      </trans-unit>
+      <trans-unit id="y6rTz0p" resname="Mobile">
+        <source>Mobile</source>
+        <target>Tél. Mobile</target>
+      </trans-unit>
+      <trans-unit id="Y9zriAC" resname="Phone">
+        <source>Phone</source>
+        <target>Tél.</target>
+      </trans-unit>
+      <trans-unit id="xmZZHfB" resname="Street">
+        <source>Street</source>
+        <target>Rue</target>
+      </trans-unit>
+      <trans-unit id="6VQkf2E" resname="HouseNumber">
+        <source>HouseNumber</source>
+        <target>N°</target>
+      </trans-unit>
+      <trans-unit id="e8iOu20" resname="Zip">
+        <source>Zip</source>
+        <target>NPA</target>
+      </trans-unit>
+      <trans-unit id=".DP3Mkb" resname="City">
+        <source>City</source>
+        <target>Ville</target>
+      </trans-unit>
+      <trans-unit id="B_1sz2v" resname="Mail">
+        <source>Mail</source>
+        <target>Courriel</target>
+      </trans-unit>
+      <trans-unit id="LS.3GXS" resname="Marital Status">
+        <source>Marital Status</source>
+        <target>État civil</target>
+      </trans-unit>
+      <trans-unit id="qr95DnH" resname="Social Number">
+        <source>Social Number</source>
+        <target>N° Avs</target>
+      </trans-unit>
+      <trans-unit id="9RtrEA4" resname="origin Name">
+        <source>origin Name</source>
+        <target>Lieu d'origine</target>
+      </trans-unit>
+      <trans-unit id="USqzxrm" resname="Education">
+        <source>Education</source>
+        <target>Formation</target>
+      </trans-unit>
+      <trans-unit id="1U47iNi" resname="Iban">
+        <source>Iban</source>
+        <target>IBAN</target>
+      </trans-unit>
+      <trans-unit id="eMJA1gO" resname="BankName">
+        <source>BankName</source>
+        <target>Institut financier</target>
+      </trans-unit>
+      <trans-unit id="zpG_0n5" resname="RubberBoots">
+        <source>RubberBoots</source>
+        <target>Bottes caoutchouc</target>
+      </trans-unit>
+      <trans-unit id="i_LMH6V" resname="RangerBoots">
+        <source>RangerBoots</source>
+        <target>Bottes cuir</target>
+      </trans-unit>
+      <trans-unit id="DghrrxX" resname="FireGloves">
+        <source>FireGloves</source>
+        <target>Gant feu</target>
+      </trans-unit>
+      <trans-unit id="yKLwkY7" resname="WaitingPants">
+        <source>WaitingPants</source>
+        <target>Pantalon d'attente</target>
+      </trans-unit>
+      <trans-unit id="AF63cZS" resname="FirePants">
+        <source>FirePants</source>
+        <target>Pantalon feu</target>
+      </trans-unit>
+      <trans-unit id="x3s2q3I" resname="Sweat">
+        <source>Sweat</source>
+        <target>Sweat</target>
+      </trans-unit>
+      <trans-unit id="6Ew7G_R" resname="Teeshirt">
+        <source>Teeshirt</source>
+        <target>Teeshirt</target>
+      </trans-unit>
+      <trans-unit id="5bipXUj" resname="FireJacket">
+        <source>FireJacket</source>
+        <target>Veste feu</target>
+      </trans-unit>
+      <trans-unit id="bA1TYqW" resname="HeadCircumference">
+        <source>HeadCircumference</source>
+        <target>Tour de tête</target>
+      </trans-unit>
+      <trans-unit id="_B3yJox" resname="invalid_token">
+        <source>invalid_token</source>
+        <target>Jeton d'authentification invalide</target>
+      </trans-unit>
+      <trans-unit id="dfgVvKr" resname="no_evaluation_yet">
+        <source>no_evaluation_yet</source>
+        <target>Aucune évaluation pour le moment</target>
+      </trans-unit>
+      <trans-unit id="DiImtSN" resname="Welcome">
+        <source>Welcome</source>
+        <target>Bienvenue</target>
+      </trans-unit>
+      <trans-unit id="Z7aWRoY" resname="Dashboard">
+        <source>Dashboard</source>
+        <target>Tableau de bord</target>
+      </trans-unit>
+      <trans-unit id="fLwO.tk" resname="Candidat">
+        <source>Candidat</source>
+        <target>Candidat</target>
+      </trans-unit>
+      <trans-unit id="ObKKCSC" resname="Search candidat">
+        <source>Search candidat</source>
+        <target>Chercher un candidat</target>
+      </trans-unit>
+      <trans-unit id="Gw2FHpv" resname="Engaged">
+        <source>Engaged</source>
+        <target>Engagé</target>
+      </trans-unit>
+      <trans-unit id="AqK7ykw" resname="Not engaged">
+        <source>Not engaged</source>
+        <target>Pas engagé</target>
+      </trans-unit>
+      <trans-unit id="tIg91Ce" resname="Candidat list">
+        <source>Candidat list</source>
+        <target>Liste des candidats</target>
+      </trans-unit>
+      <trans-unit id="_iMkObv" resname="Click to add a new candidate">
+        <source>Click to add a new candidate</source>
+        <target>Cliquez pour ajouter un nouveau candidat</target>
+      </trans-unit>
+      <trans-unit id="K7rD5wX" resname="Add candidate">
+        <source>Add candidate</source>
+        <target>Ajouter un candidate</target>
+      </trans-unit>
+      <trans-unit id="zbf7bQS" resname="Practices">
+        <source>Practices</source>
+        <target>Épreuve</target>
+      </trans-unit>
+      <trans-unit id="Jp1.Y5T" resname="Average grade">
+        <source>Average grade</source>
+        <target>Note moyenne</target>
+      </trans-unit>
+      <trans-unit id="QPcRkbM" resname="On Site">
+        <source>On Site</source>
+        <target>Sur Site</target>
+      </trans-unit>
+      <trans-unit id="83aVojy" resname="Edition">
+        <source>Edition</source>
+        <target>Modifier</target>
+      </trans-unit>
+      <trans-unit id="4tClSWj" resname="Delete">
+        <source>Delete</source>
+        <target>Supprimer</target>
+      </trans-unit>
+      <trans-unit id="SD68Azt" resname="New Candidat">
+        <source>New Candidat</source>
+        <target>Nouveau Candidat</target>
+      </trans-unit>
+      <trans-unit id="GP3VSbL" resname="New">
+        <source>New</source>
+        <target>Nouveau</target>
+      </trans-unit>
+      <trans-unit id="NTIrW7W" resname="Save Changes">
+        <source>Save Changes</source>
+        <target>Enregistrer</target>
+      </trans-unit>
+      <trans-unit id="Fj5EsQJ" resname="Evaluation">
+        <source>Evaluation</source>
+        <target>Évaluation</target>
+      </trans-unit>
+      <trans-unit id="slzGmJt" resname="Evaluations">
+        <source>Evaluations</source>
+        <target>Évaluations</target>
+      </trans-unit>
+      <trans-unit id="f_qpojX" resname="Completed evaluations">
+        <source>Completed evaluations</source>
+        <target>Évaluations terminées</target>
+      </trans-unit>
+      <trans-unit id="nylTBGT" resname="Rating">
+        <source>Rating</source>
+        <target>Note</target>
+      </trans-unit>
+      <trans-unit id="7QlcW7m" resname="Enterviewers">
+        <source>Enterviewers</source>
+        <target>Responsables de l'entretien</target>
+      </trans-unit>
+      <trans-unit id="aOHKV1K" resname="Validation">
+        <source>Validation</source>
+        <target>Validation</target>
+      </trans-unit>
+      <trans-unit id="3Qrnpcv" resname="Save changes">
+        <source>Save changes</source>
+        <target>Enregistrer</target>
+      </trans-unit>
+      <trans-unit id="HLC6El_" resname="Information">
+        <source>Information</source>
+        <target>Information</target>
+      </trans-unit>
+      <trans-unit id="Y2XUQJr" resname="Evaluations to do">
+        <source>Evaluations to do</source>
+        <target>Évaluations en cours</target>
+      </trans-unit>
+      <trans-unit id="yibjTrF" resname="Evaluations done">
+        <source>Evaluations done</source>
+        <target>Évaluations achevées</target>
+      </trans-unit>
+      <trans-unit id="04V7ErT" resname="Practice">
+        <source>Practice</source>
+        <target>Épreuve</target>
+      </trans-unit>
+      <trans-unit id="BzwWNMS" resname="status">
+        <source>status</source>
+        <target>statut</target>
+      </trans-unit>
+      <trans-unit id="Ggm.RK1" resname="Evaluation du candidat">
+        <source>Evaluation du candidat</source>
+        <target>Evaluation du candidat</target>
+      </trans-unit>
+      <trans-unit id=".OXZcdH" resname="Practices list">
+        <source>Practices list</source>
+        <target>Listes des épreuves</target>
+      </trans-unit>
+      <trans-unit id="byAvVKe" resname="List">
+        <source>List</source>
+        <target>Liste</target>
+      </trans-unit>
+      <trans-unit id="nKTn71g" resname="Click to add a new practice">
+        <source>Click to add a new practice</source>
+        <target>Cliquez pour ajouter une épreuve</target>
+      </trans-unit>
+      <trans-unit id="X8tLfrM" resname="Add practice">
+        <source>Add practice</source>
+        <target>Ajouter une épreuve</target>
+      </trans-unit>
+      <trans-unit id="Um4Ah8w" resname="Description">
+        <source>Description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="WH6O3c5" resname="New practice">
+        <source>New practice</source>
+        <target>Nouvelle épreuve</target>
+      </trans-unit>
+      <trans-unit id="67wKKRH" resname="Add New Practice">
+        <source>Add New Practice</source>
+        <target>Ajouter une épreuve</target>
+      </trans-unit>
+      <trans-unit id="Tv.kRzV" resname="Interview">
+        <source>Interview</source>
+        <target>Entretien</target>
+      </trans-unit>
+      <trans-unit id="1tlNWhQ" resname="Edit candidate">
+        <source>Edit candidate</source>
+        <target>Mise à jour du candidat</target>
+      </trans-unit>
+      <trans-unit id="skUtHro" resname="Candidate">
+        <source>Candidate</source>
+        <target>Candidat</target>
+      </trans-unit>
+      <trans-unit id="X2zQRc0" resname="Secretariat">
+        <source>Secretariat</source>
+        <target>Secretariat</target>
+      </trans-unit>
+      <trans-unit id="HddRYDv" resname="Admin data">
+        <source>Admin data</source>
+        <target>Données administratives</target>
+      </trans-unit>
+      <trans-unit id="PHV4A1Z" resname="Measurements">
+        <source>Measurements</source>
+        <target>Mesures</target>
+      </trans-unit>
+      <trans-unit id="jK8xWq6" resname="On site">
+        <source>On site</source>
+        <target>Sur site</target>
+      </trans-unit>
+      <trans-unit id="1pajW90" resname="Profile">
+        <source>Profile</source>
+        <target>Profil</target>
+      </trans-unit>
+      <trans-unit id="NOkMltL" resname="Print report">
+        <source>Print report</source>
+        <target>Imprimer la fiche</target>
+      </trans-unit>
+      <trans-unit id="wBX8r5p" resname="Practice Rate">
+        <source>Practice Rate</source>
+        <target>Note moyenne</target>
+      </trans-unit>
+      <trans-unit id="KsuGtTH" resname="Profile Compleation">
+        <source>Profile Compleation</source>
+        <target>Complétion du profil</target>
+      </trans-unit>
+      <trans-unit id="S0LGaQ6" resname="Administration">
+        <source>Administration</source>
+        <target>Administration</target>
+      </trans-unit>
+      <trans-unit id="ZfHuQpg" resname="Profile Details">
+        <source>Profile Details</source>
+        <target>Détails du profil</target>
+      </trans-unit>
+      <trans-unit id="wQxbuWC" resname="Profile image">
+        <source>Profile image</source>
+        <target>Image de profil</target>
+      </trans-unit>
+      <trans-unit id="cyOS7tR" resname="Change avatar">
+        <source>Change avatar</source>
+        <target>Changer l'image</target>
+      </trans-unit>
+      <trans-unit id="lVuhgio" resname="Cancel avatar">
+        <source>Cancel avatar</source>
+        <target>Annuler l'image</target>
+      </trans-unit>
+      <trans-unit id="WuKoYta" resname="Remove avatar">
+        <source>Remove avatar</source>
+        <target>Supprimer l'image</target>
+      </trans-unit>
+      <trans-unit id="re2vyBQ" resname="Allowed file types: png, jpg, jpeg.">
+        <source>Allowed file types: png, jpg, jpeg.</source>
+        <target>Formats autorisés: png, jpg, jpeg.</target>
+      </trans-unit>
+      <trans-unit id="wX8ZYyt" resname="Designation">
+        <source>Designation</source>
+        <target>Désignation</target>
+      </trans-unit>
+      <trans-unit id="jgDN9x_" resname="Full Name">
+        <source>Full Name</source>
+        <target>Nom complet</target>
+      </trans-unit>
+      <trans-unit id="Vu_PIJV" resname="Address">
+        <source>Address</source>
+        <target>Adresse</target>
+      </trans-unit>
+      <trans-unit id="nCD4XT8" resname="Contact Phone">
+        <source>Contact Phone</source>
+        <target>Téléphones</target>
+      </trans-unit>
+      <trans-unit id="C3zk01s" resname="Bank detail">
+        <source>Bank detail</source>
+        <target>Détails banquaires</target>
+      </trans-unit>
+      <trans-unit id="FOXCDLw" resname="Sign In to">
+        <source>Sign In to</source>
+        <target>Se connecter à</target>
+      </trans-unit>
+      <trans-unit id="acVpEs4" resname="You are logged in as">
+        <source>You are logged in as</source>
+        <target>Vous êtes connecté en tant que</target>
+      </trans-unit>
+      <trans-unit id="0FJ_Sz1" resname="Logout">
+        <source>Logout</source>
+        <target>Se déconnecter</target>
+      </trans-unit>
+      <trans-unit id="47ienTP" resname="Username">
+        <source>Username</source>
+        <target>Nom d'utilisateur</target>
+      </trans-unit>
+      <trans-unit id="588_9PF" resname="Password">
+        <source>Password</source>
+        <target>Mot de passe</target>
+      </trans-unit>
+      <trans-unit id="MfvvFiW" resname="Continue">
+        <source>Continue</source>
+        <target>Continuer</target>
+      </trans-unit>
+      <trans-unit id="ZQz_OkS" resname="Please wait">
+        <source>Please wait</source>
+        <target>Un moment</target>
+      </trans-unit>
+      <trans-unit id="awzJBNC" resname="Users">
+        <source>Users</source>
+        <target>Utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="OnqBk.y" resname="Users list">
+        <source>Users list</source>
+        <target>Liste des utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="QMeszOB" resname="Search user">
+        <source>Search user</source>
+        <target>Chercher un utilisateur</target>
+      </trans-unit>
+      <trans-unit id="r1k6cnm" resname="Click to add a new user">
+        <source>Click to add a new user</source>
+        <target>Cliquez pour ajouter un nouvel utilisateur </target>
+      </trans-unit>
+      <trans-unit id="7sXHOh1" resname="Add user">
+        <source>Add user</source>
+        <target>Ajouter un utilisateur</target>
+      </trans-unit>
+      <trans-unit id="wlM3BVR" resname="Roles">
+        <source>Roles</source>
+        <target>Privilèges</target>
+      </trans-unit>
+      <trans-unit id="MVJ_u5A" resname="New User">
+        <source>New User</source>
+        <target>Nouvel utilisateur</target>
+      </trans-unit>
+      <trans-unit id="tRLZfny" resname="User">
+        <source>User</source>
+        <target>Utilisateur</target>
+      </trans-unit>
+      <trans-unit id="CxhLxdU" resname="Sign Out">
+        <source>Sign Out</source>
+        <target>Se déconnecter</target>
+      </trans-unit>
+      <trans-unit id="44VnZQN" resname="BackOffice">
+        <source>BackOffice</source>
+        <target>Administration</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

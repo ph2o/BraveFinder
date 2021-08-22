@@ -1,6 +1,6 @@
 <div class="card mb-6">
     <div class="card-body pt-9 pb-0 ribbon ribbon-top">
-        <div class="ribbon-label bg-{{ candidate.engaged?'success': 'warning' }}">{{ candidate.engaged?'Engaged': 'Not engaged' }}</div>
+        <div class="ribbon-label bg-{{ candidate.engaged?'success': 'warning' }}">{{ candidate.engaged?'Engaged'|trans: 'Not engaged'|trans }}</div>
         <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
             <div class="me-7 mb-4">
                 <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">

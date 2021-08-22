@@ -6,7 +6,7 @@
         <div class="col-xxl-4">
             <div class="card card-xxl-stretch mb-5">
                 <div class="card-header border-0 bg-danger py-5">
-                    <h3 class="card-title fw-bolder text-white">Candidates</h3>
+                    <h3 class="card-title fw-bolder text-white">{{ 'Candidates'|trans }}</h3>
                 </div>
                 <div class="card-body p-0" style="position: relative;">
                     <div class="mixed-widget-2-chart card-rounded-bottom bg-danger" data-kt-color="danger"
@@ -17,12 +17,12 @@
                             <div class="col bg-light-warning px-6 py-8 rounded-2 me-7 mb-7">
                                 <span class="icon"><i class="fa fa-list text-warning fs-3x d-block my-2"></i></span>
                                 <a href="#"
-                                   class="text-warning fw-bold fs-6">{{ offSiteCandidates|length ~ ' Incomming' }}</a>
+                                   class="text-warning fw-bold fs-6">{{ offSiteCandidates|length ~ ' Incomming'|trans }}</a>
                             </div>
                             <div class="col bg-light-primary px-6 py-8 rounded-2 mb-7">
                                 <span class="icon"><i class="fa fa-list text-primary fs-3x d-block my-2"></i></span>
                                 <a href="#"
-                                   class="text-primary fw-bold fs-6">{{ onSiteCandidates|length ~ ' On Site' }}</a>
+                                   class="text-primary fw-bold fs-6">{{ onSiteCandidates|length ~ ' On Site'|trans }}</a>
                             </div>
                         </div>
                         {% if is_granted('ROLE_ADMIN') %}
@@ -31,7 +31,7 @@
                                     <span class="icon"><i
                                                 class="fa fa-check text-success fs-3x d-block my-2"></i></span>
                                     <a href="#"
-                                       class="text-success fw-bold fs-6 mt-2">{{ engagedCandidates|length ~ ' Engaged' }}</a>
+                                       class="text-success fw-bold fs-6 mt-2">{{ engagedCandidates|length ~ ' Engaged'|trans }}</a>
                                 </div>
                             </div>
                         {% endif %}

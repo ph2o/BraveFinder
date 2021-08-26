@@ -13,7 +13,7 @@
         <tbody class="text-gray-600 fw-bold">
         {% for evaluation in evaluations %}
             {% set picture = evaluation.candidate.picture? vich_uploader_asset(evaluation.candidate, 'pictureFile'):asset('media/avatars/blank.png')  %}
-            {% if evaluation.validate == status %}
+            {% if evaluation.validate == status and evaluation.candidate.onsite %}
             <tr>
                 <td class="d-flex align-items-center">
                     <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">

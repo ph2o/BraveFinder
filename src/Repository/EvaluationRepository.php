@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Candidate;
 use App\Entity\Evaluation;
 use App\Entity\EvaluationSearch;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**

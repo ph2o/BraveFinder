@@ -243,7 +243,8 @@ class Candidate
 
     public function getBirthdate(): ?\DateTimeInterface
     {
-        return $this->birthdate;
+        $birthdate = $this->birthdate == null? new \DateTime(): $this->birthdate;
+        return $birthdate;
     }
 
     public function setBirthdate(?\DateTimeInterface $birthdate): self

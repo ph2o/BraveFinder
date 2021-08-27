@@ -103,14 +103,15 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
+                        {% set total_profile = (100 - (profileCount(candidate)*100/15) - (measureCount(candidate)*100/15))|round %}
                         <div class="d-flex justify-content-between w-100 mt-auto mb-2">
                             <span class="fw-bold fs-6 text-gray-400">{{ 'Profile Compleation'|trans }}</span>
-                            <span class="fw-bolder fs-6">{{ total_profile|round }}%</span>
+                            <span class="fw-bolder fs-6">{{ total_profile }}%</span>
                         </div>
                         <div class="h-5px mx-3 w-100 bg-light mb-3">
                             <div class="bg-success rounded h-5px" role="progressbar"
                                  style="width: {{ total_profile|round }}%;"
-                                 aria-valuenow="{{ total_profile|round }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                 aria-valuenow="{{ total_profile }}" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>

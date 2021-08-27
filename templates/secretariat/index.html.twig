@@ -52,10 +52,10 @@
                                         <span><i class="fa fa-{{ candidate.onSite? 'check text-success':'times text-warning' }}"></i></span>
                                     </td>
                                     <td class="text-center">
-                                        <span><i class="fa fa-{{ candidate.engaged? 'check text-success':'times text-warning' }}"></i></span>
+                                        <span><i class="fa fa-{{ profileCount(candidate) == 0? 'check text-success':'times text-warning' }}"></i></span>
                                     </td>
                                     <td class="text-center">
-                                        <span><i class="fa fa-{{ candidate.engaged? 'check text-success':'times text-warning' }}"></i></span>
+                                        <span><i class="fa fa-{{ measureCount(candidate) == 0? 'check text-success':'times text-warning' }}"></i></span>
                                     </td>
                                     <td class="text-center">
                                         <span><i class="fa fa-{{ candidate.engaged? 'check text-success':'times text-warning' }}"></i></span>

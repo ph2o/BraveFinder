@@ -8,6 +8,7 @@ use App\Form\CandidateMesureType;
 use App\Form\CandidateOfficeType;
 use App\Form\CandidateSearchType;
 use App\Form\CandidateReceptionType;
+use App\Manager\CandidateManager;
 use App\Repository\CandidateRepository;
 use App\Repository\EvaluationRepository;
 use App\Repository\PracticeRepository;
@@ -131,24 +132,11 @@ class SecretariatController extends AbstractController
             return $this->redirectToRoute('secretariat.mesure');
         }
 
-        $form_total = $form_filed = count($candidateForm->all()) + count($measureForm->all());
-        foreach ($candidateForm->all() as $item) {
-            if ($item->isEmpty()) {
-                $form_filed = $form_filed - 1;
-            }
-        }
-        foreach ($measureForm->all() as $item) {
-            if ($item->isEmpty()) {
-                $form_filed = $form_filed - 1;
-            }
-        }
-
         return $this->render('secretariat/edit.html.twig', [
             'candidate'     => $candidate,
             'practices'     => $practices,
             'candidateForm' => $candidateForm->createView(),
             'measureForm'   => $measureForm->createView(),
-            'total_profile' => $form_filed * 100 / $form_total,
         ]);
     }
 }

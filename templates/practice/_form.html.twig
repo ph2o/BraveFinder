@@ -1,9 +1,41 @@
 {{ form_start(form) }}
-{{ form_widget(form) }}
-<button class="btn btn-success">
-	<span class="d-sm-none">
-		<i class="fas fa-save"></i>
-	</span>
-	<span class="d-none d-sm-block">{{button_label|default('Enregistrer')}}</span>
-</button>
+<div class="row mb-6">
+	<label class="col-lg-4 col-form-label fw-bold fs-6">{{ form_label(form.name) }}</label>
+	<div class="col-lg-8">
+		<div class="row">
+			<div class="col-lg-12 fv-row fv-plugins-icon-container">
+				{{ form_widget(form.name, {'attr': {'class': 'form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+				<div class="fv-plugins-message-container invalid-feedback"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row mb-6">
+	<label class="col-lg-4 col-form-label fw-bold fs-6">{{ form_label(form.description) }}</label>
+	<div class="col-lg-8">
+		<div class="row">
+			<div class="col-lg-12 fv-row fv-plugins-icon-container">
+				{{ form_widget(form.description, {'attr': {'class': 'form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+				<div class="fv-plugins-message-container invalid-feedback"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row mb-6">
+	<label class="col-lg-4 col-form-label fw-bold fs-6">{{ 'Interview'|trans }}</label>
+	<div class="col-lg-8">
+		<div class="row">
+			<div class="col-lg-6 fv-row fv-plugins-icon-container">
+				<div class="form-check form-switch form-check-custom form-check-solid">
+					{{ form_widget(form.interview, {'attr': {'class': 'form-check-input'}}) }}
+				</div>
+				<div class="form-text">{{ form_help(form.interview) }}</div>
+				<div class="fv-plugins-message-container invalid-feedback">{{ form_errors(form.interview) }}</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="card-footer d-flex justify-content-end py-6 px-9">
+	<button class="btn btn-sm btn-primary">{{ 'Save Changes'|trans }}</button>
+</div>
 {{ form_end(form) }}

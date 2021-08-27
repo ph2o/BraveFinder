@@ -24,8 +24,11 @@ class EvaluationController extends AbstractController
     /**
      * @Route("/", name="evaluation.index", methods={"GET"})
      */
-    public function index(Request $request, EvaluationRepository $evaluationRepository, PracticeRepository $PracticeRepository): Response
-    {
+    public function index(
+        Request $request,
+        EvaluationRepository $evaluationRepository,
+        PracticeRepository $PracticeRepository
+    ): Response {
         $search = new EvaluationSearch;
 
         // Filtre par rôle/épreuve
@@ -38,10 +41,21 @@ class EvaluationController extends AbstractController
         $form->handleRequest($request);
 
         return $this->render('evaluation/index.html.twig', [
-            'form' => $form->createView(),
+            'form'        => $form->createView(),
             'evaluations' => $evaluationRepository->findAllQuery($search),
         ]);
     }
+
+    /**
+     * @Route("/practice/{id}", name="practice.evaluation", methods={"GET"})
+     */
+    public function evaluation(EvaluationRepository $evaluationRepository, $id): Response
+    {
+        return $this->render('evaluation/index.html.twig', [
+            'evaluations' => $evaluationRepository->findBy(['practice' => $id]),
+        ]);
+    }
+
 
     /**
      * @Route("/new", name="evaluation.new", methods={"GET","POST"})
@@ -49,7 +63,7 @@ class EvaluationController extends AbstractController
     public function new(Request $request): Response
     {
         $evaluation = new Evaluation();
-        $form = $this->createForm(EvaluationType::class, $evaluation);
+        $form       = $this->createForm(EvaluationType::class, $evaluation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -62,7 +76,7 @@ class EvaluationController extends AbstractController
 
         return $this->render('evaluation/new.html.twig', [
             'evaluation' => $evaluation,
-            'form' => $form->createView(),
+            'form'       => $form->createView(),
         ]);
     }
 
@@ -71,13 +85,19 @@ class EvaluationController extends AbstractController
      */
     public function edit(Request $request, Evaluation $evaluation, EvaluationRepository $EvaluationRepository): Response
     {
-        $form = $this->createForm(EvaluationType::class, $evaluation);
+        //override header id for practice id instead of evaluation one (for active menu purpose)
+        $request->attributes->set('id',1);
+
+        $form = $this->createForm(EvaluationType::class, $evaluation, ['allow_extra_fields' => true]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $evaluation->setRate($request->get('rating'));
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('evaluation.index');
+            $this->addFlash('success', 'Evaluation completed');
+
+            return $this->redirectToRoute('practice.evaluation', ['id' => $evaluation->getPractice()->getId()]);
         }
 
         $evaluations = $EvaluationRepository->findAllPracticesForCandidate($evaluation->getCandidate());
@@ -88,9 +108,10 @@ class EvaluationController extends AbstractController
             $edit = 'evaluation/edit.html.twig';
         }
 
+
         return $this->render($edit, [
-            'evaluation' => $evaluation,
-            'form' => $form->createView(),
+            'evaluation'  => $evaluation,
+            'form'        => $form->createView(),
             'evaluations' => $evaluations,
         ]);
     }
@@ -100,7 +121,7 @@ class EvaluationController extends AbstractController
      */
     public function delete(Request $request, Evaluation $evaluation): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $evaluation->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$evaluation->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($evaluation);
             $entityManager->flush();

@@ -64,6 +64,11 @@ class Evaluation
      */
     private $interviewer_2;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $validate;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
@@ -131,7 +136,7 @@ class Evaluation
 
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
-        $this->created_at = $created_at;
+        $this->created_at = $created_at?? new \DateTime();
 
         return $this;
     }
@@ -178,6 +183,18 @@ class Evaluation
     public function setInterviewer2(?Interviewer $interviewer_2): self
     {
         $this->interviewer_2 = $interviewer_2;
+
+        return $this;
+    }
+
+    public function getValidate(): ?bool
+    {
+        return $this->validate;
+    }
+
+    public function setValidate(int $validate): self
+    {
+        $this->validate = $validate;
 
         return $this;
     }

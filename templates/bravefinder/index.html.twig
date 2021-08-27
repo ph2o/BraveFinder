@@ -1,33 +1,78 @@
 {% extends 'base.html.twig' %}
+{% block header_subtitle %}{{ 'Dashboard'|trans }}{% endblock %}
 
-{% block body %}
-	<div class="jumbotron text-center">
-		<h1>BraveFinder</h1>
-	</div>
-	<div class="container mr-auto" id="carouselMainPage">
-		<div id="carousel118info" class="carousel slide" data-ride="carousel">
-			<ol class="carousel-indicators">
-				<li data-target="#carousel118info" data-slide-to="0" class="active"></li>
-				<li data-target="carousel118info" data-slide-to="1"></li>
-				<li data-target="carousel118info" data-slide-to="2"></li>
-			</ol>
-			<div class="carousel-inner ">
-				<div class="carousel-item  active">
-
-					<img src="\img\eca_campagne_notoriete.jpg" class="img-fluid" alt="...">
-
-				</div>
-				<div class="carousel-item ">
-
-					<img src="\img\eca_campagne_notoriete7.jpg" class="img-fluid" alt="...">
-
-				</div>
-				<div class="carousel-item ">
-
-					<img src="\img\post_insta_ECA_entraide_valeurs.jpg" class="img-fluid" alt="...">
-
-				</div>
-			</div>
-		</div>
-	</div>
+{% block content %}
+    <div class="row gy-5 g-xl-8">
+        <div class="col-xxl-4">
+            <div class="card card-xxl-stretch mb-5">
+                <div class="card-header border-0 bg-danger py-5">
+                    <h3 class="card-title fw-bolder text-white">{{ 'Candidates'|trans }}</h3>
+                </div>
+                <div class="card-body p-0" style="position: relative;">
+                    <div class="mixed-widget-2-chart card-rounded-bottom bg-danger" data-kt-color="danger"
+                         style="height: 50px; min-height: 50px;">
+                    </div>
+                    <div class="card-p mt-n20 position-relative">
+                        <div class="row g-0">
+                            <div class="col bg-light-warning px-6 py-8 rounded-2 me-7 mb-7">
+                                <span class="icon"><i class="fa fa-list text-warning fs-3x d-block my-2"></i></span>
+                                <a href="#"
+                                   class="text-warning fw-bold fs-6">{{ offSiteCandidates|length ~ ' Incomming'|trans }}</a>
+                            </div>
+                            <div class="col bg-light-primary px-6 py-8 rounded-2 mb-7">
+                                <span class="icon"><i class="fa fa-list text-primary fs-3x d-block my-2"></i></span>
+                                <a href="#"
+                                   class="text-primary fw-bold fs-6">{{ onSiteCandidates|length ~ ' On Site'|trans }}</a>
+                            </div>
+                        </div>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="row g-0">
+                                <div class="col bg-light-success px-6 py-8 rounded-2">
+                                    <span class="icon"><i
+                                                class="fa fa-check text-success fs-3x d-block my-2"></i></span>
+                                    <a href="#"
+                                       class="text-success fw-bold fs-6 mt-2">{{ engagedCandidates|length ~ ' Engaged'|trans }}</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if evaluations %}
+            <div class="col-xl-4">
+                <div class="card card-xl-stretch mb-xl-8">
+                    <div class="card-header border-0">
+                        <h3 class="card-title fw-bolder text-dark">{{ 'Notifications' }}</h3>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="d-flex align-items-center bg-light-warning rounded p-5 mb-7">
+					<span class="svg-icon svg-icon-warning me-5"><span class="svg-icon svg-icon-1">
+															<svg xmlns="http://www.w3.org/2000/svg"
+                                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                                 height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none"
+                                                                   fill-rule="evenodd">
+																	<rect x="0" y="0" width="24" height="24"></rect>
+																	<path d="M5,3 L6,3 C6.55228475,3 7,3.44771525 7,4 L7,20 C7,20.5522847 6.55228475,21 6,21 L5,21 C4.44771525,21 4,20.5522847 4,20 L4,4 C4,3.44771525 4.44771525,3 5,3 Z M10,3 L11,3 C11.5522847,3 12,3.44771525 12,4 L12,20 C12,20.5522847 11.5522847,21 11,21 L10,21 C9.44771525,21 9,20.5522847 9,20 L9,4 C9,3.44771525 9.44771525,3 10,3 Z"
+                                                                          fill="#000000"></path>
+																	<rect fill="#000000" opacity="0.3"
+                                                                          transform="translate(17.825568, 11.945519) rotate(-19.000000) translate(-17.825568, -11.945519)"
+                                                                          x="16.3255682" y="2.94551858" width="3"
+                                                                          height="18" rx="1"></rect>
+																</g>
+															</svg>
+														</span></span>
+                            <div class="flex-grow-1 me-2">
+                                <a href="{{ path('practice.evaluation', {'id': evaluations[0].practice.id}) }}"
+                                   class="fw-bolder text-gray-800 text-hover-primary fs-6">{{ 'You have pending evaluations' }}</a>
+                                <span class="text-muted fw-bold d-block">{{ evaluations[0].practice.name }}</span>
+                            </div>
+                            <span class="fw-bolder text-warning py-1">{{ evaluations|length }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

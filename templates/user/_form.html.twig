@@ -1,0 +1,36 @@
+{{ form_start(form, { 'attr': { 'class': 'form fv-plugins-bootstrap5 fv-plugins-framework' }}) }}
+<div class="card-body border-top p-9">
+    <div class="row mb-6">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">{{ 'Username'|trans }}</label>
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                    {{ form_widget(form.username, {'attr': {'placeholder': 'First name', 'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-6">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">{{ 'Password'|trans }}</label>
+        <div class="col-lg-8 fv-row fv-plugins-icon-container">
+            {{ form_widget(form.plainPassword, {'attr': {'placeholder': 'Password', 'class': 'form-control form-control-lg form-control-solid'}}) }}
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+    </div>
+    <div class="row mb-6">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">{{ 'Roles'|trans }}</label>
+        <div class="col-lg-8 fv-row fv-plugins-icon-container">
+            {{ form_widget(form.roles, {'attr': {'class': 'form-select form-select-solid form-select-lg select2-hidden-accessible', 'data-control': 'select2', 'data-placeholder': 'Select a role'}}) }}
+            <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+    </div>
+</div>
+<div class="card-footer d-flex justify-content-end py-6 px-9">
+    <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">
+        {{ 'Save Changes'|trans }}
+    </button>
+</div>
+<input type="hidden">
+{{ form_end(form) }}

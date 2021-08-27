@@ -1,23 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}BraveFinder : Modification d'un candidat
-{% endblock %}
-{% block head_js %}
-	{{ parent() }}
+{% block title %}BraveFinder : {{ 'Edit candidate'|trans}}{% endblock %}
+{% block header_title %}{{ 'Candidate'|trans }}{% endblock %}
+{% block header_subtitle %}{{ candidate }}{% endblock %}
+
+{% block content %}
+    {% include 'secretariat/_candidate.html.twig' %}
 {% endblock %}
 
-
-{% block body %}
-	<div class="jumbotron text-center">
-		<h1>Candidat</h1>
-	</div>
-	<div class="container body-container">
-		{% if job == 'reception' %}
-			{{ include('secretariat/_reception.form.html.twig') }}
-		{% elseif job == 'mesure' %}
-			{{ include('secretariat/_mesure.form.html.twig') }}
-		{% elseif job == 'office' %}
-			{{ include('secretariat/_office.form.html.twig') }}
-		{% endif %}
-	</div>
-{% endblock %}

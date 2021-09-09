@@ -1,54 +1,71 @@
-<div class="row">
-	<div class="col col-6 mr-2">
-		{{ form_start(form) }}
-		<div class="row shadow p-3 mb-5 bg-light rounded">
-			<div class="col h3">
-				{{ evaluation.candidate.name }}
-				{{ evaluation.candidate.firstname }}
-				/
-				{{ evaluation.practice.name }}
-			</div>
-		</div>
-		<div class="row shadow p-3 mb-5 bg-light rounded">
-			<div class="col">
-				{{ form_row(form.rate) }}
-			</div>
-		</div>
-		<div class="row shadow p-3 mb-5 bg-light rounded">
+{{ form_start(form) }}
 
-			<div class="col">
-				{{ form_row(form.comment) }}
-			</div>
-		</div>
-
-		<button class="btn btn-success">
-			<span class="d-sm-none">
-				<i class="fas fa-save"></i>
-			</span>
-			<span class="d-none d-sm-block">{{button_label|default('Enregistrer')}}</span>
-		</button>
-		{{ form_end(form) }}
-	</div>
-	<div class="col col-5 bg-info p-3 ml-3 rounded-lg" id="evaluation-box">
-		{% for eval in evaluations %}
-			<div class="toast rounded bg-light" role="alert" aria-live="assertive" aria-atomic="true">
-				<div class="toast-header">
-					<svg class="bd-placeholder-img rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img">
-						<rect width="100%" height="100%" fill="#17a1b7"></rect>
-					</svg>
-					<strong class="mr-auto">{{eval.practice.name}}</strong>
-					{% for i in 1..5 %}
-						{% if eval.rate >= i %}
-							<span class='star'>★</span>
-						{% else %}
-							<span class='star'>☆</span>
-						{% endif %}
-					{% endfor %}
-				</div>
-				<div class="toast-body">
-					{{eval.comment}}
-				</div>
-			</div>
-		{% endfor %}
-	</div>
+<div class="row mb-6">
+    <label class="col-lg-4 col-form-label fw-bold fs-6">{{ 'Rating'|trans }}</label>
+    <div class="col-lg-8">
+        <div class="row">
+            <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                <div class="rating">
+                    {% for i in 1..5 %}
+                        {% set checked = 'checked="checked"' %}
+                        {% set rate = evaluation.rate?evaluation.rate:1 %}
+                        <label class="rating-label" for="kt_rating_input_{{ i }}">
+                            <i class="bi bi-star-fill fs-1"></i>
+                        </label>
+                        <input class="rating-input" name="rating" value="{{ i }}" {{ i == rate?checked }} type="radio"
+                               id="kt_rating_input_{{ i }}"/>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="row mb-6">
+    <label class="col-lg-4 col-form-label fw-bold fs-6">{{ form_label(form.comment) }}</label>
+    <div class="col-lg-8">
+        <div class="row">
+            <div class="col-lg-12 fv-row fv-plugins-icon-container">
+                {{ form_widget(form.comment, {'attr': {'class': 'form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                <div class="fv-plugins-message-container invalid-feedback"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-6">
+    <label class="col-lg-4 col-form-label fw-bold fs-6 required">{{ 'Enterviewers'|trans }}</label>
+    <div class="col-lg-8">
+        <div class="row">
+            <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                {{ form_widget(form.interviewer_1, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold'}}) }}
+                <div class="fv-plugins-message-container invalid-feedback"></div>
+            </div>
+            <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                {{ form_widget(form.interviewer_2, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold'}}) }}
+                <div class="fv-plugins-message-container invalid-feedback"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-6">
+    <label class="col-lg-4 col-form-label fw-bold fs-6">{{ 'Validation'|trans }}</label>
+    <div class="col-lg-8">
+        <div class="row">
+            <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                <div class="form-check form-switch form-check-custom form-check-solid">
+                    {{ form_widget(form.validate, {'attr': {'class': 'form-check-input'}}) }}
+                </div>
+                <div class="form-text">{{ form_help(form.validate) }}</div>
+                <div class="fv-plugins-message-container invalid-feedback">{{ form_errors(form.validate) }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{ form_errors(form) }}
+
+
+<div class="card-footer d-flex justify-content-end py-6 px-9">
+    <button class="btn btn-primary">{{ 'Save changes'|trans }}</button>
+</div>
+{{ form_end(form) }}

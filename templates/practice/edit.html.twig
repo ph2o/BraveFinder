@@ -1,12 +1,25 @@
 {% extends 'base.html.twig' %}
-{% block title %}BraveFinder : Modification d'un exercice
-{% endblock %}
+{% block title %}BraveFinder : {{ 'Edit practice'}}{% endblock %}
+{% block header_title %}{{ 'Practices'|trans }}{% endblock %}
+{% block header_title_link %}{{ path('backoffice-practice.index') }}{% endblock %}
+{% block header_subtitle %}{{ practice.name }}{% endblock %}
 
-{% block body %}
-	<div class="jumbotron text-center">
-		<h1>Exercice</h1>
-	</div>
-	<div class="container body-container">
-		{{ include('practice/_form.html.twig') }}
+{% block content %}
+	<div class="row gy-5 g-xl-8">
+		<div class="col-xl-8">
+			<div class="card mb-5 mb-xl-8">
+				<div class="card-header border-0 pt-5">
+					<div class="card-title align-items-start flex-column">
+						<h1>
+							<span class="card-label fw-bolder fs-2 mb-1 text-primary">{{ 'Practice'|trans  }}</span>
+							<span class="fs-5 text-muted">{{ practice.name }}</span>
+						</h1>
+					</div>
+				</div>
+				<div class="card-body py-3">
+					{{ include('practice/_form.html.twig') }}
+				</div>
+			</div>
+		</div>
 	</div>
 {% endblock %}

@@ -243,7 +243,8 @@ class Candidate
 
     public function getBirthdate(): ?\DateTimeInterface
     {
-        return $this->birthdate;
+        $birthdate = $this->birthdate == null? new \DateTime(): $this->birthdate;
+        return $birthdate;
     }
 
     public function setBirthdate(?\DateTimeInterface $birthdate): self
@@ -251,6 +252,12 @@ class Candidate
         $this->birthdate = $birthdate;
 
         return $this;
+    }
+
+    public function getAge(): int {
+        $referenceDateTimeObject = new \DateTime();
+        $diff = $referenceDateTimeObject->diff($this->getBirthdate());
+        return $diff->y;
     }
 
     public function getPhone(): ?string
@@ -356,7 +363,7 @@ class Candidate
 
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
-        $this->created_at = $created_at;
+        $this->created_at = $created_at?? new \DateTime();
 
         return $this;
     }

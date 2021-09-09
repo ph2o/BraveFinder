@@ -49,7 +49,7 @@ class Practice
     private $group_allowed;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $interview;
 

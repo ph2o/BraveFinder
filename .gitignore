@@ -9,12 +9,17 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
-###> symfony/phpunit-bridge ###
-.phpunit
-.phpunit.result.cache
-/phpunit.xml
 ###< symfony/phpunit-bridge ###
 tests/hug_rappannual2017.pdf
 tests/2019_Sélection.xlsx
 src/.preload.php
 tests/Sélection_Extranet.xlsx
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###

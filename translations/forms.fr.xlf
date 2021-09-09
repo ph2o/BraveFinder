@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="WXzoaGl" resname="Birthdate">
+        <source>Birthdate</source>
+        <target>Date de naissance</target>
+      </trans-unit>
+      <trans-unit id="MieqlmY" resname="Browse">
+        <source>Browse</source>
+        <target>...</target>
+      </trans-unit>
+      <trans-unit id=".DP3Mkb" resname="City">
+        <source>City</source>
+        <target>Ville</target>
+      </trans-unit>
+      <trans-unit id="RPXj__x" resname="Comment">
+        <source>Comment</source>
+        <target>Commentaires</target>
+      </trans-unit>
+      <trans-unit id="J7NNd7u" resname="Candidate name">
+        <source>Candidate name</source>
+        <target>Nom du candidat</target>
+      </trans-unit>
+      <trans-unit id="AKPggBN" resname="Fire gloves">
+        <source>Fire gloves</source>
+        <target>Gants feu</target>
+      </trans-unit>
+      <trans-unit id="F7CuGnf" resname="Fire jacket">
+        <source>Fire jacket</source>
+        <target>Veste feu</target>
+      </trans-unit>
+      <trans-unit id="R_Ae5x1" resname="Fire pants">
+        <source>Fire pants</source>
+        <target>Pantalon feu</target>
+      </trans-unit>
+      <trans-unit id="ZHz6kbI" resname="Firstname">
+        <source>Firstname</source>
+        <target>Prénom</target>
+      </trans-unit>
+      <trans-unit id="uRFfs6U" resname="House number">
+        <source>House number</source>
+        <target>N°</target>
+      </trans-unit>
+      <trans-unit id="5pwp0ar" resname="Mail pro">
+        <source>Mail pro</source>
+        <target>Courriel professionel</target>
+      </trans-unit>
+      <trans-unit id="B_1sz2v" resname="Mail">
+        <source>Mail</source>
+        <target>Courriel</target>
+      </trans-unit>
+      <trans-unit id="y6rTz0p" resname="Mobile">
+        <source>Mobile</source>
+        <target>Tel mobile</target>
+      </trans-unit>
+      <trans-unit id="3NHVIj9" resname="Name">
+        <source>Name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="jK8xWq6" resname="On site">
+        <source>On site</source>
+        <target>Sur site</target>
+      </trans-unit>
+      <trans-unit id="Y9zriAC" resname="Phone">
+        <source>Phone</source>
+        <target>Téléphone</target>
+      </trans-unit>
+      <trans-unit id="Apw1xr0" resname="Picture file">
+        <source>Picture file</source>
+        <target>Portrait</target>
+      </trans-unit>
+      <trans-unit id="mhxU9V5" resname="Picture">
+        <source>Picture</source>
+        <target>Photo</target>
+      </trans-unit>
+      <trans-unit id="04V7ErT" resname="Practice">
+        <source>Practice</source>
+        <target>Exercice</target>
+      </trans-unit>
+      <trans-unit id="dE_6fDz" resname="Ranger boots">
+        <source>Ranger boots</source>
+        <target>Bottes ranger</target>
+      </trans-unit>
+      <trans-unit id="RbY..QG" resname="Rate">
+        <source>Rate</source>
+        <target>Note</target>
+      </trans-unit>
+      <trans-unit id="9HlETF." resname="Rubber boots">
+        <source>Rubber boots</source>
+        <target>Bottes caoutchouc</target>
+      </trans-unit>
+      <trans-unit id="xmZZHfB" resname="Street">
+        <source>Street</source>
+        <target>Rue</target>
+      </trans-unit>
+      <trans-unit id="x3s2q3I" resname="Sweat">
+        <source>Sweat</source>
+        <target>Sweatshirt</target>
+      </trans-unit>
+      <trans-unit id="6Ew7G_R" resname="Teeshirt">
+        <source>Teeshirt</source>
+        <target>Tee-shirt</target>
+      </trans-unit>
+      <trans-unit id="xI1Vxfx" resname="Waiting pants">
+        <source>Waiting pants</source>
+        <target>Pantalon d'attente</target>
+      </trans-unit>
+      <trans-unit id="e8iOu20" resname="Zip">
+        <source>Zip</source>
+        <target>NPA</target>
+      </trans-unit>
+      <trans-unit id="pfj98YY" resname="Bank name">
+        <source>Bank name</source>
+        <target>Banque</target>
+      </trans-unit>
+      <trans-unit id="uVmYXmh" resname="Marital statut">
+        <source>Marital statut</source>
+        <target>Etat civil</target>
+      </trans-unit>
+      <trans-unit id="N.uXEVw" resname="Origin name">
+        <source>Origin name</source>
+        <target>Lieu de naissance</target>
+      </trans-unit>
+      <trans-unit id="mNDS8fA" resname="Marital status">
+        <source>Marital status</source>
+        <target>Etat civil</target>
+      </trans-unit>
+      <trans-unit id="2vvzOec" resname="Social number">
+        <source>Social number</source>
+        <target>N° Avs</target>
+      </trans-unit>
+      <trans-unit id="USqzxrm" resname="Education">
+        <source>Education</source>
+        <target>Formation</target>
+      </trans-unit>
+      <trans-unit id="RCSpggc" resname="Path way">
+        <source>Path way</source>
+        <target>Filière</target>
+      </trans-unit>
+      <trans-unit id="fozSBW2" resname="Title">
+        <source>Title</source>
+        <target>Intitulé</target>
+      </trans-unit>
+      <trans-unit id="EVzPlhB" resname="Station">
+        <source>Station</source>
+        <target>Affectation</target>
+      </trans-unit>
+      <trans-unit id="Jubb0oK" resname="Head circumference">
+        <source>Head circumference</source>
+        <target>Tour de tête</target>
+      </trans-unit>
+      <trans-unit id="abLKGIP" resname="Interviewer 1">
+        <source>Interviewer 1</source>
+        <target>Entretien 1</target>
+      </trans-unit>
+      <trans-unit id="wTCrbFM" resname="Interviewer 2">
+        <source>Interviewer 2</source>
+        <target>Entretien 2</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

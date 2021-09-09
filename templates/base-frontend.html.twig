@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="">
+    <meta charset="utf-8"/>
+    <title>{% block title %}{{ "Welcome"|trans }}!{% endblock %}</title>
+    <meta name="description" content="{{ "RDSISMN Bravefinder"|trans }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="shortcut icon" href="{{ absolute_url(asset('media/logos/favicon.ico')) }}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+    <link href="{{ absolute_url(asset('plugins/global/plugins.bundle.css')) }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ absolute_url(asset('css/style.bundle.css')) }}" rel="stylesheet" type="text/css"/>
+    {% block stylesheets %}
+    {% endblock %}
+    <script src="{{ absolute_url(asset('plugins/global/plugins.bundle.js')) }}"></script>
+    <script src="{{ absolute_url(asset('js/scripts.bundle.js')) }}"></script>
+    {% block javascripts %}
+    {% endblock %}
+</head>
+{% block body %}
+    <body id="kt_body"
+          class="bg-dark header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed"
+          style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+    <div class="d-flex flex-column flex-root">
+        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom   bgi-no-repeat bgi-size-contain bgi-attachment-fixed"
+             style="background-size1: 100% 50%; background-image: url({{ asset('media/misc/outdoor.png') }})">
+            <div class="text-center p-10 pb-lg-20"><a href="{{ path('main.index') }}" class="mb-12">
+                    <img alt="Logo" src="{{ asset('media/logos/logo-mini.png') }}" class="mb-10"/>
+                </a>
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    {% block scripts %}
+    {% endblock %}
+    </body>
+{% endblock %}
+</html>
+{#	<div class="jumbotron text-center">
+		<h1>BraveFinder</h1>
+	</div>
+	<div class="container mr-auto" id="carouselMainPage">
+		<div id="carousel118info" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carousel118info" data-slide-to="0" class="active"></li>
+				<li data-target="carousel118info" data-slide-to="1"></li>
+				<li data-target="carousel118info" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner ">
+				<div class="carousel-item  active">
+
+					<img src="\img\eca_campagne_notoriete.jpg" class="img-fluid" alt="...">
+
+				</div>
+				<div class="carousel-item ">
+
+					<img src="\img\eca_campagne_notoriete7.jpg" class="img-fluid" alt="...">
+
+				</div>
+				<div class="carousel-item ">
+
+					<img src="\img\post_insta_ECA_entraide_valeurs.jpg" class="img-fluid" alt="...">
+
+				</div>
+			</div>
+		</div>
+	</div>#}

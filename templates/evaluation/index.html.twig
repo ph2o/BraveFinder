@@ -1,56 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}BraveFinder : Evaluation
+{% block title %}BraveFinder : Evaluation{% endblock %}
+{% block header_title %}{{ 'Evaluation'|trans }}{% endblock %}
+{% block header_subtitle %}{{ 'Candidat list'|trans }}{% endblock %}
 
+{% block content %}
+    <div class="row gy-5 g-xl-12">
+        <div class="col-xl-12">
+            <div class="card mb-5 mb-xl-12">
+                <div class="card-header border-0 pt-5">
+                    <div class="card-title align-items-start flex-column">
+                        <div class="d-flex align-items-center position-relative my-1">
+                                       <span class="icon position-absolute ms-6">
+													 <i class="bi bi-search"></i>
+												</span>
+                            <input type="text" data-kt-user-table-filter="search"
+                                   class="form-control form-control-solid w-250px ps-14"
+                                   placeholder="{{ "Search candidat"|trans }}"/>
+                        </div>
+                    </div>
+                    <div class="card-toolbar">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4 me-1 active"
+                                   data-bs-toggle="tab" href="#evaluation_tab_doto">{{ 'Evaluations to do'|trans }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-light-primary fw-bolder px-4 me-1"
+                                   data-bs-toggle="tab" href="#evaluation_tab_done">{{ 'Evaluations done'|trans }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body py-3">
+                    <div class="tab-content">
+                        <h1 class="text-primary">{{ evaluations[0].practice.name|upper }}</h1>
+                        <div class="tab-pane fade active show" id="evaluation_tab_doto">
+                            {% embed 'evaluation/_list.html.twig' with {'title': 'Evaluations to do'|trans, 'status': 0} %}
+                            {% endembed %}</div>
+                        <div class="tab-pane fade active" id="evaluation_tab_done">
+                            {% embed 'evaluation/_list.html.twig'  with {'title': 'Evaluations done'|trans, 'status': 1} %}
+                            {% endembed %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
-
-{% block body %}
-	<div class="jumbotron text-center">
-		<h1>Evaluation des candidats</h1>
-		{% include "evaluation/_form_EvalSearch.html.twig" %}
-	</div>
-
-	<div class="container body-container">
-		<div class="row">
-			<div class="col-sm-12" id="main">
-				<table class="table">
-					<tbody>
-						{% for evaluation in evaluations %}
-							<tr>
-								<td class="col-sm-1">
-									<a href="{{ path('evaluation.edit', {'id': evaluation.id}) }}" class="href">
-										<img class="avatar" src="{{ vich_uploader_asset(evaluation.candidate, 'pictureFile') }}" alt="{{ evaluation.candidate.name }} {{ evaluation.candidate.firstname }}"/>
-									</a>
-								</td>
-								<td class="col-sm-1 align-middle h6">
-									<a href="{{ path('evaluation.edit', {'id': evaluation.id}) }}" class="href">
-										{{ evaluation.candidate.name }}
-										{{ evaluation.candidate.firstname }}
-										<span class="d-none d-sm-block">
-											{{ evaluation.practice.name }}
-										</span>
-
-									</a>
-								</td>
-								<td class="col-sm-1 align-middle">
-									<a href="{{ path('evaluation.edit', {'id': evaluation.id}) }}">
-										<button class="btn btn-info">
-											<span class="d-sm-none">
-												<i class="fas fa-balance-scale-left"></i>
-											</span>
-											<span class="d-none d-sm-block">Evaluation du candidat</span>
-										</button>
-									</a>
-								</td>
-							</tr>
-						{% else %}
-							<tr>
-								<td colspan="4">Pas d'enregistrement</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+{% block javascripts %}
+    <script src="{{ asset("plugins/custom/datatables/datatables.bundle.js") }}"></script>
+    <script src="{{ asset("js/custom/apps/evaluation/table.js") }}"></script>
 {% endblock %}

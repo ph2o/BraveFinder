@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block content %}
+    <div class="content d-flex flex-column flex-column-fluid">
+        <div class="post d-flex flex-column-fluid" id="kt_post">
+            <div id="kt_content_container" class="container">
+                <div class="card">
+                    <div class="card-header border-0 pt-6">
+                        <div class="card-title">
+                        </div>
+                        <div class="card-toolbar">
+                            <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                                <a href="{{ path('backoffice.user.delete', {'id': user.id}) }}" class="btn btn-danger">
+                                    Delete User</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="kt_account_profile_details" class="collapse show">
+                        {% include 'user/_form.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

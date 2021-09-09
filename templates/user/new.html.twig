@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}: {{ 'New User'|trans }}{% endblock %}
+
+{% block header_title %}{{ 'User'|trans }}{% endblock %}
+{% block header_subtitle %}{{ 'New'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="row gy-5 g-xl-8">
+        <div class="col-xl-8">
+            <div class="card mb-5 mb-xl-8">
+                <div class="card-header border-0 pt-5">
+                    <div class="card-title align-items-start flex-column">
+                        <h1>
+                            <span class="card-label fw-bolder fs-3 mb-1">{{ 'User'|trans }}</span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="card-body py-3">
+                    {{ include('user/_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

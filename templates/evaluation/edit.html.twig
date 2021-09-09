@@ -1,26 +1,39 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-	BraveFinder : Evaluation
-{% endblock %}
-
-{% block head_css_detail %}
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/css/star-rating.css" media="all" type="text/css"/>
+    BraveFinder : Evaluation
 {% endblock %}
 
 
-{% block head_js_detail %}
-	<script src="/js/star-rating.js" type="text/javascript"></script>
-	<script src="/js/locales/fr.js"></script>
-{% endblock %}
+{% block content %}
+    <div class="row gy-5 g-xl-8">
+        <div class="col-xl-8">
+            <div class="card mb-5 mb-xl-8">
+                <div class="card-header border-0 pt-5">
+                    <div class="card-title align-items-start flex-column">
+                        <h1>
+                            <span class="card-label fw-bolder fs-2 mb-1 text-primary">{{ 'Evaluation'|trans ~ ' ' ~ evaluation.practice.name |lower }}</span>
+                            <span class="fs-3">{{ evaluation.candidate }}</span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="card-body py-3">
+                    {{ include('evaluation/_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card mb-5 mb-xl-8">
+                <div class="card-header border-0 pt-5">
+                    <div class="card-title align-items-start flex-column">
 
-{% block body %}
-	<div class="text-center">
-		<h1>Evaluation
-			{{ evaluation.practice.name |lower}}</h1>
-	</div>
-	<div class="container body-container">
-		{{ include('evaluation/_form.html.twig') }}
-	</div>
+                            <span class="card-label fw-bolder  mb-1 text-primary">{{   'Information'|trans }}</span>
+
+                    </div>
+                </div>
+                <div class="card-body py-3">
+                   <p>{{ evaluation.practice.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

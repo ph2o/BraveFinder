@@ -3,57 +3,100 @@
 {% block title %}BraveFinder : Liste des candidats
 {% endblock %}
 
-{% block body %}
-	<div class="jumbotron text-center">
-		<h1>Candidats</h1>
-	</div>
-	<div class="container body-container">
-		<div class="row">
-			<div class="col-sm-12" id="main">
+{% block content %}
+<div class="row gy-5 g-xl-12">
+	<div class="col-xl-12">
+		<div class="card mb-5 mb-xl-12">
+			<div class="card-header border-0 pt-5">
+				<div class="card-title align-items-start flex-column">
+					<div class="d-flex align-items-center position-relative my-1">
+                                        <span class="icon position-absolute ms-6">
+													 <i class="bi bi-search"></i>
+												</span>
+						<input type="text" data-kt-user-table-filter="search"
+							   class="form-control form-control-solid w-250px ps-14"
+							   placeholder="{{ "Search candidat"|trans }}"/>
+					</div>
+				</div>
+			</div>
+			<div class="card-body py-3">
+				<div class="table-responsive">
+					<table class="table align-middle table-row-dashed fs-6 gy-5" id="candidat_list">
+						<thead>
+						<tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+							<th class="min-w-125px">{{ 'Name'|trans }}</th>
+							<th class="min-w-1250px text-center">{{ 'Engaged'|trans }}</th>
+							<th class="text-end min-w-125px">Actions</th>
+						</tr>
+						</thead>
+						<tbody class="text-gray-600 fw-bold">
 				{% for candidate in candidates %}
-					<table class="table">
-						<tbody>
+					{% set picture = candidate.picture? vich_uploader_asset(candidate, 'pictureFile'):asset('media/avatars/blank.png')  %}
 							<tr>
-								<td class="col-sm-1">
-									<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
-
+								<td class="d-flex align-items-center">
+									<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+										<div class="symbol-label">
+											<img src="{{ picture | imagine_filter('image_thumb') }}"
+												 class="w-100"
+												 alt="{{ candidate.firstname ~ ' ' ~ candidate.name }}"/>
+										</div>
+									</div>
+									<div class="d-flex flex-column">
+										<span class="text-gray-800 text-hover-primary mb-1">{{ candidate.firstname ~ ' ' ~ candidate.name }}</span>
+									</div>
 								</td>
-								<td class="col-sm-2 align-middle">
-									{{ candidate.name }}
-									{{ candidate.firstname }}
-								</td>
-								<td class="col-sm-2 align-middle">
+								<td class="text-center">
 									{% if (candidate.engaged is defined) and (candidate.engaged) %}
-										<div class="alert alert-success">
-											Engagé
-										</div>
-									{% else %}
-										<div class="alert alert-danger">
-											Non engagé
-										</div>
+										<span id="candidate_{{ candidate.id }}" class="badge badge-light-success fs-8 fw-bolder">{{ 'Engaged'|trans }}</span>
+									{% else %}<span id="candidate_{{ candidate.id }}" class="badge badge-light-warning fs-8 fw-bolder">{{ 'Not engaged'|trans }}</span>
 									{% endif %}
 								</td>
-								<td class="col-sm-5  align-middle">
-									<form method="post" action="{{ path('candidate.engaged',{id: candidate.id}) }}" style="display: inline-block" onsubmit="return confirm('Voulez vous engager cette personne ?');">
-										<input name="_method" type="hidden" value="ENGAGED"/>
-										<input type="hidden" name="_token" value="{{ csrf_token('candidate.engaged' ~ candidate.id) }}"/>
-										<button class="btn btn-warning">
-											<span class="d-sm-none">
-												<i class="fas fa-trash-alt"></i>
-											</span>
-											<span class="d-none d-sm-block">Action</span>
-										</button>
-									</form>
+								<td class="text-center">
+									<div class="  form-switch form-check-solid mx-4 text-end">
+										<input class="form-check-input toggle-engaged" type="checkbox" value=""
+											   id="toggle-{{ candidate.id }}" data-id="{{ candidate.id }}" {{ candidate.engaged?'checked="checked"' }}
+											   data-url="{{ path('candidate.engaged', {'id':candidate.id, 'token': csrf_token('candidate.engaged' ~ candidate.id)}) }}"/>
+										<label class="form-check-label" for="toogle-on-site">
+											{{ 'Engaged'|trans }}
+										</label>
+									</div>
 								</td>
 							</tr>
-						</tbody>
-					</table>
+
 				{% else %}
 					<tr>
 						<td colspan="4">Pas d'enregistrement</td>
 					</tr>
 				{% endfor %}
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
+</div>
+
+{% endblock %}
+{% block custom_scripts %}
+	<script>
+		$('.toggle-engaged').on('click', function () {
+			var input = $(this);
+			$.ajax({
+				method: "POST",
+				url: input.data('url'),
+				dataType: "json"
+			})
+					.done(function (data) {
+						var selector = $('#candidate_'+input.data('id'));
+						if (data.engaged) {
+							selector.addClass('badge-light-success').removeClass('badge-light-warning').html('Engaged');
+							toastr.success("Candidate is engaged", "Success"); console.log('.candidate_'+input.data('id'));
+							return;
+						}
+						selector.addClass('badge-light-warning').removeClass('badge-light-success').html('Not engaged');
+						toastr.warning("Candidate is not engaged", "warning");
+					});
+		})
+	</script>
+
 {% endblock %}

@@ -1,0 +1,228 @@
+<div class="card card-xxl-stretch mb-5 mb-xxl-10">
+    {{ form_start(candidateForm) }}
+    <div class="card-header p-4">
+        <div class="card-title m-3">
+            <h3>{{ 'Profile Details'|trans }}</h3>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="card-body p-9">
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">{{ 'Profile image'|trans }}</label>
+                <div class="col-lg-8">
+                    <div class="image-input image-input-outline" data-kt-image-input="true"
+                         style="background-image: url({{ asset('media/avatars/blank.png') }})">
+                        <div class="image-input-wrapper w-125px h-125px"
+                             style="background-image: url({{ picture | imagine_filter('image_thumb') }})"></div>
+                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                               data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                               data-bs-original-title="{{ 'Change avatar'|trans }}">
+                            <i class="bi bi-pencil-fill fs-7"></i>
+                            {{ form_widget(candidateForm.pictureFile, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold', 'accept': '.png, .jpg, .jpeg'}}) }}
+                            <input type="hidden" name="avatar_remove">
+                        </label>
+                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                              data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title=""
+                              data-bs-original-title="{{ 'Cancel avatar'|trans }}">
+																<i class="bi bi-x fs-2"></i>
+															</span>
+                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                              data-kt-image-input-action="remove" data-bs-toggle="tooltip" title=""
+                              data-bs-original-title="{{ 'Remove avatar'|trans }}">
+																<i class="bi bi-x fs-2"></i>
+															</span>
+                    </div>
+                    <div class="form-text">{{ 'Allowed file types: png, jpg, jpeg.'|trans }}</div>
+                </div>
+            </div>
+
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6">{{ 'Designation'|trans }}</label>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.Title, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.MaritalStatus, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label required fw-bold fs-6">{{ 'Full Name'|trans }}</label>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.firstname, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.name, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                    <span class="required">{{ 'Address'|trans }}</span>
+                </label>
+                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                    <div class="row">
+                        <div class="col-lg-9 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.street, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                        <div class="col-lg-3 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.houseNumber, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                    <span class="required">{{ 'City'|trans }}</span>
+                </label>
+                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                    <div class="row">
+                        <div class="col-lg-3 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.zip, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                        <div class="col-lg-9 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.city, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="separator my-10 mx-20"></div>
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                    <span class="required">{{ 'Contact Phone'|trans }}</span>
+                </label>
+                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                    <div class="row">
+                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.mobile, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                            <p class="text-muted px-2">{{ 'Mobile phone' }}</p>
+                        </div>
+                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.phone, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                            <p class="text-muted px-2">{{ 'Home phone' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-6">
+                {{ form_label(candidateForm.mail,null, {'label_attr': {'class': 'col-lg-4 col-form-label required fw-bold fs-6'}}) }}
+                <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                    {{ form_widget(candidateForm.mail, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="row mb-6">
+                {{ form_label(candidateForm.birthdate,null, {'label_attr': {'class': 'col-lg-4 col-form-label required fw-bold fs-6'}}) }}
+                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                    <div class="row">
+                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.birthdate, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.originName, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="separator my-10 mx-20"></div>
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                    <span class="required">{{ 'Bank detail'|trans }}</span>
+                </label>
+                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                    <div class="row">
+                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.Iban, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                        <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                            {{ form_widget(candidateForm.BankName, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-6">
+                {{ form_label(candidateForm.SocialNumber,null, {'label_attr': {'class': 'col-lg-4 col-form-label required fw-bold fs-6'}}) }}
+                <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                    {{ form_widget(candidateForm.SocialNumber, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0'}}) }}
+                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="row mb-6">
+                {{ form_label(candidateForm.PathWay,null, {'label_attr': {'class': 'col-lg-4 col-form-label required fw-bold fs-6'}}) }}
+                <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                    {{ form_widget(candidateForm.PathWay, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold'}}) }}
+                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="row mb-6">
+                {{ form_label(candidateForm.Education,null, {'label_attr': {'class': 'col-lg-4 col-form-label required fw-bold fs-6'}}) }}
+                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                    {{ form_widget(candidateForm.Education, {'attr': {'class': 'form-control form-control-lg form-control-solid mb-3 mb-lg-0', 'rows': 5}}) }}
+                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="row mb-6">
+                {{ form_label(candidateForm.Station,null, {'label_attr': {'class': 'col-lg-4 col-form-label required fw-bold fs-6'}}) }}
+                <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                    {{ form_widget(candidateForm.Station, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold'}}) }}
+                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+        <button class="btn btn-primary">{{ 'Save Changes'|trans }}</button>
+    </div>
+    {{ form_end(candidateForm) }}
+</div>
+{% block custom_script %}
+    <script>
+        Inputmask({
+            mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[.*{2,6}][.*{1,2}]",
+            greedy: false,
+            onBeforePaste: function (pastedValue, opts) {
+                pastedValue = pastedValue.toLowerCase();
+                return pastedValue.replace("mailto:", "");
+            },
+            definitions: {
+                "*": {
+                    validator: '[0-9A-Za-z!#$%&"*+/=?^_`{|}~\-]',
+                    cardinality: 1,
+                    casing: "lower"
+                }
+            }
+        }).mask("#mail");
+        Inputmask({
+            "mask": "999 999 99 99"
+        }).mask("#phone");
+        Inputmask({
+            "mask": "999 999 99 99"
+        }).mask("#mobile");
+        Inputmask({
+            "mask": "999.9999.9999.99"
+        }).mask("#SocialNumber");
+        Inputmask({
+            "mask": "CH99 9999 9999 9999 9999 *"
+        }).mask("#Iban");
+    </script>
+{% endblock %}

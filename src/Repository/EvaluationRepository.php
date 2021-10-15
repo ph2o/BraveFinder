@@ -39,7 +39,7 @@ class EvaluationRepository extends ServiceEntityRepository
 
         if ($search->getCandidate()) {
             $andWhere .= ' and ((c.name like :val1) or (c.firstname like :val1)) ';
-            $query->setParameter('val1', $search->getCandidate().'%');
+            $query->setParameter('val1', $search->getCandidate() . '%');
         }
         $andWhere .= ')';
 
@@ -50,9 +50,8 @@ class EvaluationRepository extends ServiceEntityRepository
                 ->AndWhere('e.practice in (select p.id
                                                 from App\Entity\practice p
 								               where p.name like :val2)')
-                ->setParameter('val2', $search->getPractice().'%');
+                ->setParameter('val2', $search->getPractice() . '%');
         }
-
         return $query->getQuery()
             ->getResult();
     }
@@ -68,7 +67,7 @@ class EvaluationRepository extends ServiceEntityRepository
      */
     public function addNewEvaluations()
     {
-        $this->getEntityManager()->getConnection()->executeUpdate('
+        $this->getEntityManager()->getConnection()->executeStatement('
             insert 
               into evaluation (candidate_id, practice_id,created_at, updated_at) 
                    select c.id, p.id, now(), now()
@@ -89,7 +88,7 @@ class EvaluationRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('e');
 
-        $query->AndWhere('e.candidate = '.$candidate->getId());
+        $query->AndWhere('e.candidate = ' . $candidate->getId());
 
         $query->AndWhere('e.practice in (   select p.id 
                                               from App\Entity\practice p 

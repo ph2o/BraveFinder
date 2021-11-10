@@ -32,6 +32,9 @@ class UserType extends AbstractType
                     'Force physique' => 'ROLE_FORCE',
                     'Confiance'      => 'ROLE_CONFIANCE',
                     'Entretien'      => 'ROLE_ENTRETIEN',
+                    'Secrétariat'    => 'ROLE_SECRETARIAT',
+                    'Mesure'         => 'ROLE_MESURE',
+
                 ],
                 'mapped'   => true,
                 'label'    => 'Roles',

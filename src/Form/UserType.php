@@ -25,6 +25,7 @@ class UserType extends AbstractType
                 'expanded' => false,
                 'choices'  => [
                     'Administrator'  => 'ROLE_ADMIN',
+                    'Accueil'        => 'ROLE_ACCUEIL',
                     'Endurance'      => 'ROLE_ENDURANCE',
                     'Claustrophobie' => 'ROLE_CLOSTROPHOBIE',
                     'Vertige'        => 'ROLE_VERTIGE',

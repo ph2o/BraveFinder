@@ -1,56 +1,49 @@
 {{ form_start(form) }}
 <div class="row">
-    <div class="col-sm-12">
-        <h1>{{ candidate.name }}
-            {{ candidate.firstname }}</h1>
-    </div>
+	<div class="col-sm-12">
+		<h1>{{ candidate.name }}
+			{{ candidate.firstname }}</h1>
+	</div>
 </div>
 <div class="row mb-6">
-    {% set picture = candidate.picture? vich_uploader_asset(candidate, 'pictureFile'):asset('media/avatars/blank.png')  %}
-    <label class="col-lg-4 col-form-label fw-bold fs-6">{{ 'Profile image'|trans }}</label>
-    <div class="col-lg-8">
-        <div class="image-input image-input-outline" data-kt-image-input="true"
-             style="background-image: url({{ asset('media/avatars/blank.png') }})">
-            <div class="image-input-wrapper w-125px h-125px"
-                 style="background-image: url({{ picture }})"></div>
-            <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                   data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
-                   data-bs-original-title="{{ 'Change avatar'|trans }}">
-                <i class="bi bi-pencil-fill fs-7"></i>
-                {{ form_widget(form.pictureFile, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold', 'accept': '.png, .jpg, .jpeg'}}) }}
-                <input type="hidden" name="avatar_remove">
-            </label>
-            <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                  data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title=""
-                  data-bs-original-title="{{ 'Cancel avatar'|trans }}">
-																<i class="bi bi-x fs-2"></i>
-															</span>
-            <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                  data-kt-image-input-action="remove" data-bs-toggle="tooltip" title=""
-                  data-bs-original-title="{{ 'Remove avatar'|trans }}">
-																<i class="bi bi-x fs-2"></i>
-															</span>
-        </div>
-        <div class="form-text">{{ 'Allowed file types: png, jpg, jpeg.'|trans }}</div>
-        <div class="fv-plugins-message-container invalid-feedback">{{ form_errors(form.pictureFile) }}</div>
-    </div>
+	{% set picture = candidate.picture? vich_uploader_asset(candidate, 'pictureFile'):asset('media/avatars/blank.png')  %}
+	<label class="col-lg-4 col-form-label fw-bold fs-6">{{ 'Profile image'|trans }}</label>
+	<div class="col-lg-8">
+		<div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url({{ asset('media/avatars/blank.png') }})">
+			<div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ picture }})"></div>
+			<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="" data-bs-original-title="{{ 'Change avatar'|trans }}">
+				<i class="bi bi-pencil-fill fs-7"></i>
+				{{ form_widget(form.pictureFile, {'attr': {'class': 'form-select form-select-solid form-select-lg fw-bold', 'accept': '.png, .jpg, .jpeg', 'capture': "camera"}}) }}
+
+				<input type="hidden" name="avatar_remove">
+			</label>
+			<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="" data-bs-original-title="{{ 'Cancel avatar'|trans }}">
+				<i class="bi bi-x fs-2"></i>
+			</span>
+			<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="" data-bs-original-title="{{ 'Remove avatar'|trans }}">
+				<i class="bi bi-x fs-2"></i>
+			</span>
+		</div>
+		<div class="form-text">{{ 'Allowed file types: png, jpg, jpeg.'|trans }}</div>
+		<div class="fv-plugins-message-container invalid-feedback">{{ form_errors(form.pictureFile) }}</div>
+	</div>
 </div>
 <div class="row mb-6">
-    <label class="col-lg-4 col-form-label fw-bold fs-6">{{ 'On site'|trans }}</label>
-    <div class="col-lg-8">
-        <div class="row">
-            <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                <div class="form-check form-switch form-check-custom form-check-solid">
-                    {{ form_widget(form.onSite, {'attr': {'class': 'form-check-input'}}) }}
-                </div>
-                <div class="form-text">{{ form_help(form.onSite) }}</div>
-                <div class="fv-plugins-message-container invalid-feedback">{{ form_errors(form.onSite) }}</div>
-            </div>
-        </div>
-    </div>
+	<label class="col-lg-4 col-form-label fw-bold fs-6">{{ 'On site'|trans }}</label>
+	<div class="col-lg-8">
+		<div class="row">
+			<div class="col-lg-6 fv-row fv-plugins-icon-container">
+				<div class="form-check form-switch form-check-custom form-check-solid">
+					{{ form_widget(form.onSite, {'attr': {'class': 'form-check-input'}}) }}
+				</div>
+				<div class="form-text">{{ form_help(form.onSite) }}</div>
+				<div class="fv-plugins-message-container invalid-feedback">{{ form_errors(form.onSite) }}</div>
+			</div>
+		</div>
+	</div>
 </div>
 {{ form_errors(form) }}
 <div class="card-footer d-flex justify-content-end py-6 px-9">
-    <button class="btn btn-sm btn-primary">{{ 'Save Changes'|trans }}</button>
+	<button class="btn btn-sm btn-primary">{{ 'Save Changes'|trans }}</button>
 </div>
 {{ form_end(form) }}

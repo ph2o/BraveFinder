@@ -103,16 +103,15 @@
 
 {% endblock %}
 <script>
-
     var route_name = '{{ app.request.get('_route') }}';
     var route_array = route_name.split('.');
     var route_formated = route_name.replace('.', '_');
     var route_id = {{ (app.request.get('id')?:0) ~ ';' }}
 
-        $('.menu-' + route_array[0]).addClass('show')
+    $('.menu-' + route_array[0]).addClass('show')
     $('.menu-item-' + route_formated).addClass('active')
     $('.menu-item-' + route_formated + '_' + route_id).addClass('active')
-    console.log('.menu-item-' + route_formated + '_' + route_id);
+    //console.log('.menu-item-' + route_formated + '_' + route_id);
     $('.confirm').click(function () {
         return confirm($(this).data('confirm'));
     })

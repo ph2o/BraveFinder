@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block meta_title %}{{ 'Error'|trans }}{% endblock %}
+{% block body %}
+    <div class="c-layout-page">
+        <div class="c-content-box c-size-md">
+            <div class="container">
+                <div class="c-content-bar-1 c-opt-1">
+                    <h3 class="c-font-uppercase c-font-bold">OUPS, 500!</h3>
+                    <p class="c-font-uppercase">
+                        Une erreur serveur est survenue!
+                    </p>
+                    <div class="text-center">
+                        <a href="{{ path('main.index') }}" class="btn btn-lg btn-primary fw-bolder">{{ 'Go to homepage'|trans }}</a>
+                    </div>
+                    <div class="invisible">{{ exception.message }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

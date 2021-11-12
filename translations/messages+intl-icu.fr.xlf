@@ -459,23 +459,23 @@
       </trans-unit>
       <trans-unit id="M36wrYr" resname=" Incomming">
         <source> Incomming</source>
-        <target> Présumés</target>
+        <target> Inscrit</target>
       </trans-unit>
       <trans-unit id="60F7GIl" resname="Incomming">
         <source>Incomming</source>
-        <target>__Incomming</target>
+        <target>Inscrit</target>
       </trans-unit>
       <trans-unit id="QPcRkbM" resname="On Site">
         <source>On Site</source>
-        <target>__On Site</target>
+        <target>Sur site</target>
       </trans-unit>
       <trans-unit id="Gw2FHpv" resname="Engaged">
         <source>Engaged</source>
-        <target>__Engaged</target>
+        <target>engagé</target>
       </trans-unit>
       <trans-unit id="VKDowX6" resname="Error">
         <source>Error</source>
-        <target>__Error</target>
+        <target>Erreur</target>
       </trans-unit>
       <trans-unit id="wCLaDxo" resname="Go to homepage">
         <source>Go to homepage</source>
@@ -483,15 +483,15 @@
       </trans-unit>
       <trans-unit id="0TTKAlp" resname="Access Denied">
         <source>Access Denied</source>
-        <target>__Access Denied</target>
+        <target>Accès refusé</target>
       </trans-unit>
       <trans-unit id="pGmrTKT" resname="Page not found">
         <source>Page not found</source>
-        <target>__Page not found</target>
+        <target>Page non trouvé</target>
       </trans-unit>
       <trans-unit id="RhSOJQ5" resname="Erreur">
         <source>Erreur</source>
-        <target>__Erreur</target>
+        <target>Erreur</target>
       </trans-unit>
     </body>
   </file>

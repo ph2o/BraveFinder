@@ -20,6 +20,7 @@
                 "info": false,
                 'order': [],
                 "pageLength": 20,
+                responsive: true,
                 "lengthChange": false,
                 'columnDefs': [
                     { orderable: false, targets: 3 }, // Disable ordering on column 6 (actions)

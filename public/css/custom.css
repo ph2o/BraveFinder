@@ -13,3 +13,23 @@ input.form-control.form-control-solid:disabled {
 .form-check .form-check {
   padding-left: 0;
 }
+
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before, table.dataTable.dtr-inline.collapsed > tbody > tr > th.dtr-control:before {
+  color: #009df6;
+  border: 0.15em solid #009df6;
+  line-height: 1.2em;
+  box-shadow: none;
+  background-color: #f5f8fa;
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td.dtr-control:before, table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th.dtr-control:before {
+  background-color: #f5f8fa;
+}
+
+.d-flex.align-items-stretch.justify-content-between.flex-lg-grow-1 {
+  padding-top: 10px;
+}
+
+.header-tablet-and-mobile-fixed .header {
+  background-color: #181C32;
+}

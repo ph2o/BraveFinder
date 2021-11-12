@@ -32,18 +32,26 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card-body py-3">
-                    <div class="tab-content">
-                        <h1 class="text-primary">{{ evaluations[0].practice.name|upper }}</h1>
-                        <div class="tab-pane fade active show" id="evaluation_tab_doto">
-                            {% embed 'evaluation/_list.html.twig' with {'title': 'Evaluations to do'|trans, 'status': 0} %}
-                            {% endembed %}</div>
-                        <div class="tab-pane fade active" id="evaluation_tab_done">
-                            {% embed 'evaluation/_list.html.twig'  with {'title': 'Evaluations done'|trans, 'status': 1} %}
-                            {% endembed %}
+                {% if evaluations %}
+                    <div class="card-body py-3">
+                        <div class="tab-content">
+                            <h1 class="text-primary">{{ evaluations[0].practice.name|upper }}</h1>
+                            <div class="tab-pane fade active show" id="evaluation_tab_doto">
+                                {% embed 'evaluation/_list.html.twig' with {'title': 'Evaluations to do'|trans, 'status': 0} %}
+                                {% endembed %}</div>
+                            <div class="tab-pane fade active" id="evaluation_tab_done">
+                                {% embed 'evaluation/_list.html.twig'  with {'title': 'Evaluations done'|trans, 'status': 1} %}
+                                {% endembed %}
+                            </div>
                         </div>
                     </div>
-                </div>
+                    {% else %}
+                        <div class="card-body py-3">
+                            <div class="tab-content">
+                                <span class="text-warning">Aucun candidat</span>
+                            </div>
+                        </div>
+                {% endif %}
             </div>
         </div>
     </div>

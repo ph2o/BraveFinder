@@ -118,67 +118,6 @@
             </div>
         </div>
     </div>
-
-    {# <div class="jumbotron text-center">
-		<h1>Candidats</h1>
-		{% include "candidate/_form_candidateSearch.html.twig" %}
-	</div>
-	<div class="container body-container">
-		<div class="row">
-			<div class="col-sm-9" id="main">
-				<table class="table">
-					<tbody>
-						{% for candidate in candidates %}
-							<tr>
-								<td class="col-sm-1">
-									<img class="avatar" src="{{ vich_uploader_asset(candidate, 'pictureFile') | imagine_filter('image_thumb') }}" alt="{{ candidate.name }} {{ candidate.firstname }}"/>
-
-								</td>
-								<td class="col-sm-3  align-middle">
-
-									<a href="{{ path('candidate.edit', {'id': candidate.id}) }}" class="href">
-										{{ candidate.name }}
-										{{ candidate.firstname }}</a>
-								</td>
-								<td class="col-sm-5  align-middle">
-									<a href="{{ path('candidate.edit', {'id': candidate.id}) }}">
-										<button class="btn btn-info">
-											<span class="d-sm-none">
-												<i class="fas fa-edit"></i>
-											</span>
-											<span class="d-none d-sm-block">Edition</span>
-										</button>
-									</a>
-									<form method="post" action="{{ path('candidate.delete',{id: candidate.id}) }}" style="display: inline-block" onsubmit="return confirm('Voulez-vous supprimer cet élément ?');">
-										<input name="_method" type="hidden" value="DELETE"/>
-										<input type="hidden" name="_token" value="{{ csrf_token('candidate.delete' ~ candidate.id) }}"/>
-
-										<button class="btn btn-danger">
-											<span class="d-sm-none">
-												<i class="fas fa-trash-alt"></i>
-											</span>
-											<span class="d-none d-sm-block">Supprimer</span>
-										</button>
-									</form>
-								</td>
-							</tr>
-						</td>
-					</tbody>
-				</tr>
-			</tbody>
-		</tbody>
-	</tr>
-{% else %}
-	<tr>
-		<td colspan="4">Pas d'enregistrement</td>
-	</tr>
-{% endfor %}</tbody></table><div class="text-right col-sm-2"><a href="{{ path('candidate.new') }}">
-<button class="btn btn-success">
-	<span class="d-sm-none">
-		<i class="fas fa-plus-square"></i>
-	</span>
-	<span class="d-none d-sm-block">{{button_label|default('Nouveau')}}</span>
-</button></a></div></div></div></div> #}
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset("plugins/custom/datatables/datatables.bundle.js") }}"></script>

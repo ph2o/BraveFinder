@@ -18,6 +18,7 @@ var CandidatList = function () {
             "info": false,
             'order': [],
             "pageLength": 20,
+             responsive: true,
             "lengthChange": false,
             'columnDefs': [
                 { orderable: false, targets: 1 }, // Disable ordering on column 6 (actions)

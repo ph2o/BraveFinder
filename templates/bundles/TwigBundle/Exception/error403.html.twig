@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block meta_title %}{{ 'Access Denied'|trans }}{% endblock %}
+{% block content %}
+    <div class="d-flex flex-column flex-center flex-column-fluid p-10">
+        <h1>OUPS, 403!</h1>
+        <p class="text-uppercase">
+            Cette page est interdite!
+        </p>
+        <div class="text-center">
+            <a href="{{ path('main.index') }}" class="btn btn-lg btn-primary fw-bolder">{{ 'Go to homepage'|trans }}</a>
+        </div>
+        <div class="invisible">{{ exception.message }}</div>
+    </div>
+{% endblock %}

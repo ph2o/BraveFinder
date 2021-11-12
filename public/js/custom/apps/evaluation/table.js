@@ -1,5 +1,7 @@
-/******/ (() => { // webpackBootstrap
-    /******/ 	"use strict";
+/******/
+(() => { // webpackBootstrap
+    /******/
+    "use strict";
     var __webpack_exports__ = {};
     /*!***********************************************************************!*\
       !*** ../demo1/src/js/custom/apps/user-management/users/list/table.js ***!
@@ -23,7 +25,7 @@
                 responsive: true,
                 "lengthChange": false,
                 'columnDefs': [
-                    { orderable: false, targets: 3 }, // Disable ordering on column 6 (actions)
+                    {orderable: false, targets: 3}, // Disable ordering on column 6 (actions)
                 ]
             });
         }
@@ -33,9 +35,10 @@
                 "info": false,
                 'order': [],
                 "pageLength": 20,
+                responsive: true,
                 "lengthChange": false,
                 'columnDefs': [
-                    { orderable: false, targets: 3 }, // Disable ordering on column 6 (actions)
+                    {orderable: false, targets: 3}, // Disable ordering on column 6 (actions)
                 ]
             });
         }
@@ -70,6 +73,7 @@
     KTUtil.onDOMContentLoaded(function () {
         EvaluationList.init();
     });
-    /******/ })()
+    /******/
+})()
 ;
 //# sourceMappingURL=table.js.map

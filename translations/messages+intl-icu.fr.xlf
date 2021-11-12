@@ -157,9 +157,9 @@
         <source>Search candidat</source>
         <target>Chercher un candidat</target>
       </trans-unit>
-      <trans-unit id="Gw2FHpv" resname="Engaged">
-        <source>Engaged</source>
-        <target>Engagé</target>
+      <trans-unit id="TCPpW2T" resname=" Engaged">
+        <source> Engaged</source>
+        <target> Engagés</target>
       </trans-unit>
       <trans-unit id="AqK7ykw" resname="Not engaged">
         <source>Not engaged</source>
@@ -185,9 +185,9 @@
         <source>Average grade</source>
         <target>Note moyenne</target>
       </trans-unit>
-      <trans-unit id="QPcRkbM" resname="On Site">
-        <source>On Site</source>
-        <target>Sur Site</target>
+      <trans-unit id="wO8JL1t" resname=" On Site">
+        <source> On Site</source>
+        <target> Sur Site</target>
       </trans-unit>
       <trans-unit id="83aVojy" resname="Edition">
         <source>Edition</source>
@@ -457,9 +457,41 @@
         <source>Candidates</source>
         <target>Candidats</target>
       </trans-unit>
-      <trans-unit id="60F7GIl" resname="Incomming">
+      <trans-unit id="M36wrYr" resname=" Incomming">
         <source> Incomming</source>
-        <target>Présumés</target>
+        <target> Présumés</target>
+      </trans-unit>
+      <trans-unit id="60F7GIl" resname="Incomming">
+        <source>Incomming</source>
+        <target>__Incomming</target>
+      </trans-unit>
+      <trans-unit id="QPcRkbM" resname="On Site">
+        <source>On Site</source>
+        <target>__On Site</target>
+      </trans-unit>
+      <trans-unit id="Gw2FHpv" resname="Engaged">
+        <source>Engaged</source>
+        <target>__Engaged</target>
+      </trans-unit>
+      <trans-unit id="VKDowX6" resname="Error">
+        <source>Error</source>
+        <target>__Error</target>
+      </trans-unit>
+      <trans-unit id="wCLaDxo" resname="Go to homepage">
+        <source>Go to homepage</source>
+        <target>Retour à la page d'accueil</target>
+      </trans-unit>
+      <trans-unit id="0TTKAlp" resname="Access Denied">
+        <source>Access Denied</source>
+        <target>__Access Denied</target>
+      </trans-unit>
+      <trans-unit id="pGmrTKT" resname="Page not found">
+        <source>Page not found</source>
+        <target>__Page not found</target>
+      </trans-unit>
+      <trans-unit id="RhSOJQ5" resname="Erreur">
+        <source>Erreur</source>
+        <target>__Erreur</target>
       </trans-unit>
     </body>
   </file>

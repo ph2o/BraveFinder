@@ -1,171 +1,156 @@
 <div class="aside-menu flex-column-fluid">
-    <div class="hover-scroll-overlay-y my-2 py-5 py-lg-8" id="kt_aside_menu_wrapper" data-kt-scroll="true"
-         data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto"
-         data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside_menu"
-         data-kt-scroll-offset="0">
-        <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
-             id="#kt_aside_menu" data-kt-menu="true">
-            <div class="menu-item">
-                <a class="menu-link menu-item-main_index"
-                   href="{{ path('main.index') }}">
-										<span class="menu-icon">
-											<i class="bi bi-house fs-3"></i>
-										</span>
-                    <span class="menu-title">{% trans %}Dashboard{% endtrans %}</span>
-                </a>
-            </div>
-            {% if is_granted('ROLE_ADMIN')
+	<div class="hover-scroll-overlay-y my-2 py-5 py-lg-8" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside_menu" data-kt-scroll-offset="0">
+		<div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
+			<div class="menu-item">
+				<a class="menu-link menu-item-main_index" href="{{ path('main.index') }}">
+					<span class="menu-icon">
+						<i class="bi bi-house fs-3"></i>
+					</span>
+					<span class="menu-title">{% trans %}Dashboard{% endtrans %}</span>
+				</a>
+			</div>
+			{% if is_granted('ROLE_ADMIN')
                 or is_granted('ROLE_CLOSTROPHOBIE')
                 or is_granted('ROLE_ENDURANCE')
                 or is_granted('ROLE_FORCE')
                 or is_granted('ROLE_VERTIGE')
                 or is_granted('ROLE_ENTRETIEN')
+                or is_granted('ROLE_CONFIANCE')
             %}
-            <div data-kt-menu-trigger="click" class="menu-item menu-accordion menu-practice menu-evaluation">
-									<span class="menu-link menu-item-practice">
-										 <span class="menu-icon">
-											<i class="bi bi-inboxes fs-3"></i>
-										</span>
-										<span class="menu-title">{{ 'Evaluations'|trans }}</span>
-										<span class="menu-arrow"></span>
-									</span>
-                <div class="menu-sub menu-sub-accordion menu-active-bg">
-                    {% for practice in practices %}
-                        {% if is_granted(practice.groupAllowed) or is_granted('ROLE_ADMIN') %}
-                            <div class="menu-item">
-                                <a class="menu-link {{ 'menu-item-practice_evaluation_' ~ practice.id }} {{ 'menu-item-evaluation_edit_' ~ practice.id }}"
-                                   href="{{ path('practice.evaluation', {'id': practice.id}) }}">
+				<div data-kt-menu-trigger="click" class="menu-item menu-accordion menu-practice menu-evaluation">
+					<span class="menu-link menu-item-practice">
+						<span class="menu-icon">
+							<i class="bi bi-inboxes fs-3"></i>
+						</span>
+						<span class="menu-title">{{ 'Evaluations'|trans }}</span>
+						<span class="menu-arrow"></span>
+					</span>
+					<div class="menu-sub menu-sub-accordion menu-active-bg">
+						{% for practice in practices %}
+							{% if is_granted(practice.groupAllowed) or is_granted('ROLE_ADMIN') %}
+								<div class="menu-item">
+									<a class="menu-link {{ 'menu-item-practice_evaluation_' ~ practice.id }} {{ 'menu-item-evaluation_edit_' ~ practice.id }}" href="{{ path('practice.evaluation', {'id': practice.id}) }}">
 										<span class="menu-icon">
 											<i class="bi bi-people fs-3"></i>
 										</span>
-                                    <span class="menu-title">{{ practice.name }}</span>
-                                </a>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-            {% if (is_granted('ROLE_ADMIN')
+										<span class="menu-title">{{ practice.name }}</span>
+									</a>
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+			{% endif %}
+			{% if (is_granted('ROLE_ADMIN')
                 or is_granted('ROLE_ACCUEIL')
                 or is_granted('ROLE_SECRETARIAT')
                 or is_granted('ROLE_MESURE')
                 ) %}
-                <div data-kt-menu-trigger="click"
-                     class="menu-item menu-accordion menu-secretariat">
-									<span class="menu-link">
-										 <span class="menu-icon">
-											<i class="bi bi-inboxes fs-3"></i>
-										</span>
-										<span class="menu-title">{{ 'Secretariat'|trans }}</span>
-										<span class="menu-arrow"></span>
+				<div data-kt-menu-trigger="click" class="menu-item menu-accordion menu-secretariat">
+					<span class="menu-link">
+						<span class="menu-icon">
+							<i class="bi bi-inboxes fs-3"></i>
+						</span>
+						<span class="menu-title">{{ 'Secretariat'|trans }}</span>
+						<span class="menu-arrow"></span>
+					</span>
+					<div class="menu-sub menu-sub-accordion menu-active-bg">
+						{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ACCUEIL') %}
+							<div class="menu-item">
+								<a class="menu-link menu-item-secretariat_reception" href="{{ path('secretariat.reception') }}">
+									<span class="menu-icon">
+										<i class="bi bi-people fs-3"></i>
 									</span>
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_ACCUEIL') %}
-                            <div class="menu-item">
-                                <a class="menu-link menu-item-secretariat_reception"
-                                   href="{{ path('secretariat.reception') }}">
-										<span class="menu-icon">
-											<i class="bi bi-people fs-3"></i>
-										</span>
-                                    <span class="menu-title">Accueil</span>
-                                </a>
-                            </div>
-                        {% endif %}
-                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MESURE') %}
-                            <div class="menu-item">
-                                <a class="menu-link menu-item-secretariat_mesure"
-                                   href="{{ path('secretariat.mesure') }}">
-										<span class="menu-icon">
-											<i class="bi bi-people fs-3"></i>
-										</span>
-                                    <span class="menu-title">Mesure</span>
-                                </a>
-                            </div>
-                        {% endif %}
-                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SECRETARIAT') %}
-                            <div class="menu-item">
-                                <a class="menu-link menu-item-secretariat_administratif"
-                                   href="{{ path('secretariat.administratif') }}">
-										<span class="menu-icon">
-											<i class="bi bi-people fs-3"></i>
-										</span>
-                                    <span class="menu-title">Données administratives</span>
-                                </a>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endif %}
-            {% if (is_granted('ROLE_ADMIN')) %}
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion menu-backoffice menu-candidate menu-backoffice-practice">
-									<span class="menu-link">
-										 <span class="menu-icon">
-											<i class="bi bi-lock fs-3"></i>
-										</span>
-										<span class="menu-title">{{ 'BackOffice'|trans }}</span>
-										<span class="menu-arrow"></span>
+									<span class="menu-title">Accueil</span>
+								</a>
+							</div>
+						{% endif %}
+						{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MESURE') %}
+							<div class="menu-item">
+								<a class="menu-link menu-item-secretariat_mesure" href="{{ path('secretariat.mesure') }}">
+									<span class="menu-icon">
+										<i class="bi bi-people fs-3"></i>
 									</span>
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div class="menu-item">
-                            <a class="menu-link menu-item-candidate_index menu-item-candidate_edit"
-                               href="{{ path('candidate.index') }}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-                                <span class="menu-title">Candidats</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link menu-item-backoffice-practice_index_0
-                            menu-item-backoffice-practice_edit_{{ app.request.get('id') }}
-                            menu-item-backoffice-practice_new_0 }}"
-                               href="{{ path('backoffice-practice.index') }}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-                                <span class="menu-title">Épreuves</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link menu-item-backoffice_engage"
-                               href="{{ path('backoffice.engage') }}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-                                <span class="menu-title">Engagement</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a target="_blank"
-                               class="menu-link menu-item-main_generatePdf"
-                               href="{{ path('main.generatePdf') }}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-                                <span class="menu-title">Rapport</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link menu-item-backoffice_xlsx"
-                               href="{{ path('backoffice.xlsx') }}">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-                                <span class="menu-title">Candidats Xlsx</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link menu-item-backoffice_users_0  menu-item-backoffice-user_edit{{ app.request.get('id') }}" href="{{ path('backoffice.users') }}">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                <span class="menu-title">Users</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        </div>
-    </div>
+									<span class="menu-title">Mesure</span>
+								</a>
+							</div>
+						{% endif %}
+						{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SECRETARIAT') %}
+							<div class="menu-item">
+								<a class="menu-link menu-item-secretariat_administratif" href="{{ path('secretariat.administratif') }}">
+									<span class="menu-icon">
+										<i class="bi bi-people fs-3"></i>
+									</span>
+									<span class="menu-title">Données administratives</span>
+								</a>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			{% endif %}
+			{% if (is_granted('ROLE_ADMIN')) %}
+				<div data-kt-menu-trigger="click" class="menu-item menu-accordion menu-backoffice menu-candidate menu-backoffice-practice">
+					<span class="menu-link">
+						<span class="menu-icon">
+							<i class="bi bi-lock fs-3"></i>
+						</span>
+						<span class="menu-title">{{ 'BackOffice'|trans }}</span>
+						<span class="menu-arrow"></span>
+					</span>
+					<div class="menu-sub menu-sub-accordion menu-active-bg">
+						<div class="menu-item">
+							<a class="menu-link menu-item-candidate_index menu-item-candidate_edit" href="{{ path('candidate.index') }}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">Candidats</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link menu-item-backoffice-practice_index_0
+																                            menu-item-backoffice-practice_edit_{{ app.request.get('id') }}
+																                            menu-item-backoffice-practice_new_0 }}" href="{{ path('backoffice-practice.index') }}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">Épreuves</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link menu-item-backoffice_engage" href="{{ path('backoffice.engage') }}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">Engagement</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a target="_blank" class="menu-link menu-item-main_generatePdf" href="{{ path('main.generatePdf') }}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">Rapport</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link menu-item-backoffice_xlsx" href="{{ path('backoffice.xlsx') }}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">Candidats Xlsx</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link menu-item-backoffice_users_0  menu-item-backoffice-user_edit{{ app.request.get('id') }}" href="{{ path('backoffice.users') }}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">Users</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
 </div>

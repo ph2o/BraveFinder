@@ -10,7 +10,7 @@
         "doctrine/doctrine-bundle": "^2.4",
         "doctrine/doctrine-migrations-bundle": "^3.1",
         "doctrine/orm": "^2.9",
-        "dompdf/dompdf": "^0.8.4",
+        "dompdf/dompdf": "^2.0.0",
         "kartik-v/bootstrap-star-rating": "^4.0",
         "laminas/laminas-code": "^3.4",
         "laminas/laminas-eventmanager": "^3.2",
